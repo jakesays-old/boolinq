@@ -6,6 +6,10 @@ namespace boolinq
     class ReverseRange
     {
     public:
+        typedef typename R::iterator_type iterator_type;
+        typedef typename R::const_iterator_type const_iterator_type;
+        typedef typename R::traits traits;
+
         ReverseRange(R r) : r(r) { }
 
         bool empty() const { return r.empty(); }

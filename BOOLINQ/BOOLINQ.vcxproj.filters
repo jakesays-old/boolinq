@@ -32,6 +32,9 @@
     <ClCompile Include="IteratorRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="LinqTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">
@@ -50,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IteratorRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="boolinq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

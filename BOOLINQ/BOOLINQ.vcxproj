@@ -80,11 +80,13 @@
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="ExtractRangeTest.cpp" />
+    <ClCompile Include="LinqTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="IteratorRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="boolinq.h" />
     <ClInclude Include="ChainRange.h" />
     <ClInclude Include="ExtractRange.h" />
     <ClInclude Include="IteratorRange.h" />

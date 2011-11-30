@@ -43,6 +43,11 @@ namespace boolinq
             return r.front();
         }
 
+        typename traits::value_type back() const 
+        { 
+            return r.back();
+        }
+
     private:
         void seekFront()
         {
@@ -62,9 +67,22 @@ namespace boolinq
     };
 
     template<typename R, typename F>
-    WhereRange<R,F> where(R r, F f)
+    WhereRange<R,F> where(R r, F & f)
     {
         return WhereRange<R,F>(r,f);
     }
+
+    // ------------------------------------------------
+
+    template<template<typename T> class TLINQ, typename TContent>
+    class WhereRange_linq
+    {
+    public:
+        template<typename F>
+        TLINQ<WhereRange<TContent,F>> where(F & f) const
+        {
+            return WhereRange<TContent,F>(((TLINQ<TContent>*)this)->t,f);
+        }
+    };
 }
 // namespace boolinq
