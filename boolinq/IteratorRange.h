@@ -5,34 +5,25 @@
 namespace boolinq
 {
     template<typename T> 
-    class Range
+    class IteratorRange
     {
     public:
         typedef typename T::iterator iterator_type;
         typedef typename T::const_iterator const_iterator_type;
         typedef std::iterator_traits<iterator_type> traits;
     
-        Range(const T & container)
+        IteratorRange(const T & container)
             : b(container.begin())
             , e(container.end())
         {
         }
 
-        /*
-        Range(typename iterator_type begin,
-              typename iterator_type end)
+        IteratorRange(const_iterator_type begin,
+              const_iterator_type end)
             : b(begin)
             , e(end)
         {
         }
-
-        Range(typename const_iterator_type begin,
-              typename const_iterator_type end)
-            : b(begin)
-            , e(end)
-        {
-        }
-        */
 
         bool empty() const
         {
@@ -72,16 +63,16 @@ namespace boolinq
     };
 
     template<typename T>
-    Range<T> range(const T & container)
+    IteratorRange<T> range(const T & container)
     {
-        return Range<T>(container);
+        return IteratorRange<T>(container);
     }
 
     template<typename T>
-    Range<T> range(typename T::iterator b,
+    IteratorRange<T> range(typename T::iterator b,
                    typename T::iterator e)
     {
-        return Range<T>(b, e);
+        return IteratorRange<T>(b, e);
     }
 }
 // namespace boolinq

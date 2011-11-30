@@ -5,7 +5,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "Range.h"
+#include "IteratorRange.h"
 #include "ExtractRange.h"
 
 using namespace boolinq;

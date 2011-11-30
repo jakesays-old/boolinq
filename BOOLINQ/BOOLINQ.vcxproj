@@ -81,13 +81,13 @@
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="ExtractRangeTest.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RangeTest.cpp" />
+    <ClCompile Include="IteratorRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChainRange.h" />
     <ClInclude Include="ExtractRange.h" />
-    <ClInclude Include="Range.h" />
+    <ClInclude Include="IteratorRange.h" />
     <ClInclude Include="ReverseRange.h" />
     <ClInclude Include="SelectRange.h" />
     <ClInclude Include="WhereRange.h" />

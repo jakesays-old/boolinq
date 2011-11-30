@@ -29,14 +29,11 @@
     <ClCompile Include="WhereRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="RangeTest.cpp">
+    <ClCompile Include="IteratorRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Range.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ReverseRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExtractRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IteratorRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
