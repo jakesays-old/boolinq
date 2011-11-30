@@ -1,5 +1,3 @@
-#include <list>
-#include <deque>
 #include <vector>
 #include <string>
 
@@ -8,7 +6,6 @@
 
 #include "Range.h"
 #include "WhereRange.h"
-#include "ExtractRange.h"
 
 TEST(WhereRange, OddIntFilter)
 {

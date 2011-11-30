@@ -20,10 +20,7 @@ TEST(ExtractRange, List2List)
     auto rng = range(src);
     auto dst = extract_list(rng);
 
-    auto it1 = src.begin();
-    auto it2 = dst.begin();
-    for(; it1 != src.end() && it2 != dst.end(); ++it1, ++it2)
-        EXPECT_EQ(*it1, *it2);
+    EXPECT_EQ(dst,src);
 }
 
 TEST(ExtractRange, List2Vector)
@@ -86,10 +83,7 @@ TEST(ExtractRange, Vector2Vector)
     auto rng = range(src);
     auto dst = extract_vector(rng);
 
-    auto it1 = src.begin();
-    auto it2 = dst.begin();
-    for(; it1 != src.end() && it2 != dst.end(); ++it1, ++it2)
-        EXPECT_EQ(*it1, *it2);
+    EXPECT_EQ(dst,src);
 }
 
 TEST(ExtractRange, Vector2Deque)
@@ -152,8 +146,5 @@ TEST(ExtractRange, Deque2Deque)
     auto rng = range(src);
     auto dst = extract_deque(rng);
 
-    auto it1 = src.begin();
-    auto it2 = dst.begin();
-    for(; it1 != src.end() && it2 != dst.end(); ++it1, ++it2)
-        EXPECT_EQ(*it1, *it2);
+    EXPECT_EQ(dst,src);
 }
