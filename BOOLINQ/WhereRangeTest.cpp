@@ -22,14 +22,11 @@ TEST(WhereRange, OddIntFilter)
 
     auto rng = range(src);
     auto odd = where(rng, [](int a){return a & 1;});
-    auto dst = extract_vector(odd);
-
-    std::vector<int> ans;
-    ans.push_back(1);
-    ans.push_back(3);
-    ans.push_back(5);
-
-    EXPECT_EQ(ans,dst);
+    
+    EXPECT_EQ(1, odd.popFront());
+    EXPECT_EQ(3, odd.popFront());
+    EXPECT_EQ(5, odd.popFront());
+    EXPECT_TRUE(odd.empty());
 }
 
 TEST(WhereRange, StrLetterFilter)
@@ -42,14 +39,11 @@ TEST(WhereRange, StrLetterFilter)
     src.push_back("nokia");
 
     auto rng = range(src);
-    auto odd = where(rng, [](std::string a){return a[0] == 'a';});
-    auto dst = extract_vector(odd);
+    auto axx = where(rng, [](std::string a){return a[0] == 'a';});
 
-    std::vector<std::string> ans;
-    ans.push_back("apple");
-    ans.push_back("adobe");
-
-    EXPECT_EQ(ans,dst);
+    EXPECT_EQ("apple", axx.popFront());
+    EXPECT_EQ("adobe", axx.popFront());
+    EXPECT_TRUE(axx.empty());
 }
 
 TEST(WhereRange, YangFilter)
