@@ -79,7 +79,7 @@ namespace boolinq
     {
     public:
         template<typename F>
-        TLINQ<WhereRange<TContent,F>> where(F & f) const
+        TLINQ<WhereRange<TContent,F> > where(F & f) const
         {
             return WhereRange<TContent,F>(((TLINQ<TContent>*)this)->t,f);
         }

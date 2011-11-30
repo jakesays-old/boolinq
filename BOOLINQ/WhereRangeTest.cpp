@@ -72,3 +72,4 @@ TEST(WhereRange, YangFilter)
     EXPECT_EQ("man4", yang.popFront().name);
     EXPECT_TRUE(yang.empty());
 }
+
