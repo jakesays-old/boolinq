@@ -13,7 +13,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65AA3851-4457-48AB-BD08-83250D523D49}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>LINQPP</RootNamespace>
+    <RootNamespace>BOOLINQ</RootNamespace>
+    <ProjectName>BOOLINQ</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
