@@ -3,9 +3,6 @@
 template<typename R, typename F>
 class SelectRange
 {
-    R r;
-    F & f;
-
 public:
     SelectRange(R r, F & f)
         : r(r), f(f) 
@@ -17,25 +14,29 @@ public:
         return r.empty();
     }
 
-    void popFront() 
+    decltype(f(typename R::traits::value_type)) popFront() 
     { 
-        r.popFront();
+        return f(r.popFront());
     }
 
-    void popBack() 
+    decltype(f(typename R::traits::value_type)) popBack() 
     {
-        r.popBack();
+        return f(r.popBack());
     }
 
-    decltype(f(typename R::traits::reference)) front() const 
+    decltype(f(typename R::traits::value_type)) front() const 
     { 
         return f(r.front());
     }
 
-    decltype(f(typename R::traits::reference)) back() const 
+    decltype(f(typename R::traits::value_type)) back() const 
     {
         return f(r.back());
     }
+
+private:
+    R r;
+    F & f;
 };
 
 template<typename R, typename F>

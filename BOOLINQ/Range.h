@@ -37,16 +37,19 @@ public:
         return (b == e);
     }
 
-    void popFront()
+    typename traits::value_type popFront()
     {
         assert(!empty());
+        const_iterator_type tmp = b;
         ++b;
+        return *tmp;
     }
 
-    void popBack()
+    typename traits::value_type popBack()
     {
         assert(!empty());
-        --e;
+        const_iterator_type tmp = --e;
+        return *tmp;
     }
 
     typename traits::value_type front() const
@@ -62,8 +65,8 @@ public:
     }
 
 private:
-    typename const_iterator_type b;
-    typename const_iterator_type e;
+    const_iterator_type b;
+    const_iterator_type e;
 };
 
 template<typename T>

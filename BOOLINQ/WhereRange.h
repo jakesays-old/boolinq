@@ -22,28 +22,27 @@ public:
         return r.empty();
     }
 
-    void popFront() 
+    typename traits::value_type popFront() 
     { 
+        R tmp = r;
         r.popFront();
         while(!r.empty() && !f(r.front()))
             r.popFront();
+        return tmp.front();
     }
 
-    void popBack() 
+    typename traits::value_type popBack() 
     {
+        R tmp = r;
         r.popBack();
         while(!r.empty() && !f(r.back()))
             r.popBack();
+        return tmp.back();
     }
 
     typename traits::value_type front() const 
     { 
         return r.front();
-    }
-
-    typename traits::value_type back() const 
-    {
-        return r.back(); 
     }
 
 private:

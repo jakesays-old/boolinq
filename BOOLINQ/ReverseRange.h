@@ -3,18 +3,19 @@
 template<typename R>
 class ReverseRange
 {
-    R r;
-
 public:
     ReverseRange(R r) : r(r) { }
 
     bool empty() const { return r.empty(); }
-    void popFront() { r.popBack(); }
-    void popBack() { r.popFront(); }
-    typename R::traits::reference front() const { return r.back(); }
-    typename R::traits::reference back() const { return r.front(); }
+    typename R::traits::value_type popFront() { return r.popBack(); }
+    typename R::traits::value_type popBack() { return r.popFront(); }
+    typename R::traits::value_type front() const { return r.back(); }
+    typename R::traits::value_type back() const { return r.front(); }
 
     friend template<class R> R reverse(ReverseRange<R> r); // smart needed
+
+private:
+    R r;
 };
 
 template<typename R>
