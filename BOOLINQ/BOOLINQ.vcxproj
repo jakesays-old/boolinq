@@ -81,6 +81,7 @@
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="ExtractRangeTest.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>

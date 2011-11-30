@@ -11,10 +11,8 @@ public:
     WhereRange(R r, F & f)
         : r(r), f(f)
     {
-        while(!r.empty() && !f(r.front()))
-            r.popFront();
-        while(!r.empty() && !f(r.back()))
-            r.popBack();
+        seekFront();
+        seekBack();
     }
 
     bool empty() const 
@@ -26,8 +24,7 @@ public:
     { 
         R tmp = r;
         r.popFront();
-        while(!r.empty() && !f(r.front()))
-            r.popFront();
+        seekFront();
         return tmp.front();
     }
 
@@ -35,14 +32,26 @@ public:
     {
         R tmp = r;
         r.popBack();
-        while(!r.empty() && !f(r.back()))
-            r.popBack();
+        seekBack();
         return tmp.back();
     }
 
     typename traits::value_type front() const 
     { 
         return r.front();
+    }
+
+private:
+    void seekFront()
+    {
+        while(!r.empty() && !f(r.front()))
+            r.popFront();
+    }
+
+    void seekBack()
+    {
+        while(!r.empty() && !f(r.back()))
+            r.popBack();
     }
 
 private:

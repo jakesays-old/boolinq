@@ -29,6 +29,9 @@
     <ClCompile Include="WhereRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="RangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Range.h">
