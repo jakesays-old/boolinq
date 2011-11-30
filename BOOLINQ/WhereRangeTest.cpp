@@ -7,6 +7,8 @@
 #include "Range.h"
 #include "WhereRange.h"
 
+using namespace boolinq;
+
 TEST(WhereRange, OddIntFilter)
 {
     std::vector<int> src;

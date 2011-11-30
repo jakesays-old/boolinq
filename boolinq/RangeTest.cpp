@@ -8,6 +8,8 @@
 
 #include "Range.h"
 
+using namespace boolinq;
+
 TEST(RangeTest, IntVectorPopFront)
 {
     std::vector<int> src;

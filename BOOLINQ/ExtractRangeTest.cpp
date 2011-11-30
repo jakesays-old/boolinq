@@ -8,6 +8,8 @@
 #include "Range.h"
 #include "ExtractRange.h"
 
+using namespace boolinq;
+
 // List To Any
 
 TEST(ExtractRange, List2List)

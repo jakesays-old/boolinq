@@ -1,66 +1,70 @@
 #pragma once
 
-template<typename R, typename F> 
-class WhereRange
+namespace boolinq
 {
-public:
-    typedef typename R::iterator_type iterator_type;
-    typedef typename R::const_iterator_type const_iterator_type;
-    typedef typename R::traits traits;
+    template<typename R, typename F> 
+    class WhereRange
+    {
+    public:
+        typedef typename R::iterator_type iterator_type;
+        typedef typename R::const_iterator_type const_iterator_type;
+        typedef typename R::traits traits;
     
-    WhereRange(R r, F & f)
-        : r(r), f(f)
-    {
-        seekFront();
-        seekBack();
-    }
+        WhereRange(R r, F & f)
+            : r(r), f(f)
+        {
+            seekFront();
+            seekBack();
+        }
 
-    bool empty() const 
-    { 
-        return r.empty();
-    }
+        bool empty() const 
+        { 
+            return r.empty();
+        }
 
-    typename traits::value_type popFront() 
-    { 
-        R tmp = r;
-        r.popFront();
-        seekFront();
-        return tmp.front();
-    }
-
-    typename traits::value_type popBack() 
-    {
-        R tmp = r;
-        r.popBack();
-        seekBack();
-        return tmp.back();
-    }
-
-    typename traits::value_type front() const 
-    { 
-        return r.front();
-    }
-
-private:
-    void seekFront()
-    {
-        while(!r.empty() && !f(r.front()))
+        typename traits::value_type popFront() 
+        { 
+            R tmp = r;
             r.popFront();
-    }
+            seekFront();
+            return tmp.front();
+        }
 
-    void seekBack()
-    {
-        while(!r.empty() && !f(r.back()))
+        typename traits::value_type popBack() 
+        {
+            R tmp = r;
             r.popBack();
+            seekBack();
+            return tmp.back();
+        }
+
+        typename traits::value_type front() const 
+        { 
+            return r.front();
+        }
+
+    private:
+        void seekFront()
+        {
+            while(!r.empty() && !f(r.front()))
+                r.popFront();
+        }
+
+        void seekBack()
+        {
+            while(!r.empty() && !f(r.back()))
+                r.popBack();
+        }
+
+    private:
+        R r;
+        F & f;
+    };
+
+    template<typename R, typename F>
+    WhereRange<R,F> where(R r, F f)
+    {
+        return WhereRange<R,F>(r,f);
     }
-
-private:
-    R r;
-    F & f;
-};
-
-template<typename R, typename F>
-WhereRange<R,F> where(R r, F f)
-{
-    return WhereRange<R,F>(r,f);
 }
+// namespace boolinq
