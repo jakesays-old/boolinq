@@ -18,9 +18,7 @@ namespace boolinq
         , public ToVector_mixin<Linq,T>
     {
     public:
-        typedef typename T::iterator_type iterator_type;
-        typedef typename T::const_iterator_type const_iterator_type;
-        typedef typename T::traits traits;
+        typedef typename T::value_type value_type;
 
         Linq(const T & t)
             : t(t)
@@ -28,10 +26,10 @@ namespace boolinq
         }
 
         bool empty() const { return t.empty(); }
-        typename T::traits::value_type popFront() { return t.popFront(); }
-        typename T::traits::value_type popBack() { return t.popBack(); }
-        typename T::traits::value_type front() const { return t.front(); }
-        typename T::traits::value_type back() const { return t.back(); }
+        typename T::value_type popFront()    { return t.popFront(); }
+        typename T::value_type popBack()     { return t.popBack(); }
+        typename T::value_type front() const { return t.front(); }
+        typename T::value_type back() const  { return t.back(); }
 
     public:
         T t;

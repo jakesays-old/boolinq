@@ -7,9 +7,9 @@ namespace boolinq
     // toVector(xxx)
 
     template<typename R>
-    std::deque<typename R::traits::value_type> toDeque(R r)
+    std::deque<typename R::value_type> toDeque(R r)
     {
-        std::deque<typename R::traits::value_type> result;
+        std::deque<typename R::value_type> result;
         for (; !r.empty(); r.popFront())
             result.push_back(r.front());
         return result;
@@ -21,7 +21,7 @@ namespace boolinq
     class ToDeque_mixin
     {
     public:
-        std::deque<typename TContent::traits::value_type> toDeque() const
+        std::deque<typename TContent::value_type> toDeque() const
         {
             return boolinq::toDeque(((TLINQ<TContent>*)this)->t);
         }

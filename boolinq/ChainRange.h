@@ -6,6 +6,8 @@ namespace boolinq
     class ChainRange
     {
     public:
+        typedef R1::traits::value_type value_type;
+
         ChainRange(R1 r1, R2 r2)
             : r1(r1), r2(r2)
         {
@@ -16,25 +18,25 @@ namespace boolinq
             return r1.empty() && r2.empty();
         }
 
-        typename R1::traits::value_type popFront()
+        value_type popFront()
         {
             assert(!r1.empty() || !r2.empty());
             return (r1.empty() ? r2 : r1).popFront();
         }
 
-        typename R1::traits::value_type popBack()
+        value_type popBack()
         {
             assert(!r2.empty() || !r1.empty());
             return (r2.empty() ? r1 : r2).popEnd();
         }
 
-        typename R1::traits::value_type front() const 
+        value_type front() const 
         {
             assert(!r1.empty() || !r2.empty());
             return (r1.empty() ? r2 : r1).front();
         }
 
-        typename R1::traits::value_type back() const
+        value_type back() const
         { 
             assert(!r2.empty() || !r1.empty());
             return (r2.empty() ? r1 : r2).back();

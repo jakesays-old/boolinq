@@ -10,7 +10,7 @@
 
 using namespace boolinq;
 
-TEST(Linq, WhereOddTest)
+TEST(Linq, WhereOdd)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -32,7 +32,7 @@ TEST(Linq, WhereOddTest)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(Linq, WhereOddWhereLessTest)
+TEST(Linq, WhereOdd_WhereLess)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -57,7 +57,7 @@ TEST(Linq, WhereOddWhereLessTest)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(Linq, WhereLessWhereOddTest)
+TEST(Linq, WhereLess_WhereOdd)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -82,7 +82,7 @@ TEST(Linq, WhereLessWhereOddTest)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(Linq, WhereOddToVectorTest)
+TEST(Linq, WhereOdd_ToVector)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -103,5 +103,30 @@ TEST(Linq, WhereOddToVectorTest)
     ans.push_back(5);
     ans.push_back(7);
     
+    EXPECT_EQ(ans,dst);
+}
+
+TEST(Linq, WhereOdd_WhereLess_SelectMul2_ToVector)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(6);
+    src.push_back(7);
+    src.push_back(8);
+
+    auto dst = from(src).where([](int a){return a&1;})
+                        .where([](int a){return a<6;})
+                        .select([](int a){return a*2;})
+                        .toVector();
+
+    std::vector<int> ans;
+    ans.push_back(2);
+    ans.push_back(6);
+    ans.push_back(10);
+
     EXPECT_EQ(ans,dst);
 }

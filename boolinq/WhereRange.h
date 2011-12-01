@@ -6,10 +6,8 @@ namespace boolinq
     class WhereRange
     {
     public:
-        typedef typename R::iterator_type iterator_type;
-        typedef typename R::const_iterator_type const_iterator_type;
-        typedef typename R::traits traits;
-    
+        typedef typename R::value_type value_type;
+        
         WhereRange(R r, F & f)
             : r(r), f(f)
         {
@@ -22,7 +20,7 @@ namespace boolinq
             return r.empty();
         }
 
-        typename traits::value_type popFront() 
+        typename value_type popFront() 
         { 
             R tmp = r;
             r.popFront();
@@ -30,7 +28,7 @@ namespace boolinq
             return tmp.front();
         }
 
-        typename traits::value_type popBack() 
+        typename value_type popBack() 
         {
             R tmp = r;
             r.popBack();
@@ -38,12 +36,12 @@ namespace boolinq
             return tmp.back();
         }
 
-        typename traits::value_type front() const 
+        typename value_type front() const 
         { 
             return r.front();
         }
 
-        typename traits::value_type back() const 
+        typename value_type back() const 
         { 
             return r.back();
         }

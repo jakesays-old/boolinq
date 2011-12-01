@@ -11,12 +11,8 @@ namespace boolinq
     template<typename R, typename F>
     class SelectRange
     {
-        typedef typename R::traits::value_type prev_value_type;
-
     public:
-        typedef typename R::iterator_type iterator_type;
-        typedef typename R::const_iterator_type const_iterator_type;
-        typedef typename R::traits traits;
+        typedef decltype(get_return_type<R,F>()) value_type;
         
         SelectRange(R r, F & f)
             : r(r), f(f) 
@@ -28,22 +24,22 @@ namespace boolinq
             return r.empty();
         }
 
-        decltype(get_return_type<R,F>()) popFront()
+        value_type popFront()
         { 
             return f(r.popFront());
         }
 
-        decltype(get_return_type<R,F>()) popBack() 
+        value_type popBack() 
         {
             return f(r.popBack());
         }
 
-        decltype(get_return_type<R,F>()) front() const 
+        value_type front() const 
         { 
             return f(r.front());
         }
 
-        decltype(get_return_type<R,F>()) back() const 
+        value_type back() const 
         {
             return f(r.back());
         }

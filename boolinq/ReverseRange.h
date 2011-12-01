@@ -6,6 +6,7 @@ namespace boolinq
     class ReverseRange
     {
     public:
+        typedef typename R::traits::value_type value_type; 
         typedef typename R::iterator_type iterator_type;
         typedef typename R::const_iterator_type const_iterator_type;
         typedef typename R::traits traits;
@@ -13,10 +14,10 @@ namespace boolinq
         ReverseRange(R r) : r(r) { }
 
         bool empty() const { return r.empty(); }
-        typename R::traits::value_type popFront() { return r.popBack(); }
-        typename R::traits::value_type popBack() { return r.popFront(); }
-        typename R::traits::value_type front() const { return r.back(); }
-        typename R::traits::value_type back() const { return r.front(); }
+        typename value_type popFront() { return r.popBack(); }
+        typename value_type popBack() { return r.popFront(); }
+        typename value_type front() const { return r.back(); }
+        typename value_type back() const { return r.front(); }
 
         friend template<class R> R reverse(ReverseRange<R> r); // smart needed
 

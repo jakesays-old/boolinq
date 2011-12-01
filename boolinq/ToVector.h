@@ -7,9 +7,9 @@ namespace boolinq
     // toVector(xxx)
 
     template<typename R>
-    std::vector<typename R::traits::value_type> toVector(R r)
+    std::vector<typename R::value_type> toVector(R r)
     {
-        std::vector<typename R::traits::value_type> result;
+        std::vector<typename R::value_type> result;
         for (; !r.empty(); r.popFront())
             result.push_back(r.front());
         return result;
@@ -21,7 +21,7 @@ namespace boolinq
     class ToVector_mixin
     {
     public:
-        std::vector<typename TContent::traits::value_type> toVector() const
+        std::vector<typename TContent::value_type> toVector() const
         {
             return boolinq::toVector(((TLINQ<TContent>*)this)->t);
         }

@@ -9,7 +9,7 @@
 
 using namespace boolinq;
 
-TEST(WhereRange, OddIntFilter)
+TEST(WhereRange, IntOdd)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -28,7 +28,7 @@ TEST(WhereRange, OddIntFilter)
     EXPECT_TRUE(odd.empty());
 }
 
-TEST(WhereRange, StrLetterFilter)
+TEST(WhereRange, FirstLetter)
 {
     std::vector<std::string> src;
     src.push_back("apple");
@@ -45,7 +45,7 @@ TEST(WhereRange, StrLetterFilter)
     EXPECT_TRUE(axx.empty());
 }
 
-TEST(WhereRange, YangFilter)
+TEST(WhereRange, IntLess)
 {
     struct ABC
     {
