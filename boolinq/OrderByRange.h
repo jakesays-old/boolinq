@@ -92,7 +92,7 @@ namespace boolinq
         {
             R cur_value = r;
             R max_value = r;
-            int curr_index = 0;
+            int cur_index = 0;
             int max_index = 0;
 
             while(!cur_value.empty())
@@ -100,11 +100,11 @@ namespace boolinq
                 if (f(cur_value.front()) > f(max_value.front()))
                 {
                     max_value = cur_value;
-                    max_index = curr_index;
+                    max_index = cur_index;
                 }
 
                 cur_value.popFront();
-                curr_index++;
+                cur_index++;
             }
 
             maxValue = max_value;
@@ -155,7 +155,7 @@ namespace boolinq
         {
             R cur_value = r;
             R max_value = r;
-            int curr_index = 0;
+            int cur_index = 0;
             int max_index = -1;
 
             while(!cur_value.empty())
@@ -163,15 +163,15 @@ namespace boolinq
                 if (max_index == -1
                     && f(cur_value.front()) < f(maxValue.front()))
                 {
-                    min_value = cur_value;
-                    min_index = cur_index;
+                    max_value = cur_value;
+                    max_index = cur_index;
                 }
 
                 if (f(cur_value.front()) == f(maxValue.front())
-                    && curr_index > minIndex)
+                    && cur_index > maxIndex)
                 {
                     max_value = cur_value;
-                    max_index = curr_index;
+                    max_index = cur_index;
                     break;
                 }
 
@@ -179,11 +179,11 @@ namespace boolinq
                     && f(cur_value.front()) > f(max_value.front()))
                 {
                     max_value = cur_value;
-                    max_index = cur_value;
+                    max_index = cur_index;
                 }
 
                 cur_value.popFront();
-                curr_index++;
+                cur_index++;
             }
 
             maxValue = max_value;
