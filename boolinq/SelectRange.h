@@ -4,15 +4,19 @@
 
 namespace boolinq
 {
-    template<typename R, typename F>
-    static auto get_return_type(R * r = NULL, F * f = NULL)
-                -> decltype((*f)(r->front()));
+    template<typename F, typename TArg>
+    static auto get_return_type(F * f = NULL, TArg * arg = NULL)
+                -> decltype((*f)(*arg));
+
+    template<typename F, typename TArg, typename TArg2>
+    static auto get_return_type(F * f = NULL, TArg * arg = NULL, TArg2 * arg2 = NULL)
+                -> decltype((*f)(*arg,*arg2));
 
     template<typename R, typename F>
     class SelectRange
     {
     public:
-        typedef decltype(get_return_type<R,F>()) value_type;
+        typedef decltype(get_return_type<F,typename R::value_type>()) value_type;
         
         SelectRange(R r, F & f)
             : r(r), f(f) 
