@@ -3,6 +3,7 @@
 #include "IterRange.h"
 #include "WhereRange.h"
 #include "SelectRange.h"
+#include "OrderByRange.h"
 #include "ToList.h"
 #include "ToDeque.h"
 #include "ToVector.h"
@@ -13,6 +14,7 @@ namespace boolinq
     class Linq
         : public WhereRange_mixin<Linq,T>
         , public SelectRange_mixin<Linq,T>
+        , public OrderByRange_mixin<Linq,T>
         , public ToList_mixin<Linq,T>
         , public ToDeque_mixin<Linq,T>
         , public ToVector_mixin<Linq,T>

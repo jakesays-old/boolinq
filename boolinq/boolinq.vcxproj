@@ -79,18 +79,20 @@
   <ItemGroup>
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
+    <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
     <ClCompile Include="LinqTest.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="IteratorRangeTest.cpp" />
+    <ClCompile Include="IterRangeTest.cpp" />
     <ClCompile Include="ToVectorTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h" />
     <ClInclude Include="ChainRange.h" />
+    <ClInclude Include="OrderByRange.h" />
     <ClInclude Include="ToDeque.h" />
     <ClInclude Include="ToList.h" />
     <ClInclude Include="IterRange.h" />

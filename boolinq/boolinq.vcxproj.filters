@@ -26,9 +26,6 @@
     <ClCompile Include="WhereRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="IteratorRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="LinqTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
@@ -42,6 +39,12 @@
       <Filter>Test Files</Filter>
     </ClCompile>
     <ClCompile Include="SelectRangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IterRangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OrderByRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,6 +74,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IterRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderByRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

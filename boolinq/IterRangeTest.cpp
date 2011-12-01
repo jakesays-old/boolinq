@@ -10,7 +10,7 @@
 
 using namespace boolinq;
 
-TEST(IterRangeTest, IntVectorPopFront)
+TEST(IterRange, PopFront)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -30,7 +30,7 @@ TEST(IterRangeTest, IntVectorPopFront)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(IterRangeTest, IntVectorPopBack)
+TEST(IterRange, PopBack)
 {
     std::vector<int> src;
     src.push_back(1);
