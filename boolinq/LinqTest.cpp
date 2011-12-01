@@ -10,7 +10,7 @@
 
 using namespace boolinq;
 
-TEST(LinqTest, OddTest)
+TEST(Linq, WhereOddTest)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -32,7 +32,7 @@ TEST(LinqTest, OddTest)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(LinqTest, OddLessTest)
+TEST(Linq, WhereOddWhereLessTest)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -57,7 +57,7 @@ TEST(LinqTest, OddLessTest)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(LinqTest, LessOddTest)
+TEST(Linq, WhereLessWhereOddTest)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -80,4 +80,28 @@ TEST(LinqTest, LessOddTest)
     }
 
     EXPECT_TRUE(rng.empty());
+}
+
+TEST(Linq, WhereOddToVectorTest)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(6);
+    src.push_back(7);
+    src.push_back(8);
+
+    auto dst = from(src).where([](int a){return a&1;})
+                        .toVector();
+
+    std::vector<int> ans;
+    ans.push_back(1);
+    ans.push_back(3);
+    ans.push_back(5);
+    ans.push_back(7);
+    
+    EXPECT_EQ(ans,dst);
 }

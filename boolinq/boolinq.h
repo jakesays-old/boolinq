@@ -2,13 +2,18 @@
 
 #include "IteratorRange.h"
 #include "WhereRange.h"
-#include "ExtractRange.h"
+#include "ToList.h"
+#include "ToDeque.h"
+#include "ToVector.h"
 
 namespace boolinq
 {
     template<typename T>
     class Linq
         : public WhereRange_linq<Linq,T>
+        , public ToList_mixin<Linq,T>
+        , public ToDeque_mixin<Linq,T>
+        , public ToVector_mixin<Linq,T>
     {
     public:
         typedef typename T::iterator_type iterator_type;
@@ -32,6 +37,12 @@ namespace boolinq
 
     template<typename X>
     Linq<IteratorRange<X> > from(const X & x)
+    {
+        return IteratorRange<X>(x);
+    }
+
+    template<typename X, template<typename T> class TLinq>
+    TLinq<IteratorRange<X> > from(const X & x)
     {
         return IteratorRange<X>(x);
     }

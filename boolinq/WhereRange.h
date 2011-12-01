@@ -66,13 +66,17 @@ namespace boolinq
         F & f;
     };
 
+    // ------------------------------------------------
+
+    // where(where(xxx, ...), ...)
+
     template<typename R, typename F>
     WhereRange<R,F> where(R r, F & f)
     {
         return WhereRange<R,F>(r,f);
     }
-
-    // ------------------------------------------------
+    
+    // xxx.where(...).where(...)
 
     template<template<typename T> class TLINQ, typename TContent>
     class WhereRange_linq
