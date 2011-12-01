@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
+    <ClCompile Include="SelectRangeTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
     <ClCompile Include="LinqTest.cpp" />
@@ -92,7 +93,7 @@
     <ClInclude Include="ChainRange.h" />
     <ClInclude Include="ToDeque.h" />
     <ClInclude Include="ToList.h" />
-    <ClInclude Include="IteratorRange.h" />
+    <ClInclude Include="IterRange.h" />
     <ClInclude Include="ReverseRange.h" />
     <ClInclude Include="SelectRange.h" />
     <ClInclude Include="ToVector.h" />

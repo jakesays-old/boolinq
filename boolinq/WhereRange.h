@@ -66,8 +66,6 @@ namespace boolinq
         F & f;
     };
 
-    // ------------------------------------------------
-
     // where(where(xxx, ...), ...)
 
     template<typename R, typename F>
@@ -79,13 +77,13 @@ namespace boolinq
     // xxx.where(...).where(...)
 
     template<template<typename T> class TLINQ, typename TContent>
-    class WhereRange_linq
+    class WhereRange_mixin
     {
     public:
         template<typename F>
         TLINQ<WhereRange<TContent,F> > where(F & f) const
         {
-            return WhereRange<TContent,F>(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::where(((TLINQ<TContent>*)this)->t,f);
         }
     };
 }

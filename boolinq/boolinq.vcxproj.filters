@@ -41,6 +41,9 @@
     <ClCompile Include="ToDequeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="SelectRangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">
@@ -55,9 +58,6 @@
     <ClInclude Include="SelectRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IteratorRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="boolinq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,6 +68,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ToDeque.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IterRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

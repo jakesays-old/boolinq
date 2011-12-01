@@ -3,7 +3,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "IteratorRange.h"
+#include "IterRange.h"
 #include "ToList.h"
 
 using namespace boolinq;

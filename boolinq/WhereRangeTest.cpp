@@ -4,7 +4,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "IteratorRange.h"
+#include "IterRange.h"
 #include "WhereRange.h"
 
 using namespace boolinq;

@@ -6,11 +6,11 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "IteratorRange.h"
+#include "IterRange.h"
 
 using namespace boolinq;
 
-TEST(IteratorRangeTest, IntVectorPopFront)
+TEST(IterRangeTest, IntVectorPopFront)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -30,7 +30,7 @@ TEST(IteratorRangeTest, IntVectorPopFront)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(IteratorRangeTest, IntVectorPopBack)
+TEST(IterRangeTest, IntVectorPopBack)
 {
     std::vector<int> src;
     src.push_back(1);
