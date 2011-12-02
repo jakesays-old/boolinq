@@ -10,7 +10,7 @@
 
 using namespace boolinq;
 
-TEST(IterRange, PopFront)
+TEST(IterRange, IntVectorFront)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -30,7 +30,7 @@ TEST(IterRange, PopFront)
     EXPECT_TRUE(rng.empty());
 }
 
-TEST(IterRange, PopBack)
+TEST(IterRange, IntVectorBack)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -46,6 +46,41 @@ TEST(IterRange, PopBack)
         EXPECT_EQ(i, rng.back());
         EXPECT_EQ(i, rng.popBack());
     }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, OneElementFront)
+{
+    std::vector<int> src;
+    src.push_back(5);
+    
+    auto rng = range(src);
+
+    EXPECT_FALSE(rng.empty());
+    EXPECT_EQ(5, rng.front());
+    EXPECT_EQ(5, rng.popFront());
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, OneElementBack)
+{
+    std::vector<int> src;
+    src.push_back(5);
+
+    auto rng = range(src);
+
+    EXPECT_FALSE(rng.empty());
+    EXPECT_EQ(5, rng.back());
+    EXPECT_EQ(5, rng.popBack());
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, NoElements)
+{
+    std::vector<int> src;
+    
+    auto rng = range(src);
 
     EXPECT_TRUE(rng.empty());
 }

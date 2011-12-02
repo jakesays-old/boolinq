@@ -27,6 +27,7 @@ namespace boolinq
         {
             seekMinFirstTime();
             seekMaxFirstTime();
+            atEnd = r.empty();
         }
 
         bool empty() const 
@@ -36,6 +37,7 @@ namespace boolinq
 
         typename value_type popFront() 
         { 
+            assert(!empty());
             R tmp = minValue;
             seekMin();
             return tmp.front();
@@ -43,6 +45,7 @@ namespace boolinq
 
         typename value_type popBack() 
         {
+            assert(!empty());
             R tmp = maxValue;
             seekMax();
             return tmp.front();
@@ -50,11 +53,13 @@ namespace boolinq
 
         typename value_type front() const 
         { 
+            assert(!empty());
             return minValue.front();
         }
 
         typename value_type back() const 
         { 
+            assert(!empty());
             return maxValue.front();
         }
 
@@ -146,9 +151,9 @@ namespace boolinq
                 cur_index++;
             }
 
+            atEnd = (min_index == -1);
             minValue = min_value;
             minIndex = min_index;
-            atEnd = (min_index == minIndex);
         }
 
         void seekMax()
@@ -186,9 +191,9 @@ namespace boolinq
                 cur_index++;
             }
 
+            atEnd = (max_index == -1);
             maxValue = max_value;
             maxIndex = max_index;
-            atEnd = (max_index == maxIndex);
         }
 
     private:

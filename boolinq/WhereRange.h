@@ -22,6 +22,7 @@ namespace boolinq
 
         typename value_type popFront() 
         { 
+            assert(!empty());
             R tmp = r;
             r.popFront();
             seekFront();
@@ -30,6 +31,7 @@ namespace boolinq
 
         typename value_type popBack() 
         {
+            assert(!empty());
             R tmp = r;
             r.popBack();
             seekBack();
@@ -38,11 +40,13 @@ namespace boolinq
 
         typename value_type front() const 
         { 
+            assert(!empty());
             return r.front();
         }
 
         typename value_type back() const 
         { 
+            assert(!empty());
             return r.back();
         }
 

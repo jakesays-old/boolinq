@@ -21,7 +21,7 @@ namespace boolinq
         }
 
         IterRange(const_iterator_type begin,
-              const_iterator_type end)
+                  const_iterator_type end)
             : b(begin)
             , e(end)
         {
@@ -43,8 +43,7 @@ namespace boolinq
         value_type popBack()
         {
             assert(!empty());
-            const_iterator_type tmp = --e;
-            return *tmp;
+            return *(--e);
         }
 
         value_type front() const
@@ -56,7 +55,9 @@ namespace boolinq
         value_type back() const
         {
             assert(!empty());
-            return *(e-1);
+            const_iterator_type tmp = e;
+            --tmp;
+            return *tmp;
         }
 
     private:

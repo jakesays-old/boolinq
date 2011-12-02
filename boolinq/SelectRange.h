@@ -30,21 +30,25 @@ namespace boolinq
 
         value_type popFront()
         { 
+            assert(!empty());
             return f(r.popFront());
         }
 
         value_type popBack() 
         {
+            assert(!empty());
             return f(r.popBack());
         }
 
         value_type front() const 
         { 
+            assert(!empty());
             return f(r.front());
         }
 
         value_type back() const 
         {
+            assert(!empty());
             return f(r.back());
         }
 

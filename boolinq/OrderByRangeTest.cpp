@@ -9,104 +9,7 @@
 
 using namespace boolinq;
 
-TEST(OrderByRange, RandomInts)
-{
-    std::vector<int> src;
-    src.push_back(5);
-    src.push_back(3);
-    src.push_back(1);
-    src.push_back(4);
-    src.push_back(2);
-    src.push_back(6);
-
-    auto rng = range(src);
-    auto odd1 = orderBy(rng);
-    auto odd2 = orderBy(rng);
-
-    EXPECT_EQ(1, odd1.popFront());
-    EXPECT_EQ(2, odd1.popFront());
-    EXPECT_EQ(3, odd1.popFront());
-    EXPECT_EQ(4, odd1.popFront());
-    EXPECT_EQ(5, odd1.popFront());
-    EXPECT_EQ(6, odd1.popFront());
-    EXPECT_TRUE(odd1.empty());
-
-    EXPECT_EQ(6, odd2.popBack());
-    EXPECT_EQ(5, odd2.popBack());
-    EXPECT_EQ(4, odd2.popBack());
-    EXPECT_EQ(3, odd2.popBack());
-    EXPECT_EQ(2, odd2.popBack());
-    EXPECT_EQ(1, odd2.popBack());
-    EXPECT_TRUE(odd2.empty());
-}
-
-TEST(OrderByRange, ReverseInts)
-{
-    std::vector<int> src;
-    src.push_back(6);
-    src.push_back(5);
-    src.push_back(4);
-    src.push_back(3);
-    src.push_back(2);
-    src.push_back(1);
-
-    auto rng = range(src);
-    auto odd = orderBy(rng);
-
-    EXPECT_EQ(1, odd.popFront());
-    EXPECT_EQ(2, odd.popFront());
-    EXPECT_EQ(3, odd.popFront());
-    EXPECT_EQ(4, odd.popFront());
-    EXPECT_EQ(5, odd.popFront());
-    EXPECT_EQ(6, odd.popFront());
-    EXPECT_TRUE(odd.empty());
-}
-
-TEST(OrderByRange, RandomStringContent)
-{
-    std::vector<std::string> src;
-    src.push_back("microsoft");
-    src.push_back("intel");
-    src.push_back("nokia");
-    src.push_back("apple");
-    src.push_back("oracle");
-    src.push_back("sun");
-
-    auto rng = range(src);
-    auto odd = orderBy(rng);
-
-    EXPECT_EQ("apple",     odd.popFront());
-    EXPECT_EQ("intel",     odd.popFront());
-    EXPECT_EQ("microsoft", odd.popFront());
-    EXPECT_EQ("nokia",     odd.popFront());
-    EXPECT_EQ("oracle",    odd.popFront());
-    EXPECT_EQ("sun",       odd.popFront());
-    EXPECT_TRUE(odd.empty());
-}
-
-TEST(OrderByRange, RandomStringLength)
-{
-    std::vector<std::string> src;
-    src.push_back("microsoft");
-    src.push_back("intel");
-    src.push_back("nokia");
-    src.push_back("apple");
-    src.push_back("oracle");
-    src.push_back("sun");
-
-    auto rng = range(src);
-    auto odd = orderBy(rng, [](std::string a){return a.size();});
-
-    EXPECT_EQ("sun",       odd.popFront());
-    EXPECT_EQ("intel",     odd.popFront());
-    EXPECT_EQ("nokia",     odd.popFront());
-    EXPECT_EQ("apple",     odd.popFront());
-    EXPECT_EQ("oracle",    odd.popFront());
-    EXPECT_EQ("microsoft", odd.popFront());
-    EXPECT_TRUE(odd.empty());
-}
-
-TEST(OrderByRange, RandomIntsWithDuplicates)
+TEST(OrderByRange, RandomIntsWithDuplicatesFront)
 {
     std::vector<int> src;
     src.push_back(4);
@@ -120,28 +23,142 @@ TEST(OrderByRange, RandomIntsWithDuplicates)
     src.push_back(6);
 
     auto rng = range(src);
-    auto odd1 = orderBy(rng);
-    auto odd2 = orderBy(rng);
+    auto dst = orderBy(rng);
 
-    EXPECT_EQ(1, odd1.popFront());
-    EXPECT_EQ(1, odd1.popFront()); // duplicate
-    EXPECT_EQ(2, odd1.popFront());
-    EXPECT_EQ(3, odd1.popFront());
-    EXPECT_EQ(4, odd1.popFront());
-    EXPECT_EQ(4, odd1.popFront()); // duplicate
-    EXPECT_EQ(4, odd1.popFront()); // duplicate
-    EXPECT_EQ(5, odd1.popFront());
-    EXPECT_EQ(6, odd1.popFront());
-    EXPECT_TRUE(odd1.empty());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(1, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(1, dst.popFront()); // duplicate
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(2, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(3, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popFront()); // duplicate
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popFront()); // duplicate
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(5, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(6, dst.popFront());
+    EXPECT_TRUE(dst.empty());
+}
 
-    EXPECT_EQ(6, odd2.popBack());
-    EXPECT_EQ(5, odd2.popBack());
-    EXPECT_EQ(4, odd2.popBack());
-    EXPECT_EQ(4, odd2.popBack()); // duplicate
-    EXPECT_EQ(4, odd2.popBack()); // duplicate
-    EXPECT_EQ(3, odd2.popBack());
-    EXPECT_EQ(2, odd2.popBack());
-    EXPECT_EQ(1, odd2.popBack());
-    EXPECT_EQ(1, odd2.popBack()); // duplicate
-    EXPECT_TRUE(odd2.empty());
+TEST(OrderByRange, RandomIntsWithDuplicatesBack)
+{
+    std::vector<int> src;
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(3);
+    src.push_back(1);
+    src.push_back(4); // duplicate
+    src.push_back(2);
+    src.push_back(1); // duplicate
+    src.push_back(4); // duplicate
+    src.push_back(6);
+
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(6, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(5, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popBack()); // duplicate
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popBack()); // duplicate
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(3, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(2, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(1, dst.popBack());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(1, dst.popBack()); // duplicate
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, ReverseInts)
+{
+    std::vector<int> src;
+    src.push_back(4);
+    src.push_back(3);
+    src.push_back(2);
+    src.push_back(1);
+
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(1, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(2, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(3, dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ(4, dst.popFront());
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, OneElementFront)
+{
+    std::vector<int> src;
+    src.push_back(5);
+    
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(5, dst.popFront());
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, OneElementBack)
+{
+    std::vector<int> src;
+    src.push_back(5);
+
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(5, dst.popBack());
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, NoElements)
+{
+    std::vector<int> src;
+    
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, RandomStringByContent)
+{
+    std::vector<std::string> src;
+    src.push_back("microsoft");
+    src.push_back("intel");
+    src.push_back("nokia");
+    src.push_back("apple");
+    src.push_back("oracle");
+    src.push_back("sun");
+
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("apple",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("intel",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("microsoft", dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("nokia",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("oracle",    dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("sun",       dst.popFront());
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(OrderByRange, RandomStringByLength)
+{
+    std::vector<std::string> src;
+    src.push_back("microsoft");
+    src.push_back("intel");
+    src.push_back("nokia");
+    src.push_back("apple");
+    src.push_back("oracle");
+    src.push_back("sun");
+
+    auto rng = range(src);
+    auto dst = orderBy(rng, [](std::string a){return a.size();});
+
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("sun",       dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("intel",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("nokia",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("apple",     dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("oracle",    dst.popFront());
+    EXPECT_FALSE(dst.empty());  EXPECT_EQ("microsoft", dst.popFront());
+    EXPECT_TRUE(dst.empty());
 }
