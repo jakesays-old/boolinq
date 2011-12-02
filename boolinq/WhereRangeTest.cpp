@@ -29,7 +29,7 @@ TEST(WhereRange, IntOddFront)
     ans.push_back(3);
     ans.push_back(5);
 
-    for(int i = 0; i < ans.size(); i++)
+    for(unsigned i = 0; i < ans.size(); i++)
     {
         EXPECT_FALSE(dst.empty());
         EXPECT_EQ(ans[i], dst.front());

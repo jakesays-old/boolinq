@@ -6,11 +6,8 @@ namespace boolinq
     class ReverseRange
     {
     public:
-        typedef typename R::traits::value_type value_type; 
-        typedef typename R::iterator_type iterator_type;
-        typedef typename R::const_iterator_type const_iterator_type;
-        typedef typename R::traits traits;
-
+        typedef typename R::value_type value_type; 
+        
         ReverseRange(R r) : r(r) { }
 
         bool empty() const { return r.empty(); }
@@ -19,17 +16,22 @@ namespace boolinq
         value_type front() const { return r.back(); }
         value_type back() const { return r.front(); }
 
-        friend template<class R> R reverse(ReverseRange<R> r); // smart needed
+        template<typename R2>
+        friend R2 reverse(ReverseRange<R2> r); // smart needed
 
     private:
         R r;
     };
+
+    // reverse(reverse(xxx))
 
     template<typename R>
     ReverseRange<R> reverse(R r)
     {
         return ReverseRange<R>(r);
     }
+
+    // xxx.reverse().reverse()
 
     template<typename R>
     R reverse(ReverseRange<R> r)

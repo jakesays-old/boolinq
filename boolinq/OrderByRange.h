@@ -215,7 +215,6 @@ namespace boolinq
         return OrderByRange<R,F>(r,f);
     }
 
-
     // xxx.orderBy(...).orderBy(...)
 
     template<template<typename T> class TLINQ, typename TContent>

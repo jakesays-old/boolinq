@@ -47,6 +47,9 @@
     <ClCompile Include="OrderByRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReverseRangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">

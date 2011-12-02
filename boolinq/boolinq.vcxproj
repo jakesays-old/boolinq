@@ -80,6 +80,7 @@
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="OrderByRangeTest.cpp" />
+    <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
