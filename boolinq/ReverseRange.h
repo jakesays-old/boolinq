@@ -14,10 +14,10 @@ namespace boolinq
         ReverseRange(R r) : r(r) { }
 
         bool empty() const { return r.empty(); }
-        typename value_type popFront() { return r.popBack(); }
-        typename value_type popBack() { return r.popFront(); }
-        typename value_type front() const { return r.back(); }
-        typename value_type back() const { return r.front(); }
+        value_type popFront() { return r.popBack(); }
+        value_type popBack() { return r.popFront(); }
+        value_type front() const { return r.back(); }
+        value_type back() const { return r.front(); }
 
         friend template<class R> R reverse(ReverseRange<R> r); // smart needed
 

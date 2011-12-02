@@ -82,6 +82,32 @@ TEST(Linq, WhereLess_WhereOdd)
     EXPECT_TRUE(rng.empty());
 }
 
+TEST(Linq, WhereLess_WhereOdd_OrderByDesc)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(6);
+    src.push_back(7);
+    src.push_back(8);
+
+    auto rng = from(src).where([](int a){return a<6;})
+                        .where([](int a){return a&1;})
+                        .orderBy([](int a){return -a;});
+
+    for (int i = 5; i >= 1; i-=2)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(i, rng.popFront());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
 TEST(Linq, WhereOdd_ToVector)
 {
     std::vector<int> src;

@@ -15,12 +15,24 @@ namespace boolinq
             seekBack();
         }
 
+        WhereRange(const WhereRange<R,F> & rng)
+            : r(rng.r), f(rng.f)
+        {
+        }
+
+        WhereRange<R,F> operator = (const WhereRange<R,F> & rng)
+        {
+            r = rng.r;
+            f = rng.f;
+            return *this;
+        }
+
         bool empty() const 
         { 
             return r.empty();
         }
 
-        typename value_type popFront() 
+        value_type popFront() 
         { 
             assert(!empty());
             R tmp = r;
@@ -29,7 +41,7 @@ namespace boolinq
             return tmp.front();
         }
 
-        typename value_type popBack() 
+        value_type popBack() 
         {
             assert(!empty());
             R tmp = r;
@@ -38,13 +50,13 @@ namespace boolinq
             return tmp.back();
         }
 
-        typename value_type front() const 
+        value_type front() const 
         { 
             assert(!empty());
             return r.front();
         }
 
-        typename value_type back() const 
+        value_type back() const 
         { 
             assert(!empty());
             return r.back();
