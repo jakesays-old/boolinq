@@ -150,3 +150,93 @@ TEST(DistinctRange, IntMirrorBack)
 
     EXPECT_TRUE(dst.empty());
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(DistinctRange, ManyEqualsFront)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(1);
+    
+    auto rng = range(src);
+    auto dst = distinct(rng);
+    
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(1, dst.front());
+    EXPECT_EQ(1, dst.back());
+    EXPECT_EQ(1, dst.popFront());
+    
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(DistinctRange, ManyEqualsBack)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(1);
+
+    auto rng = range(src);
+    auto dst = distinct(rng);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(1, dst.front());
+    EXPECT_EQ(1, dst.back());
+    EXPECT_EQ(1, dst.popBack());
+
+    EXPECT_TRUE(dst.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(DistinctRange, ManyEqualsWithOneFront)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(1);
+
+    auto rng = range(src);
+    auto dst = distinct(rng);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(2, dst.front());
+    EXPECT_EQ(1, dst.back());
+    EXPECT_EQ(2, dst.popFront());
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(1, dst.front());
+    EXPECT_EQ(1, dst.back());
+    EXPECT_EQ(1, dst.popFront());
+
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(DistinctRange, ManyEqualsWithOneBack)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(1);
+
+    auto rng = range(src);
+    auto dst = distinct(rng);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(2, dst.front());
+    EXPECT_EQ(1, dst.back());
+    EXPECT_EQ(1, dst.popBack());
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ(2, dst.front());
+    EXPECT_EQ(2, dst.back());
+    EXPECT_EQ(2, dst.popBack());
+
+    EXPECT_TRUE(dst.empty());
+}
