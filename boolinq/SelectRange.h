@@ -18,7 +18,7 @@ namespace boolinq
     public:
         typedef decltype(get_return_type<F,typename R::value_type>()) value_type;
         
-        SelectRange(R r, F & f)
+        SelectRange(R r, F f)
             : r(r), f(f) 
         {
         }
@@ -54,7 +54,7 @@ namespace boolinq
 
     private:
         R r;
-        F & f; 
+        F f; 
     };
 
     // select(select(xxx, ...), ...)
@@ -72,7 +72,7 @@ namespace boolinq
     {
     public:
         template<typename F>
-        TLINQ<SelectRange<TContent,F> > select(F & f) const
+        TLINQ<SelectRange<TContent,F> > select(F f) const
         {
             return boolinq::select(((TLINQ<TContent>*)this)->t,f);
         }

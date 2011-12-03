@@ -17,7 +17,7 @@ namespace boolinq
     public:
         typedef typename R::value_type value_type;
 
-        OrderByRange(R r, F & f = JustReturn<typename R::value_type>())
+        OrderByRange(R r, F f = JustReturn<typename R::value_type>())
             : r(r), f(f)
             , minValue(r)
             , maxValue(r)
@@ -198,7 +198,7 @@ namespace boolinq
 
     private:
         R r;
-        F & f;
+        F f;
     };
 
     // orderBy(orderBy(xxx, ...), ...)
@@ -210,7 +210,7 @@ namespace boolinq
     }
 
     template<typename R, typename F>
-    OrderByRange<R,F> orderBy(R r, F & f)
+    OrderByRange<R,F> orderBy(R r, F f)
     {
         return OrderByRange<R,F>(r,f);
     }
@@ -227,7 +227,7 @@ namespace boolinq
         }
 
         template<typename F>
-        TLINQ<OrderByRange<TContent,F> > orderBy(F & f) const
+        TLINQ<OrderByRange<TContent,F> > orderBy(F f) const
         {
             return boolinq::orderBy(((TLINQ<TContent>*)this)->t,f);
         }

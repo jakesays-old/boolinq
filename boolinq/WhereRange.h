@@ -8,23 +8,11 @@ namespace boolinq
     public:
         typedef typename R::value_type value_type;
         
-        WhereRange(R r, F & f)
+        WhereRange(R r, F f)
             : r(r), f(f)
         {
             seekFront();
             seekBack();
-        }
-
-        WhereRange(const WhereRange<R,F> & rng)
-            : r(rng.r), f(rng.f)
-        {
-        }
-
-        WhereRange<R,F> operator = (const WhereRange<R,F> & rng)
-        {
-            r = rng.r;
-            f = rng.f;
-            return *this;
         }
 
         bool empty() const 
@@ -77,13 +65,13 @@ namespace boolinq
 
     private:
         R r;
-        F & f;
+        F f;
     };
 
     // where(where(xxx, ...), ...)
 
     template<typename R, typename F>
-    WhereRange<R,F> where(R r, F & f)
+    WhereRange<R,F> where(R r, F f)
     {
         return WhereRange<R,F>(r,f);
     }
@@ -95,7 +83,7 @@ namespace boolinq
     {
     public:
         template<typename F>
-        TLINQ<WhereRange<TContent,F> > where(F & f) const
+        TLINQ<WhereRange<TContent,F> > where(F f) const
         {
             return boolinq::where(((TLINQ<TContent>*)this)->t,f);
         }
