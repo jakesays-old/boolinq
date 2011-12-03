@@ -4,6 +4,7 @@
 #include "WhereRange.h"
 #include "SelectRange.h"
 #include "OrderByRange.h"
+#include "DistinctRange.h"
 #include "ToList.h"
 #include "ToDeque.h"
 #include "ToVector.h"
@@ -15,6 +16,7 @@ namespace boolinq
         : public WhereRange_mixin<Linq,T>
         , public SelectRange_mixin<Linq,T>
         , public OrderByRange_mixin<Linq,T>
+        , public DistinctRange_mixin<Linq,T>
         , public ToList_mixin<Linq,T>
         , public ToDeque_mixin<Linq,T>
         , public ToVector_mixin<Linq,T>
@@ -27,15 +29,17 @@ namespace boolinq
         {
         }
 
-        bool empty() const { return t.empty(); }
-        typename T::value_type popFront()    { return t.popFront(); }
-        typename T::value_type popBack()     { return t.popBack(); }
-        typename T::value_type front() const { return t.front(); }
-        typename T::value_type back() const  { return t.back(); }
+        bool empty() const       { return t.empty(); }
+        value_type popFront()    { return t.popFront(); }
+        value_type popBack()     { return t.popBack(); }
+        value_type front() const { return t.front(); }
+        value_type back() const  { return t.back(); }
 
     public:
         T t;
     };
+
+    // from(xxx)
 
     template<typename X>
     Linq<IterRange<X> > from(const X & x)
@@ -43,7 +47,9 @@ namespace boolinq
         return IterRange<X>(x);
     }
 
-    template<typename X, template<typename T> class TLinq>
+    // from<CustomLinq>(xxx)
+
+    template<template<typename T> class TLinq, typename X>
     TLinq<IterRange<X> > from(const X & x)
     {
         return IterRange<X>(x);

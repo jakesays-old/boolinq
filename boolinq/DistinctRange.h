@@ -95,7 +95,7 @@ namespace boolinq
         int rightIndex;
     };
 
-    // where(where(xxx, ...), ...)
+    // distinct(distinct(xxx))
 
     template<typename R>
     DistinctRange<R> distinct(R r)
@@ -103,16 +103,15 @@ namespace boolinq
         return DistinctRange<R>(r);
     }
 
-    // xxx.where(...).where(...)
+    // xxx.distinct().distinct()
 
     template<template<typename T> class TLINQ, typename TContent>
     class DistinctRange_mixin
     {
     public:
-        template<typename F>
-        TLINQ<DistinctRange<TContent> > distinct(F f) const
+        TLINQ<DistinctRange<TContent> > distinct() const
         {
-            return boolinq::distinct(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::distinct(((TLINQ<TContent>*)this)->t);
         }
     };
 }
