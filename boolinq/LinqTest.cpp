@@ -10,6 +10,8 @@
 
 using namespace boolinq;
 
+// Where Tests
+
 TEST(Linq, WhereOdd)
 {
     std::vector<int> src;
@@ -20,7 +22,7 @@ TEST(Linq, WhereOdd)
     src.push_back(5);
     src.push_back(6);
 
-    auto rng = from(src).where([](int a){return a&1;});
+    auto rng = from(src).where([](int a){return a%2 == 1;});
 
     for (int i = 1; i <= 5; i+=2)
     {
@@ -44,8 +46,8 @@ TEST(Linq, WhereOdd_WhereLess)
     src.push_back(7);
     src.push_back(8);
 
-    auto rng = from(src).where([](int a){return a&1;})
-                        .where([](int a){return a<4;});
+    auto rng = from(src).where([](int a){return a%2 == 1;})
+                        .where([](int a){return a < 4;});
 
     for (int i = 1; i <= 3; i+=2)
     {
@@ -70,7 +72,7 @@ TEST(Linq, WhereLess_WhereOdd)
     src.push_back(8);
 
     auto rng = from(src).where([](int a){return a<4;})
-                        .where([](int a){return a&1;});
+                        .where([](int a){return a%2 == 1;});
 
     for (int i = 1; i <= 3; i+=2)
     {
@@ -95,7 +97,7 @@ TEST(Linq, WhereLess_WhereOdd_OrderByDesc)
     src.push_back(8);
 
     auto rng = from(src).where([](int a){return a<6;})
-                        .where([](int a){return a&1;})
+                        .where([](int a){return a%2 == 1;})
                         .orderBy([](int a){return -a;});
 
     for (int i = 5; i >= 1; i-=2)
@@ -120,7 +122,7 @@ TEST(Linq, WhereOdd_ToVector)
     src.push_back(7);
     src.push_back(8);
 
-    auto dst = from(src).where([](int a){return a&1;})
+    auto dst = from(src).where([](int a){return a%2 == 1;})
                         .toVector();
 
     std::vector<int> ans;
@@ -144,8 +146,8 @@ TEST(Linq, WhereOdd_WhereLess_SelectMul2_ToVector)
     src.push_back(7);
     src.push_back(8);
 
-    auto dst = from(src).where([](int a){return a&1;})
-                        .where([](int a){return a<6;})
+    auto dst = from(src).where([](int a){return a%2 == 1;})
+                        .where([](int a){return a < 6;})
                         .select([](int a){return a*2;})
                         .toVector();
 
@@ -154,5 +156,56 @@ TEST(Linq, WhereOdd_WhereLess_SelectMul2_ToVector)
     ans.push_back(6);
     ans.push_back(10);
 
+    EXPECT_EQ(ans,dst);
+}
+
+TEST(Linq, WhereOdd_WhereLess_SelectMul2_Reverse_ToVector)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(6);
+    src.push_back(7);
+    src.push_back(8);
+
+    auto dst = from(src).where([](int a){return a%2 == 1;})
+        .where([](int a){return a < 6;})
+        .select([](int a){return a*2;})
+        .reverse()
+        .toVector();
+
+    std::vector<int> ans;
+    ans.push_back(10);
+    ans.push_back(6);
+    ans.push_back(2);
+
+    EXPECT_EQ(ans,dst);
+}
+
+TEST(Linq, WhereOdd_Reverse_Reverse)
+{
+    std::vector<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+    src.push_back(4);
+    src.push_back(5);
+    src.push_back(6);
+    src.push_back(7);
+    src.push_back(8);
+
+    auto dst = from(src).where([](int a){return a%2 == 1;})
+                        .reverse()
+                        .where([](int a){return a < 4;})
+                        .reverse()
+                        .toVector();
+
+    std::vector<int> ans;
+    ans.push_back(1);
+    ans.push_back(3);
+    
     EXPECT_EQ(ans,dst);
 }

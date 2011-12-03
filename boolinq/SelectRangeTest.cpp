@@ -7,8 +7,6 @@
 #include "IterRange.h"
 #include "SelectRange.h"
 
-#include "ToVector.h"
-
 using namespace boolinq;
 
 TEST(SelectRange, Mul2)

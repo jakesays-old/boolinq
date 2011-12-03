@@ -7,9 +7,6 @@
 #include "IterRange.h"
 #include "DistinctRange.h"
 
-#include "ReverseRange.h"
-#include "ToVector.h"
-
 using namespace boolinq;
 
 //////////////////////////////////////////////////////////////////////////
@@ -136,8 +133,7 @@ TEST(DistinctRange, IntMirrorBack)
 
     auto rng = range(src);
     auto dst = distinct(rng);
-    auto vec = toVector(reverse(dst));
-
+    
     std::vector<int> ans;
     ans.push_back(2);
     ans.push_back(0);
