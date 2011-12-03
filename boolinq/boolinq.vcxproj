@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
+    <ClCompile Include="DistinctRangeTest.cpp" />
     <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
@@ -93,6 +94,7 @@
   <ItemGroup>
     <ClInclude Include="boolinq.h" />
     <ClInclude Include="ChainRange.h" />
+    <ClInclude Include="DistinctRange.h" />
     <ClInclude Include="OrderByRange.h" />
     <ClInclude Include="ToDeque.h" />
     <ClInclude Include="ToList.h" />
