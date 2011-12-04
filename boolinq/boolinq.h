@@ -46,7 +46,13 @@ namespace boolinq
     template<typename X>
     Linq<IterRange<X> > from(const X & x)
     {
-        return IterRange<X>(x);
+        return range(x);
+    }
+
+    template<typename X, const int N>
+    Linq<IterRange<X[N]> > from(X (&x)[N])
+    {
+        return range(x);
     }
 
     // from<CustomLinq>(xxx)
@@ -54,7 +60,13 @@ namespace boolinq
     template<template<typename T> class TLinq, typename X>
     TLinq<IterRange<X> > from(const X & x)
     {
-        return IterRange<X>(x);
+        return range(x);
+    }
+
+    template<template<typename T> class TLinq, typename X, const int N>
+    TLinq<IterRange<X[N]> > from(const X (&x)[N])
+    {
+        return range(x);
     }
 }
 // namespace boolinq

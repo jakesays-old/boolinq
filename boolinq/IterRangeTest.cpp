@@ -24,6 +24,7 @@ TEST(IterRange, IntVectorFront)
     {
         EXPECT_FALSE(rng.empty());
         EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(4, rng.back());
         EXPECT_EQ(i, rng.popFront());
     }
 
@@ -43,12 +44,15 @@ TEST(IterRange, IntVectorBack)
     for (int i = 4; i >= 1; i--)
     {
         EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(1, rng.front());
         EXPECT_EQ(i, rng.back());
         EXPECT_EQ(i, rng.popBack());
     }
 
     EXPECT_TRUE(rng.empty());
 }
+
+//////////////////////////////////////////////////////////////////////////
 
 TEST(IterRange, OneElementFront)
 {
@@ -59,6 +63,7 @@ TEST(IterRange, OneElementFront)
 
     EXPECT_FALSE(rng.empty());
     EXPECT_EQ(5, rng.front());
+    EXPECT_EQ(5, rng.back());
     EXPECT_EQ(5, rng.popFront());
     EXPECT_TRUE(rng.empty());
 }
@@ -71,10 +76,85 @@ TEST(IterRange, OneElementBack)
     auto rng = range(src);
 
     EXPECT_FALSE(rng.empty());
+    EXPECT_EQ(5, rng.front());
     EXPECT_EQ(5, rng.back());
     EXPECT_EQ(5, rng.popBack());
     EXPECT_TRUE(rng.empty());
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(IterRange, IntPointerFront)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto rng = range((int*)src,(int*)src+5);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(5, rng.back());
+        EXPECT_EQ(i, rng.popFront());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, IntPointerBack)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto rng = range((int*)src,(int*)src+5);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(1, rng.front());
+        EXPECT_EQ(i, rng.back());
+        EXPECT_EQ(i, rng.popBack());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(IterRange, IntArrayFront)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto rng = range(src);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(5, rng.back());
+        EXPECT_EQ(i, rng.popFront());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, IntArrayBack)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto rng = range(src);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(1, rng.front());
+        EXPECT_EQ(i, rng.back());
+        EXPECT_EQ(i, rng.popBack());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
 
 TEST(IterRange, NoElements)
 {

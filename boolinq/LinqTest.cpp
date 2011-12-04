@@ -209,3 +209,39 @@ TEST(Linq, WhereOdd_Reverse_Reverse)
     
     EXPECT_EQ(ans,dst);
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(Linq, Array_Front)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto dst = from(src);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(dst.empty());
+        EXPECT_EQ(i, dst.front());
+        EXPECT_EQ(5, dst.back());
+        EXPECT_EQ(i, dst.popFront());
+    }
+
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(Linq, Array_Back)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto dst = from(src);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(dst.empty());
+        EXPECT_EQ(1, dst.front());
+        EXPECT_EQ(i, dst.back());
+        EXPECT_EQ(i, dst.popBack());
+    }
+
+    EXPECT_TRUE(dst.empty());
+}
