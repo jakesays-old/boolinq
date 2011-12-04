@@ -240,3 +240,50 @@ TEST(DistinctRange, ManyEqualsWithOneBack)
 
     EXPECT_TRUE(dst.empty());
 }
+
+TEST(DistinctRange, OneFieldFront)
+{
+    struct Man
+    {
+        std::string name;
+        int age;
+
+        Man(std::string name, int age)
+            : name(name), age(age)
+        {
+        }
+    };
+
+    std::vector<Man> src;
+    src.push_back(Man("Anton",1));
+    src.push_back(Man("Taran",2));
+    src.push_back(Man("Poker",3));
+    src.push_back(Man("Agata",4));
+    src.push_back(Man("Mango",2));
+    src.push_back(Man("Banan",1));
+
+    auto rng = range(src);
+    auto dst = distinct(rng, [](const Man & man){return man.age;});
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ("Taran", dst.front().name);
+    EXPECT_EQ("Banan", dst.back().name);
+    EXPECT_EQ("Taran", dst.popFront().name);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ("Poker", dst.front().name);
+    EXPECT_EQ("Banan", dst.back().name);
+    EXPECT_EQ("Poker", dst.popFront().name);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ("Agata", dst.front().name);
+    EXPECT_EQ("Banan", dst.back().name);
+    EXPECT_EQ("Agata", dst.popFront().name);
+
+    EXPECT_FALSE(dst.empty());
+    EXPECT_EQ("Banan", dst.front().name);
+    EXPECT_EQ("Banan", dst.back().name);
+    EXPECT_EQ("Banan", dst.popFront().name);
+
+    EXPECT_TRUE(dst.empty());
+}

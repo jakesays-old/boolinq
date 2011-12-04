@@ -2,19 +2,28 @@
 
 namespace boolinq
 {
-    template<typename R> 
+    template<typename T>
+    struct JustReturn2
+    {
+        T operator()(const T & a) const
+        {
+            return a;
+        }
+    };
+
+    template<typename R, typename F = JustReturn2<typename R::value_type>> 
     class DistinctRange
     {
     public:
         typedef typename R::value_type value_type;
 
-        DistinctRange(R r)
-            : r(r)
+        DistinctRange(R r, F f = JustReturn2<typename R::value_type>())
+            : r(r), f(f)
             , fullRange(r)
             , leftIndex(0)
             , rightIndex(0)
         {
-            if (isDuplicate(r.front(),1,0))
+            if (isDuplicate(f(r.front()),1,0))
                 popFront();
         }
 
@@ -31,7 +40,7 @@ namespace boolinq
             {
                 r.popFront();
                 leftIndex++;
-            } while (!r.empty() && isDuplicate(r.front(),1,0));
+            } while (!r.empty() && isDuplicate(f(r.front()),1,0));
             return tmp.front();
         }
 
@@ -43,7 +52,7 @@ namespace boolinq
             {
                 r.popBack();
                 rightIndex++;
-            } while (!r.empty() && isDuplicate(r.back(),0,1));
+            } while (!r.empty() && isDuplicate(f(r.back()),0,1));
             return tmp.back();
         }
 
@@ -60,7 +69,8 @@ namespace boolinq
         }
 
     private:
-        bool isDuplicate(const value_type & value, int left, int right) const
+        template<typename T>
+        bool isDuplicate(const T & value, int left, int right) const
         {
             R dr = r;
             dr.popFront();
@@ -74,14 +84,14 @@ namespace boolinq
             R tmp = fullRange;
             for(int i = 0 ; i < leftIndex + right; i++)
             {
-                if (value == tmp.popFront())
+                if (value == f(tmp.popFront()))
                     return true;
             }
 
             tmp = fullRange;
             for(int i = 0 ; i < rightIndex + left; i++)
             {
-                if (value == tmp.popBack())
+                if (value == f(tmp.popBack()))
                     return true;
             }
 
@@ -90,6 +100,8 @@ namespace boolinq
 
     private:
         R r;
+        F f;
+
         R fullRange;
         int leftIndex;
         int rightIndex;
@@ -103,6 +115,12 @@ namespace boolinq
         return DistinctRange<R>(r);
     }
 
+    template<typename R, typename F>
+    DistinctRange<R,F> distinct(R r, F f)
+    {
+        return DistinctRange<R,F>(r,f);
+    }
+
     // xxx.distinct().distinct()
 
     template<template<typename T> class TLINQ, typename TContent>
@@ -112,6 +130,12 @@ namespace boolinq
         TLINQ<DistinctRange<TContent> > distinct() const
         {
             return boolinq::distinct(((TLINQ<TContent>*)this)->t);
+        }
+
+        template<typename F>
+        TLINQ<DistinctRange<TContent> > distinct(F f) const
+        {
+            return boolinq::distinct(((TLINQ<TContent>*)this)->t,f);
         }
     };
 }

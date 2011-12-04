@@ -5,7 +5,7 @@ namespace boolinq
     template<typename T>
     struct JustReturn
     {
-        T operator()(const T & a)
+        T operator()(const T & a) const
         {
             return a;
         }
