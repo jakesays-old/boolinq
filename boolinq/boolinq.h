@@ -41,21 +41,9 @@ namespace boolinq
         T t;
     };
 
-    // from(xxx)
-
-    template<typename X>
-    Linq<IterRange<X> > from(const X & x)
-    {
-        return range(x);
-    }
-
-    template<typename X, const int N>
-    Linq<IterRange<X[N]> > from(X (&x)[N])
-    {
-        return range(x);
-    }
-
+    //////////////////////////////////////////////////////////////////////////
     // from<CustomLinq>(xxx)
+    //////////////////////////////////////////////////////////////////////////
 
     template<template<typename T> class TLinq, typename X>
     TLinq<IterRange<X> > from(const X & x)
@@ -64,9 +52,79 @@ namespace boolinq
     }
 
     template<template<typename T> class TLinq, typename X, const int N>
-    TLinq<IterRange<X[N]> > from(const X (&x)[N])
+    TLinq<IterRange<const X[N]> > from(const X (&x)[N])
     {
         return range(x);
     }
+
+    //template<template<typename T> class TLinq, typename X, const int N>
+    //TLinq<IterRange<X[N]> > from(X (&x)[N])
+    //{
+    //    return range(x);
+    //}
+
+    //template<template<typename T> class TLinq, typename X>
+    //TLinq<IterRange<X> > from(typename X::const_iterator b,
+    //                          typename X::const_iterator e)
+    //{
+    //    return range(b,e);
+    //}
+
+    template<template<typename T> class TLinq, typename X>
+    TLinq<IterRange<const X*> > from(const X * b,
+                                     const X * e)
+    {
+        return range(b,e);
+    }
+
+    //template<template<typename T> class TLinq, typename X>
+    //TLinq<IterRange<X*> > from(X * b,
+    //                           X * e)
+    //{
+    //    return range(b,e);
+    //}
+
+    //////////////////////////////////////////////////////////////////////////
+    // from(xxx)
+    //////////////////////////////////////////////////////////////////////////
+
+    template<typename X>
+    Linq<IterRange<X> > from(const X & x)
+    {
+        return from<Linq>(x);
+    }
+
+    template<typename X, const int N>
+    Linq<IterRange<const X[N]> > from(const X (&x)[N])
+    {
+        return from<Linq>(x);
+    }
+
+    //template<typename X, const int N>
+    //Linq<IterRange<X[N]> > from(X (&x)[N])
+    //{
+    //    return from<Linq>(x);
+    //}
+
+    //template<typename X>
+    //Linq<IterRange<X> > from(typename X::const_iterator b,
+    //                         typename X::const_iterator e)
+    //{
+    //    return from<Linq>(b, e);
+    //}
+
+    template<typename X>
+    Linq<IterRange<const X*> > from(const X * b,
+                                    const X * e)
+    {
+        return from<Linq>(b,e);
+    }
+
+    //template<typename X>
+    //Linq<IterRange<X*> > from(X * b,
+    //                          X * e)
+    //{
+    //    return from<Linq>(b,e);
+    //}
 }
 // namespace boolinq

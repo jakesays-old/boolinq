@@ -1,56 +1,56 @@
 #pragma once
 
 #include <iterator>
+#include <vector>
 
 namespace boolinq
 {
     template<typename TContainer>
     struct container_traits 
     {
-        typedef typename TContainer::const_iterator const_iter_type;
+        typedef typename TContainer::const_iterator const_iterator_type;
         typedef typename TContainer::iterator iter_type;
     };
 
     // Array template specializations
 
     template<typename T, const int N> 
-    struct container_traits<T[N]> 
+    struct container_traits<const T[N]> 
     {
-        typedef const T * const_iter_type;
+        typedef const T * const_iterator_type;
         typedef T * iter_type;
     };
 
-    template<typename T, const int N> 
-    struct container_traits<const T[N]> 
-    {
-        typedef const T * const_iter_type;
-        typedef T * iter_type;
-    };
+    //template<typename T, const int N> 
+    //struct container_traits<T[N]> 
+    //{
+    //    typedef const T * const_iterator_type;
+    //    typedef T * iter_type;
+    //};
 
     // Pointer template specializations
 
     template<typename T> 
     struct container_traits<const T*> 
     {
-        typedef const T * const_iter_type;
+        typedef const T * const_iterator_type;
         typedef T * iter_type;
     };
 
-    template<typename T> 
-    struct container_traits<T*> 
-    {
-        typedef const T * const_iter_type;
-        typedef T * iter_type;
-    };
-
+    //template<typename T> 
+    //struct container_traits<T*> 
+    //{
+    //    typedef const T * const_iterator_type;
+    //    typedef T * iter_type;
+    //};
 
     //////////////////////////////////////////////////////////////////////
 
     template<typename T> 
     class IterRange
     {
-        typedef typename container_traits<T>::const_iter_type iter_type;
-        typedef std::iterator_traits<iter_type> traits;
+        typedef typename container_traits<T>::const_iterator_type const_iterator_type;
+        typedef std::iterator_traits<const_iterator_type> traits;
 
     public:
         typedef typename traits::value_type value_type;
@@ -61,8 +61,8 @@ namespace boolinq
         {
         }
 
-        IterRange(iter_type begin,
-                  iter_type end)
+        IterRange(const_iterator_type begin,
+                  const_iterator_type end)
             : b(begin)
             , e(end)
         {
@@ -76,7 +76,7 @@ namespace boolinq
         value_type popFront()
         {
             assert(!empty());
-            iter_type tmp = b;
+            const_iterator_type tmp = b;
             ++b;
             return *tmp;
         }
@@ -96,14 +96,14 @@ namespace boolinq
         value_type back() const
         {
             assert(!empty());
-            iter_type tmp = e;
+            const_iterator_type tmp = e;
             --tmp;
             return *tmp;
         }
 
     private:
-        iter_type b;
-        iter_type e;
+        const_iterator_type b;
+        const_iterator_type e;
     };
 
     //////////////////////////////////////////////////////////////////////
@@ -117,33 +117,59 @@ namespace boolinq
         return IterRange<T>(container);
     }
     
+    //
+
     // int vec[] = {1,2,3,4,5};
     // range(vec)
 
     template<typename T, const int N>
-    IterRange<T[N]> range(T (&arr)[N])
+    IterRange<const T[N]> range(const T (&arr)[N])
     {
-        return IterRange<T[N]>((T*)arr, (T*)arr+N);
+        return IterRange<const T[N]>((const T*)arr,(const T*)arr+N);
     }
+    
+    //template<typename T, const int N>
+    //IterRange<T[N]> range(T (&arr)[N])
+    //{
+    //    return IterRange<T[N]>((T*)arr,(T*)arr+N);
+    //}
+
+    //
 
     // std::vector<xxx> vec;
     // range(vec.begin(), vec.end())
 
-    template<typename T>
-    IterRange<T> range(typename T::const_iterator b,
-                       typename T::const_iterator e)
-    {
-        return IterRange<T>(b, e);
-    }
+    //template<typename T>
+    //IterRange<T> range(typename T::const_iterator b,
+    //                   typename T::const_iterator e)
+    //{
+    //    return IterRange<T>(b,e);
+    //}
+    
+    //template<typename T>
+    //IterRange<T> range(typename T::iterator b,
+    //                   typename T::iterator e)
+    //{
+    //    return IterRange<T>(b,e);
+    //}
+
+    //
 
     // int * xxx = {1,2,3,4,5};
     // range(xxx, xxx+5)
 
     template<typename T>
-    IterRange<T*> range(T * b,
-                        T * e)
+    IterRange<const T*> range(const T * b,
+                              const T * e)
     {
-        return IterRange<T*>(b, e);
+        return IterRange<const T*>(b,e);
     }
+
+    //template<typename T>
+    //IterRange<T*> range(T * b,
+    //                    T * e)
+    //{
+    //    return IterRange<T*>(b,e);
+    //}
 }
 // namespace boolinq

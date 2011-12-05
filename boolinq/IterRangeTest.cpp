@@ -120,6 +120,44 @@ TEST(IterRange, IntPointerBack)
 
 //////////////////////////////////////////////////////////////////////////
 
+TEST(IterRange, ConstIntPointerFront)
+{
+    int src[] = {1,2,3,4,5};
+    const int * src_ptr = (const int*)src;
+
+    auto rng = range(src_ptr,src_ptr+5);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(5, rng.back());
+        EXPECT_EQ(i, rng.popFront());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, ConstIntPointerBack)
+{
+    int src[] = {1,2,3,4,5};
+    const int * src_ptr = (const int*)src;
+
+    auto rng = range(src_ptr,src_ptr+5);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(1, rng.front());
+        EXPECT_EQ(i, rng.back());
+        EXPECT_EQ(i, rng.popBack());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 TEST(IterRange, IntArrayFront)
 {
     int src[] = {1,2,3,4,5};
@@ -140,6 +178,42 @@ TEST(IterRange, IntArrayFront)
 TEST(IterRange, IntArrayBack)
 {
     int src[] = {1,2,3,4,5};
+
+    auto rng = range(src);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(1, rng.front());
+        EXPECT_EQ(i, rng.back());
+        EXPECT_EQ(i, rng.popBack());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(IterRange, ConstIntArrayFront)
+{
+    const int src[] = {1,2,3,4,5};
+
+    auto rng = range(src);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(rng.empty());
+        EXPECT_EQ(i, rng.front());
+        EXPECT_EQ(5, rng.back());
+        EXPECT_EQ(i, rng.popFront());
+    }
+
+    EXPECT_TRUE(rng.empty());
+}
+
+TEST(IterRange, ConstIntArrayBack)
+{
+    const int src[] = {1,2,3,4,5};
 
     auto rng = range(src);
 
