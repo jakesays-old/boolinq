@@ -305,6 +305,18 @@ TEST(Linq, Creations)
     const int carr[] = {1,2,3,4,5};
     const int * cptr = (const int*)carr;
 
+    auto rng_vec = range(vec);
+    auto rng_cvec = range(cvec);
+    auto rng_vec_iter = range(vec.begin(), vec.end());
+    auto rng_vec_citer = range(vec.cbegin(), vec.cend());
+    auto rng_cvec_iter = range(cvec.begin(), cvec.end());
+    auto rng_cvec_citer = range(cvec.cbegin(), cvec.cend());
+
+    auto rng_arr = range(arr);
+    auto rng_carr = range(carr);
+    auto rng_ptr = range(ptr, ptr+5);
+    auto rng_cptr = range(cptr, cptr+5);
+
     auto dst_vec = from(vec);
     auto dst_cvec = from(cvec);
     auto dst_vec_iter = from(vec.begin(), vec.end());
@@ -316,5 +328,4 @@ TEST(Linq, Creations)
     auto dst_carr = from(carr);
     auto dst_ptr = from(ptr, ptr+5);
     auto dst_cptr = from(cptr, cptr+5);
-
 }
