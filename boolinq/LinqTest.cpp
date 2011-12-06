@@ -212,6 +212,43 @@ TEST(Linq, WhereOdd_Reverse_Reverse)
 
 //////////////////////////////////////////////////////////////////////////
 
+TEST(Linq, Pointer_Front)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto dst = from((int*)src, (int*)src+5);
+
+    for(int i = 1; i <= 5; i++)
+    {
+        EXPECT_FALSE(dst.empty());
+        EXPECT_EQ(i, dst.front());
+        EXPECT_EQ(5, dst.back());
+        EXPECT_EQ(i, dst.popFront());
+    }
+
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(Linq, Pointer_Back)
+{
+    int src[] = {1,2,3,4,5};
+
+    auto dst = from((int*)src, (int*)src+5);
+
+    for(int i = 5; i >= 1; i--)
+    {
+        EXPECT_FALSE(dst.empty());
+        EXPECT_EQ(1, dst.front());
+        EXPECT_EQ(i, dst.back());
+        EXPECT_EQ(i, dst.popBack());
+    }
+
+    EXPECT_TRUE(dst.empty());
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
 TEST(Linq, Array_Front)
 {
     int src[] = {1,2,3,4,5};
@@ -233,7 +270,7 @@ TEST(Linq, Array_Back)
 {
     int src[] = {1,2,3,4,5};
 
-    auto dst = from(src);
+    auto dst = from(src);       
 
     for(int i = 5; i >= 1; i--)
     {
@@ -244,4 +281,40 @@ TEST(Linq, Array_Back)
     }
 
     EXPECT_TRUE(dst.empty());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(Linq, Creations)
+{
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+    vec.push_back(4);
+    vec.push_back(5);
+    int arr[] = {1,2,3,4,5};
+    int * ptr = (int*)arr;
+
+    std::vector<const int> cvec;
+    cvec.push_back(1);
+    cvec.push_back(2);
+    cvec.push_back(3);
+    cvec.push_back(4);
+    cvec.push_back(5);
+    const int carr[] = {1,2,3,4,5};
+    const int * cptr = (const int*)carr;
+
+    auto dst_vec = from(vec);
+    auto dst_cvec = from(cvec);
+    auto dst_vec_iter = from(vec.begin(), vec.end());
+    auto dst_vec_citer = from(vec.cbegin(), vec.cend());
+    auto dst_cvec_iter = from(cvec.begin(), cvec.end());
+    auto dst_cvec_citer = from(cvec.cbegin(), cvec.cend());
+
+    auto dst_arr = from(arr);
+    auto dst_carr = from(carr);
+    auto dst_ptr = from(ptr, ptr+5);
+    auto dst_cptr = from(cptr, cptr+5);
+
 }
