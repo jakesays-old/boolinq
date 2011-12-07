@@ -7,6 +7,7 @@
 #include "OrderByRange.h"
 #include "GroupByRange.h"
 #include "DistinctRange.h"
+#include "Count.h"
 #include "ToList.h"
 #include "ToDeque.h"
 #include "ToVector.h"
@@ -21,6 +22,7 @@ namespace boolinq
         , public OrderByRange_mixin<Linq,T>
         , public GroupByRange_mixin<Linq,T>
         , public DistinctRange_mixin<Linq,T>
+        , public Count_mixin<Linq,T>
         , public ToList_mixin<Linq,T>
         , public ToDeque_mixin<Linq,T>
         , public ToVector_mixin<Linq,T>

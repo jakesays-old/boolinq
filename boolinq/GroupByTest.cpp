@@ -6,8 +6,7 @@
 
 #include "IterRange.h"
 #include "GroupByRange.h"
-
-#include "ToVector.h"
+#include "Count.h"
 
 using namespace boolinq;
 
@@ -76,6 +75,37 @@ TEST(GroupByRange, CountChildrenByAge)
     EXPECT_EQ("Holly", dst.front().popFront().name);
     EXPECT_EQ("Zamza", dst.front().popFront().name);
     EXPECT_TRUE(dst.front().empty());
+    dst.popFront();
+
+    EXPECT_TRUE(dst.empty());
+}
+
+TEST(GroupByRange, CountChildrenByAge_Count)
+{
+    struct Child
+    {
+        std::string name;
+        int age;
+    };
+
+    Child children[] =
+    {
+        {"Piter", 12},
+        {"Bella", 14},
+        {"Torry", 15},
+        {"Holly", 12},
+        {"Zamza", 13},
+    };
+
+    auto rng = range(children);
+    auto dst = groupBy(rng, [](const Child & a){return a.age < 14;});
+
+    EXPECT_EQ(false, dst.front().key());
+    EXPECT_EQ(2, count(dst.front()));
+    dst.popFront();
+
+    EXPECT_EQ(true, dst.front().key());
+    EXPECT_EQ(3, count(dst.front()));
     dst.popFront();
 
     EXPECT_TRUE(dst.empty());

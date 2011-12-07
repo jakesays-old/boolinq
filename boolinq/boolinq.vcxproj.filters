@@ -53,6 +53,9 @@
     <ClCompile Include="DistinctRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="CountTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
     <ClCompile Include="GroupByTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
@@ -92,6 +95,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GroupByRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Count.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
