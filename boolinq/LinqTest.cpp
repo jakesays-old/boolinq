@@ -71,17 +71,14 @@ TEST(Linq, WhereLess_WhereOdd)
     src.push_back(7);
     src.push_back(8);
 
-    auto rng = from(src).where([](int a){return a<4;})
+    auto rng = from(src).where([](int a){return a < 4;})
                         .where([](int a){return a%2 == 1;});
 
-    for (int i = 1; i <= 3; i+=2)
-    {
-        EXPECT_FALSE(rng.empty());
-        EXPECT_EQ(i, rng.front());
-        EXPECT_EQ(i, rng.popFront());
-    }
+    std::vector<int> ans;
+    ans.push_back(1);
+    ans.push_back(3);
 
-    EXPECT_TRUE(rng.empty());
+    EXPECT_EQ(ans,rng);
 }
 
 TEST(Linq, WhereLess_WhereOdd_OrderByDesc)
@@ -96,18 +93,16 @@ TEST(Linq, WhereLess_WhereOdd_OrderByDesc)
     src.push_back(7);
     src.push_back(8);
 
-    auto rng = from(src).where([](int a){return a<6;})
+    auto rng = from(src).where([](int a){return a < 6;})
                         .where([](int a){return a%2 == 1;})
                         .orderBy([](int a){return -a;});
 
-    for (int i = 5; i >= 1; i-=2)
-    {
-        EXPECT_FALSE(rng.empty());
-        EXPECT_EQ(i, rng.front());
-        EXPECT_EQ(i, rng.popFront());
-    }
+    std::vector<int> ans;
+    ans.push_back(5);
+    ans.push_back(3);
+    ans.push_back(1);
 
-    EXPECT_TRUE(rng.empty());
+    EXPECT_EQ(ans,rng);
 }
 
 TEST(Linq, WhereOdd_ToVector)
@@ -122,8 +117,7 @@ TEST(Linq, WhereOdd_ToVector)
     src.push_back(7);
     src.push_back(8);
 
-    auto dst = from(src).where([](int a){return a%2 == 1;})
-                        .toVector();
+    auto dst = from(src).where([](int a){return a%2 == 1;});
 
     std::vector<int> ans;
     ans.push_back(1);

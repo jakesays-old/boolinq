@@ -98,5 +98,51 @@ namespace boolinq
     {
         return range(b,e);
     }
+
+    //////////////////////////////////////////////////////////////////////////
+    // Linq equality operator for container and array
+    //////////////////////////////////////////////////////////////////////////
+
+    template<typename R, typename X>
+    bool operator == (const Linq<R> & rng, const X & x)
+    {
+        Linq<R> tmp = rng;
+        for (auto it = x.begin(); it != x.end(); ++it)
+        {
+            if (tmp.empty())
+                return false;
+            if (tmp.popFront() != *it)
+                return false;
+        }
+
+        return tmp.empty();
+    }
+
+    template<typename R, typename X>
+    bool operator == (const X & x, const Linq<R> & rng)
+    {
+        return rng == x;
+    }
+
+    template<typename R, typename X, const int N>
+    bool operator == (const Linq<R> & rng, const X (&x)[N])
+    {
+        Linq<R> tmp = rng;
+        for (int i = 0; i < N; i++)
+        {
+            if (tmp.empty())
+                return false;
+            if (tmp.popFront() != x[i])
+                return false;
+        }
+
+        return tmp.empty();
+    }
+
+    template<typename R, typename X, const int N>
+    bool operator == (const X (&x)[N], const Linq<R> & rng)
+    {
+        return rng == x;
+    }
 }
 // namespace boolinq
