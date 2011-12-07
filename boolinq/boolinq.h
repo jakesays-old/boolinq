@@ -5,6 +5,7 @@
 #include "SelectRange.h"
 #include "ReverseRange.h"
 #include "OrderByRange.h"
+#include "GroupByRange.h"
 #include "DistinctRange.h"
 #include "ToList.h"
 #include "ToDeque.h"
@@ -18,6 +19,7 @@ namespace boolinq
         , public SelectRange_mixin<Linq,T>
         , public ReverseRange_mixin<Linq,T>
         , public OrderByRange_mixin<Linq,T>
+        , public GroupByRange_mixin<Linq,T>
         , public DistinctRange_mixin<Linq,T>
         , public ToList_mixin<Linq,T>
         , public ToDeque_mixin<Linq,T>
@@ -45,29 +47,29 @@ namespace boolinq
     // from<CustomLinq>(xxx)
     //////////////////////////////////////////////////////////////////////////
 
-    //template<template<typename T> class TLinq, typename X>
-    //TLinq<IterRange<typename X::const_iterator> > from(const X & x)
-    //{
-    //    return range(x);
-    //}
-    //
-    //template<template<typename T> class TLinq, typename X, const int N>
-    //TLinq<IterRange<const X*> > from(const X (&x)[N])
-    //{
-    //    return range(x);
-    //}
-    //
-    //template<template<typename T> class TLinq, typename X>
-    //TLinq<IterRange<const X> > from(const X & b, const X & e)
-    //{
-    //    return range(b,e);
-    //}
-    //
-    //template<template<typename T> class TLinq, typename X>
-    //TLinq<IterRange<const X*> > from(const X * b, const X * e)
-    //{
-    //    return range(b,e);
-    //}
+    template<template<typename T> class TLinq, typename X>
+    TLinq<IterRange<typename X::const_iterator> > from(const X & x)
+    {
+        return range(x);
+    }
+    
+    template<template<typename T> class TLinq, typename X, const int N>
+    TLinq<IterRange<const X*> > from(const X (&x)[N])
+    {
+        return range(x);
+    }
+    
+    template<template<typename T> class TLinq, typename X>
+    TLinq<IterRange<X> > from(X b, X e)
+    {
+        return range(b,e);
+    }
+    
+    template<template<typename T> class TLinq, typename X>
+    TLinq<IterRange<const X*> > from(const X * b, const X * e)
+    {
+        return range(b,e);
+    }
 
     //////////////////////////////////////////////////////////////////////////
     // from(xxx)

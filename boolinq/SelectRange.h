@@ -8,10 +8,6 @@ namespace boolinq
     static auto get_return_type(F * f = NULL, TArg * arg = NULL)
                 -> decltype((*f)(*arg));
 
-    template<typename F, typename TArg, typename TArg2>
-    static auto get_return_type(F * f = NULL, TArg * arg = NULL, TArg2 * arg2 = NULL)
-                -> decltype((*f)(*arg,*arg2));
-
     template<typename R, typename F>
     class SelectRange
     {

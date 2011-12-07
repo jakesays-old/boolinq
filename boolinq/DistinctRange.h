@@ -3,7 +3,7 @@
 namespace boolinq
 {
     template<typename T>
-    struct JustReturn2
+    struct JustReturn_dist
     {
         T operator()(const T & a) const
         {
@@ -11,13 +11,13 @@ namespace boolinq
         }
     };
 
-    template<typename R, typename F = JustReturn2<typename R::value_type>> 
+    template<typename R, typename F = JustReturn_dist<typename R::value_type>> 
     class DistinctRange
     {
     public:
         typedef typename R::value_type value_type;
 
-        DistinctRange(R r, F f = JustReturn2<typename R::value_type>())
+        DistinctRange(R r, F f = JustReturn_dist<typename R::value_type>())
             : r(r), f(f)
             , fullRange(r)
             , leftIndex(0)
