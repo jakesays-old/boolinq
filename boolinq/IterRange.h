@@ -11,24 +11,8 @@ namespace boolinq
     public:
         typedef typename std::iterator_traits<TIter>::value_type value_type;
         
-        template<typename TContainer>
-        IterRange(const TContainer & container)
-            : b(container.begin())
-            , e(container.end())
-        {
-        }
-
-        template<typename TContainer, const int N>
-        IterRange(const TContainer (&arr)[N])
-            : b((const value_type*)arr)
-            , e((const value_type*)arr + N)
-        {
-        }
-
-        IterRange(TIter b,
-                  TIter e)
-            : b(b)
-            , e(e)
+        IterRange(TIter b, TIter e)
+            : b(b), e(e)
         {
         }
 
@@ -73,15 +57,15 @@ namespace boolinq
     //////////////////////////////////////////////////////////////////////
 
     template<typename T>
-    IterRange<typename T::const_iterator> range(const T & container)
+    IterRange<typename T::const_iterator> range(const T & vec)
     {
-        return IterRange<typename T::const_iterator>(container);
+        return IterRange<typename T::const_iterator>(vec.cbegin(), vec.cend());
     }
     
     template<typename T, const int N>
     IterRange<const T*> range(const T (&arr)[N])
     {
-        return IterRange<const T*>(arr);
+        return IterRange<const T*>((const T*)arr, (const T*)arr+N);
     }
 
     template<typename T>
