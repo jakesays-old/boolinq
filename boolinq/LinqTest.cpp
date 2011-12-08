@@ -305,6 +305,8 @@ TEST(Linq, Creations)
     auto rng_carr = range(carr);
     auto rng_ptr = range(ptr, ptr+5);
     auto rng_cptr = range(cptr, cptr+5);
+    auto rng_ptr_length = range(ptr, 5);
+    auto rng_cptr_length = range(cptr, 5);
     auto rng_vec_iter = range(vec.begin(), vec.end());
     auto rng_vec_citer = range(vec.cbegin(), vec.cend());
     auto rng_cvec_iter = range(cvec.begin(), cvec.end());
@@ -316,8 +318,38 @@ TEST(Linq, Creations)
     auto dst_carr = from(carr);
     auto dst_ptr = from(ptr, ptr+5);
     auto dst_cptr = from(cptr, cptr+5);
+    auto dst_ptr_length = from(ptr, 5);
+    auto dst_cptr_length = from(cptr, 5);
     auto dst_vec_iter = from(vec.begin(), vec.end());
     auto dst_vec_citer = from(vec.cbegin(), vec.cend());
     auto dst_cvec_iter = from(cvec.begin(), cvec.end());
     auto dst_cvec_citer = from(cvec.cbegin(), cvec.cend());
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(Linq, MessagesCountUniqueContacts)
+{
+    struct Message
+    {
+        std::string PhoneA;
+        std::string PhoneB;
+        std::string Text;
+    };
+
+    Message messages[] =
+    {
+        {"Anton","Denis","Hello, friend!"},
+        {"Denis","Write","OLOLO"},
+        {"Anton","Papay","WTF?"},
+        {"Denis","Maloy","How r u?"},
+        {"Denis","Write","Param-pareram!"},
+    };
+
+    int DenisUniqueContactCount = from(messages)
+        .where(   [](const Message & msg){return msg.PhoneA == "Denis";})
+        .distinct([](const Message & msg){return msg.PhoneB;})
+        .count();
+
+    EXPECT_EQ(2, DenisUniqueContactCount);
 }

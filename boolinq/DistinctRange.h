@@ -133,7 +133,7 @@ namespace boolinq
         }
 
         template<typename F>
-        TLINQ<DistinctRange<TContent> > distinct(F f) const
+        TLINQ<DistinctRange<TContent,F> > distinct(F f) const
         {
             return boolinq::distinct(((TLINQ<TContent>*)this)->t,f);
         }

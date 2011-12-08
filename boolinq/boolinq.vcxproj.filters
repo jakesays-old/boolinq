@@ -56,7 +56,7 @@
     <ClCompile Include="CountTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="GroupByTest.cpp">
+    <ClCompile Include="GroupByRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -81,7 +81,7 @@
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="CountTest.cpp" />
     <ClCompile Include="DistinctRangeTest.cpp" />
-    <ClCompile Include="GroupByTest.cpp" />
+    <ClCompile Include="GroupByRangeTest.cpp" />
     <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
