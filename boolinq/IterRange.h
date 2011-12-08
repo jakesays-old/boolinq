@@ -81,5 +81,11 @@ namespace boolinq
     {
         return IterRange<const T*>(b,e);
     }
+
+    template<typename T>
+    IterRange<const T*> range(const T * b, int n)
+    {
+        return IterRange<const T*>(b,b+n);
+    }
 }
 // namespace boolinq

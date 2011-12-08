@@ -73,6 +73,12 @@ namespace boolinq
         return range(b,e);
     }
 
+    template<template<typename T> class TLinq, typename X>
+    TLinq<IterRange<const X*> > from(const X * b, int n)
+    {
+        return range(b,n);
+    }
+
     //////////////////////////////////////////////////////////////////////////
     // from(xxx)
     //////////////////////////////////////////////////////////////////////////
@@ -80,25 +86,31 @@ namespace boolinq
     template<typename X>
     Linq<IterRange<typename X::const_iterator> > from(const X & x)
     {
-        return range(x);
+        return from<Linq>(x);
     }
 
     template<typename X, const int N>
     Linq<IterRange<const X*> > from(const X (&x)[N])
     {
-        return range(x);
+        return from<Linq>(x);
     }
 
     template<typename X>
     Linq<IterRange<X> > from(X b, X e)
     {
-        return range(b,e);
+        return from<Linq>(b,e);
     }
 
     template<typename X>
     Linq<IterRange<const X*> > from(const X * b, const X * e)
     {
-        return range(b,e);
+        return from<Linq>(b,e);
+    }
+
+    template<typename X>
+    Linq<IterRange<const X*> > from(const X * b, int n)
+    {
+        return from<Linq>(b,n);
     }
 
     //////////////////////////////////////////////////////////////////////////
