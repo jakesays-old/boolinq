@@ -12,8 +12,10 @@ namespace boolinq
         typedef typename std::iterator_traits<TIter>::value_type value_type;
         
         IterRange(TIter b, TIter e)
-            : b(b), e(e)
+            : b(b), e(e), p(e)
         {
+            if (p != b)
+                --p;
         }
 
         bool empty() const
@@ -32,6 +34,7 @@ namespace boolinq
         value_type popBack()
         {
             assert(!empty());
+            if (p != b) --p;
             return *(--e);
         }
 
@@ -44,14 +47,13 @@ namespace boolinq
         value_type back() const
         {
             assert(!empty());
-            TIter tmp = e;
-            --tmp;
-            return *tmp;
+            return *p;
         }
 
     private:
         TIter b;
         TIter e;
+        TIter p;
     };
 
     //////////////////////////////////////////////////////////////////////
