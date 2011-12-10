@@ -19,8 +19,8 @@ namespace boolinq
         value_type front() const { return r.back();     }
         value_type back() const  { return r.front();    }
 
-        //template<typename R2>
-        //friend R2 reverse(ReverseRange<R2> r); // smart needed
+        template<typename R2>
+        friend R2 reverse(ReverseRange<R2> r); // smart needed
 
     private:
         R r;
@@ -37,11 +37,11 @@ namespace boolinq
     // Should be commented because of test
     // with xx.reverse().reverse() notation
 
-    //template<typename R>
-    //R reverse(ReverseRange<R> r)
-    //{
-    //    return r.r; // smart
-    //}
+    template<typename R>
+    R reverse(ReverseRange<R> r)
+    {
+        return r.r; // smart
+    }
 
     // xxx.reverse().reverse()
 
@@ -52,6 +52,16 @@ namespace boolinq
         TLinq<ReverseRange<R> > reverse() const
         {
             return boolinq::reverse(((TLinq<R>*)this)->r);
+        }
+    };
+
+    template<template<typename> class TLinq, typename T>
+    class ReverseRange_mixin<TLinq,ReverseRange<T> >
+    {
+    public:
+        TLinq<T> reverse() const
+        {
+            return boolinq::reverse(((TLinq<ReverseRange<T> >*)this)->r);
         }
     };
 }
