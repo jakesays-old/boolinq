@@ -28,7 +28,7 @@ namespace boolinq
     // xxx.toContainer<std::vector>()
     // xxx.toContainer<QList>()
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class ToContainer_mixin
     {
         typedef typename TContent::value_type value_type;

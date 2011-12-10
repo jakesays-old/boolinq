@@ -128,7 +128,7 @@ namespace boolinq
 
     // xxx.groupBy(...).groupBy(...)
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class GroupByRange_mixin
     {
     public:

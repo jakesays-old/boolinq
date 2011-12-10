@@ -119,7 +119,7 @@ namespace boolinq
 
     // xxx.distinct().distinct()
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class DistinctRange_mixin
     {
     public:

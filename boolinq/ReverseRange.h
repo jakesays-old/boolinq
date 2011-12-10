@@ -45,7 +45,7 @@ namespace boolinq
 
     // xxx.reverse().reverse()
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class ReverseRange_mixin
     {
     public:

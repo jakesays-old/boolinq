@@ -213,7 +213,7 @@ namespace boolinq
 
     // xxx.orderBy(...).orderBy(...)
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class OrderByRange_mixin
     {
     public:

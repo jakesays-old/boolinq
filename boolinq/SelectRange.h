@@ -39,7 +39,7 @@ namespace boolinq
 
     // xxx.select(...).select(...)
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class SelectRange_mixin
     {
     public:

@@ -17,7 +17,7 @@ namespace boolinq
 
     // xxx.toList()
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class ToList_mixin
     {
     public:

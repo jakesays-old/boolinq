@@ -11,6 +11,7 @@
 #include "ToList.h"
 #include "ToDeque.h"
 #include "ToVector.h"
+#include "ToContainer.h"
 
 namespace boolinq
 {
@@ -26,6 +27,7 @@ namespace boolinq
         , public ToList_mixin<Linq,T>
         , public ToDeque_mixin<Linq,T>
         , public ToVector_mixin<Linq,T>
+        , public ToContainer_mixin<Linq,T>
     {
     public:
         typedef typename T::value_type value_type;
@@ -49,31 +51,31 @@ namespace boolinq
     // from<CustomLinq>(xxx)
     //////////////////////////////////////////////////////////////////////////
 
-    template<template<typename T> class TLinq, typename X>
+    template<template<typename> class TLinq, typename X>
     TLinq<IterRange<typename X::const_iterator> > from(const X & x)
     {
         return range(x);
     }
     
-    template<template<typename T> class TLinq, typename X, const int N>
+    template<template<typename> class TLinq, typename X, const int N>
     TLinq<IterRange<const X*> > from(const X (&x)[N])
     {
         return range(x);
     }
     
-    template<template<typename T> class TLinq, typename X>
+    template<template<typename> class TLinq, typename X>
     TLinq<IterRange<X> > from(X b, X e)
     {
         return range(b,e);
     }
     
-    template<template<typename T> class TLinq, typename X>
+    template<template<typename> class TLinq, typename X>
     TLinq<IterRange<const X*> > from(const X * b, const X * e)
     {
         return range(b,e);
     }
 
-    template<template<typename T> class TLinq, typename X>
+    template<template<typename> class TLinq, typename X>
     TLinq<IterRange<const X*> > from(const X * b, int n)
     {
         return range(b,n);

@@ -17,7 +17,7 @@ namespace boolinq
 
     // xxx.toVector()
 
-    template<template<typename T> class TLINQ, typename TContent>
+    template<template<typename> class TLINQ, typename TContent>
     class ToVector_mixin
     {
     public:
