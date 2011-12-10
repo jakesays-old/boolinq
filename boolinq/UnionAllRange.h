@@ -57,12 +57,25 @@ namespace boolinq
         R2 r2;
     };
 
-    /// chain(chain(xxx,yyy),zzz)
+    /// unionAll(unionAll(xxx,yyy),zzz)
 
     template<typename R1, typename R2>
     UnionAllRange<R1,R2> unionAll(R1 r1, R2 r2)
     {
         return UnionAllRange<R1,R2>(r1,r2);
     }
+
+    /// xxx.unionAll(yyy).unionAll(zzz)
+
+    template<template<typename> class TLINQ, typename TContent>
+    class UnionAllRange_mixin
+    {
+    public:
+        template<typename R>
+        TLINQ<UnionAllRange<TContent,R> > unionAll(R r) const
+        {
+            return boolinq::unionAll(((TLINQ<TContent>*)this)->t,r);
+        }
+    };
 }
 // namespace boolinq
