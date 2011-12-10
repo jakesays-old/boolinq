@@ -37,6 +37,11 @@ namespace boolinq
         {
         }
 
+        operator T () const
+        {
+            return t;
+        }
+
         bool empty() const       { return t.empty(); }
         value_type popFront()    { return t.popFront(); }
         value_type popBack()     { return t.popBack(); }
