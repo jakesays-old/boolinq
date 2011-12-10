@@ -60,6 +60,8 @@ namespace boolinq
         TKey k;
     };
 
+    //////////////////////////////////////////////////////////////////////////
+
     template<typename R, typename F = JustReturn_gb<typename R::value_type> > 
     class GroupByRange
     {
@@ -81,7 +83,6 @@ namespace boolinq
 
         value_type popFront()             
         { 
-            assert(!empty());
             DistinctRange<R,F> tmp = dr;
             dr.popFront();
             if ((!empty()))
@@ -91,7 +92,6 @@ namespace boolinq
 
         value_type popBack()
         {
-            assert(!empty());
             DistinctRange<R,F> tmp = dr;
             dr.popBack();
             if ((!empty()))
@@ -101,13 +101,11 @@ namespace boolinq
 
         value_type & front()
         { 
-            assert(!empty());
             return _front;
         }
 
         value_type & back()
         { 
-            assert(!empty());
             return _back;
         }
 

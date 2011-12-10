@@ -4,49 +4,25 @@
 
 namespace boolinq
 {
-    template<typename F, typename TArg>
-    static auto get_return_type(F * f = NULL, TArg * arg = NULL)
-                -> decltype((*f)(*arg));
-
     template<typename R, typename F>
     class SelectRange
     {
+        template<typename F, typename TArg>
+        static auto get_return_type(F * f = NULL, TArg * arg = NULL)
+                    -> decltype((*f)(*arg));
     public:
         typedef decltype(get_return_type<F,typename R::value_type>()) value_type;
-        
+
         SelectRange(R r, F f)
             : r(r), f(f) 
         {
         }
 
-        bool empty() const 
-        { 
-            return r.empty();
-        }
-
-        value_type popFront()
-        { 
-            assert(!empty());
-            return f(r.popFront());
-        }
-
-        value_type popBack() 
-        {
-            assert(!empty());
-            return f(r.popBack());
-        }
-
-        value_type front() const 
-        { 
-            assert(!empty());
-            return f(r.front());
-        }
-
-        value_type back() const 
-        {
-            assert(!empty());
-            return f(r.back());
-        }
+        bool empty() const { return r.empty(); }
+        value_type popFront()    { return f(r.popFront()); }
+        value_type popBack()     { return f(r.popBack());  }
+        value_type front() const { return f(r.front());    }
+        value_type back() const  { return f(r.back());     }
 
     private:
         R r;

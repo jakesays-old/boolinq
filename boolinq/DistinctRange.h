@@ -34,7 +34,6 @@ namespace boolinq
 
         value_type popFront() 
         { 
-            assert(!empty());
             R tmp = r;
             do 
             {
@@ -46,7 +45,6 @@ namespace boolinq
 
         value_type popBack() 
         {
-            assert(!empty());
             R tmp = r;
             do
             {
@@ -58,13 +56,11 @@ namespace boolinq
 
         value_type front() const 
         { 
-            assert(!empty());
             return r.front();
         }
 
         value_type back() const 
         { 
-            assert(!empty());
             return r.back();
         }
 

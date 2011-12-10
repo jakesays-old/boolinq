@@ -37,7 +37,6 @@ namespace boolinq
 
         value_type popFront() 
         { 
-            assert(!empty());
             R tmp = minValue;
             seekMin();
             return tmp.front();
@@ -45,7 +44,6 @@ namespace boolinq
 
         value_type popBack() 
         {
-            assert(!empty());
             R tmp = maxValue;
             seekMax();
             return tmp.front();
@@ -53,13 +51,11 @@ namespace boolinq
 
         value_type front() const 
         { 
-            assert(!empty());
             return minValue.front();
         }
 
         value_type back() const 
         { 
-            assert(!empty());
             return maxValue.front();
         }
 

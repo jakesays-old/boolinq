@@ -8,13 +8,16 @@ namespace boolinq
     public:
         typedef typename R::value_type value_type; 
         
-        ReverseRange(R r) : r(r) { }
+        ReverseRange(R r)
+            : r(r) 
+        {
+        }
 
         bool empty() const { return r.empty(); }
-        value_type popFront() { return r.popBack(); }
-        value_type popBack() { return r.popFront(); }
-        value_type front() const { return r.back(); }
-        value_type back() const { return r.front(); }
+        value_type popFront()    { return r.popBack();  }
+        value_type popBack()     { return r.popFront(); }
+        value_type front() const { return r.back();     }
+        value_type back() const  { return r.front();    }
 
         //template<typename R2>
         //friend R2 reverse(ReverseRange<R2> r); // smart needed
@@ -31,7 +34,7 @@ namespace boolinq
         return ReverseRange<R>(r);
     }
 
-    // Should be comennted because of test
+    // Should be commented because of test
     // with xx.reverse().reverse() notation
 
     //template<typename R>
