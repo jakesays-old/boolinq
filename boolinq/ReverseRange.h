@@ -34,9 +34,7 @@ namespace boolinq
         return ReverseRange<R>(r);
     }
 
-    // Should be commented because of test
-    // with xx.reverse().reverse() notation
-
+    // Unwrap for double-reverse case
     template<typename R>
     R reverse(ReverseRange<R> r)
     {
@@ -55,6 +53,7 @@ namespace boolinq
         }
     };
 
+    // Unwrap for double-reverse case
     template<template<typename> class TLinq, typename T>
     class ReverseRange_mixin<TLinq,ReverseRange<T> >
     {

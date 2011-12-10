@@ -11,7 +11,7 @@ namespace boolinq
         }
     };
 
-    template<typename R, typename F = JustReturn_dist<typename R::value_type>> 
+    template<typename R, typename F = JustReturn_dist<typename R::value_type> > 
     class DistinctRange
     {
     public:
@@ -68,16 +68,12 @@ namespace boolinq
         template<typename T>
         bool isDuplicate(const T & value, int left, int right) const
         {
-            R dr = r;
-            dr.popFront();
-            if (dr.empty())
-            {
-                left = 0;
-                right = 0;
+            R tmp = r;
+            tmp.popFront();
+            if (tmp.empty())
                 return false;
-            }
 
-            R tmp = fullRange;
+            tmp = fullRange;
             for(int i = 0 ; i < leftIndex + right; i++)
             {
                 if (value == f(tmp.popFront()))
