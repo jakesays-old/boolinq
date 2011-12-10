@@ -85,6 +85,7 @@
     <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
+    <ClCompile Include="ToContainerTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
     <ClCompile Include="LinqTest.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="DistinctRange.h" />
     <ClInclude Include="GroupByRange.h" />
     <ClInclude Include="OrderByRange.h" />
+    <ClInclude Include="ToContainer.h" />
     <ClInclude Include="ToDeque.h" />
     <ClInclude Include="ToList.h" />
     <ClInclude Include="IterRange.h" />

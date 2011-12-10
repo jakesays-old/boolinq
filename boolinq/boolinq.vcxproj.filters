@@ -59,6 +59,9 @@
     <ClCompile Include="GroupByRangeTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="ToContainerTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">
@@ -98,6 +101,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Count.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
