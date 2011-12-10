@@ -16,42 +16,42 @@
 
 namespace boolinq
 {
-    template<typename T>
+    template<typename R>
     class Linq
-        : public WhereRange_mixin<Linq,T>
-        , public SelectRange_mixin<Linq,T>
-        , public ReverseRange_mixin<Linq,T>
-        , public OrderByRange_mixin<Linq,T>
-        , public GroupByRange_mixin<Linq,T>
-        , public DistinctRange_mixin<Linq,T>
-        , public UnionAllRange_mixin<Linq,T>
-        , public Count_mixin<Linq,T>
-        , public ToList_mixin<Linq,T>
-        , public ToDeque_mixin<Linq,T>
-        , public ToVector_mixin<Linq,T>
-        , public ToContainer_mixin<Linq,T>
+        : public WhereRange_mixin<Linq,R>
+        , public SelectRange_mixin<Linq,R>
+        , public ReverseRange_mixin<Linq,R>
+        , public OrderByRange_mixin<Linq,R>
+        , public GroupByRange_mixin<Linq,R>
+        , public DistinctRange_mixin<Linq,R>
+        , public UnionAllRange_mixin<Linq,R>
+        , public Count_mixin<Linq,R>
+        , public ToList_mixin<Linq,R>
+        , public ToDeque_mixin<Linq,R>
+        , public ToVector_mixin<Linq,R>
+        , public ToContainer_mixin<Linq,R>
     {
     public:
-        typedef typename T::value_type value_type;
+        typedef typename R::value_type value_type;
 
-        Linq(const T & t)
-            : t(t)
+        Linq(const R & r)
+            : r(r)
         {
         }
 
-        operator T () const
+        operator R () const
         {
-            return t;
+            return r;
         }
 
-        bool empty() const       { return t.empty(); }
-        value_type popFront()    { return t.popFront(); }
-        value_type popBack()     { return t.popBack(); }
-        value_type front() const { return t.front(); }
-        value_type back() const  { return t.back(); }
+        bool empty() const       { return r.empty();    }
+        value_type popFront()    { return r.popFront(); }
+        value_type popBack()     { return r.popBack();  }
+        value_type front() const { return r.front();    }
+        value_type back() const  { return r.back();     }
 
     public:
-        T t;
+        R r;
     };
 
     //////////////////////////////////////////////////////////////////////////

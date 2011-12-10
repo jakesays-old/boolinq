@@ -119,19 +119,19 @@ namespace boolinq
 
     // xxx.distinct().distinct()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class DistinctRange_mixin
     {
     public:
-        TLINQ<DistinctRange<TContent> > distinct() const
+        TLinq<DistinctRange<R> > distinct() const
         {
-            return boolinq::distinct(((TLINQ<TContent>*)this)->t);
+            return boolinq::distinct(((TLinq<R>*)this)->r);
         }
 
         template<typename F>
-        TLINQ<DistinctRange<TContent,F> > distinct(F f) const
+        TLinq<DistinctRange<R,F> > distinct(F f) const
         {
-            return boolinq::distinct(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::distinct(((TLinq<R>*)this)->r,f);
         }
     };
 }

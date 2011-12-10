@@ -45,13 +45,13 @@ namespace boolinq
 
     // xxx.reverse().reverse()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class ReverseRange_mixin
     {
     public:
-        TLINQ<ReverseRange<TContent> > reverse() const
+        TLinq<ReverseRange<R> > reverse() const
         {
-            return boolinq::reverse(((TLINQ<TContent>*)this)->t);
+            return boolinq::reverse(((TLinq<R>*)this)->r);
         }
     };
 }

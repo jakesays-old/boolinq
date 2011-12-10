@@ -213,19 +213,19 @@ namespace boolinq
 
     // xxx.orderBy(...).orderBy(...)
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class OrderByRange_mixin
     {
     public:
-        TLINQ<OrderByRange<TContent> > orderBy() const
+        TLinq<OrderByRange<R> > orderBy() const
         {
-            return boolinq::orderBy(((TLINQ<TContent>*)this)->t);
+            return boolinq::orderBy(((TLinq<R>*)this)->r);
         }
 
         template<typename F>
-        TLINQ<OrderByRange<TContent,F> > orderBy(F f) const
+        TLinq<OrderByRange<R,F> > orderBy(F f) const
         {
-            return boolinq::orderBy(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::orderBy(((TLinq<R>*)this)->r,f);
         }
     };
 }

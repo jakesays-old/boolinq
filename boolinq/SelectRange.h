@@ -39,14 +39,14 @@ namespace boolinq
 
     // xxx.select(...).select(...)
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class SelectRange_mixin
     {
     public:
         template<typename F>
-        TLINQ<SelectRange<TContent,F> > select(F f) const
+        TLinq<SelectRange<R,F> > select(F f) const
         {
-            return boolinq::select(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::select(((TLinq<R>*)this)->r,f);
         }
     };
 }

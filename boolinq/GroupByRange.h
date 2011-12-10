@@ -128,14 +128,14 @@ namespace boolinq
 
     // xxx.groupBy(...).groupBy(...)
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class GroupByRange_mixin
     {
     public:
         template<typename F>
-        TLINQ<GroupByRange<TContent,F> > groupBy(F f) const
+        TLinq<GroupByRange<R,F> > groupBy(F f) const
         {
-            return boolinq::groupBy(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::groupBy(((TLinq<R>*)this)->r,f);
         }
     };
 }

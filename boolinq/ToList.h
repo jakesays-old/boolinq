@@ -17,13 +17,13 @@ namespace boolinq
 
     // xxx.toList()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class ToList_mixin
     {
     public:
-        std::list<typename TContent::value_type> toList() const
+        std::list<typename R::value_type> toList() const
         {
-            return boolinq::toList(((TLINQ<TContent>*)this)->t);
+            return boolinq::toList(((TLinq<R>*)this)->r);
         }
     };
 }

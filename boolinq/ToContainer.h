@@ -28,22 +28,22 @@ namespace boolinq
     // xxx.toContainer<std::vector>()
     // xxx.toContainer<QList>()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class ToContainer_mixin
     {
-        typedef typename TContent::value_type value_type;
+        typedef typename R::value_type value_type;
 
     public:
         template<template<typename> class X>
         X<value_type> toContainer() const
         {
-            return boolinq::toContainer<X>(((TLINQ<TContent>*)this)->t);
+            return boolinq::toContainer<X>(((TLinq<R>*)this)->r);
         }
 
         template<template<typename,typename> class X>
         X<value_type, std::allocator<value_type> > toContainer() const
         {
-            return boolinq::toContainer<X>(((TLINQ<TContent>*)this)->t);
+            return boolinq::toContainer<X>(((TLinq<R>*)this)->r);
         }
     };
 }

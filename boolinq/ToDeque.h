@@ -17,13 +17,13 @@ namespace boolinq
 
     // xxx.toVector()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class ToDeque_mixin
     {
     public:
-        std::deque<typename TContent::value_type> toDeque() const
+        std::deque<typename R::value_type> toDeque() const
         {
-            return boolinq::toDeque(((TLINQ<TContent>*)this)->t);
+            return boolinq::toDeque(((TLinq<R>*)this)->r);
         }
     };
 }

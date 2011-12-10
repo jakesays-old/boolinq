@@ -25,19 +25,19 @@ namespace boolinq
 
     // xxx.count()
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class Count_mixin
     {
     public:
         int count() const
         {
-            return boolinq::count(((TLINQ<TContent>*)this)->t);
+            return boolinq::count(((TLinq<R>*)this)->r);
         }
 
         template<typename F>
         int count(F f) const
         {
-            return boolinq::count(((TLINQ<TContent>*)this)->t,f);
+            return boolinq::count(((TLinq<R>*)this)->r,f);
         }
     };
 }

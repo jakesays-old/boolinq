@@ -67,14 +67,14 @@ namespace boolinq
 
     /// xxx.unionAll(yyy).unionAll(zzz)
 
-    template<template<typename> class TLINQ, typename TContent>
+    template<template<typename> class TLinq, typename R>
     class UnionAllRange_mixin
     {
     public:
         template<typename R>
-        TLINQ<UnionAllRange<TContent,R> > unionAll(R r) const
+        TLinq<UnionAllRange<R,R> > unionAll(R r) const
         {
-            return boolinq::unionAll(((TLINQ<TContent>*)this)->t,r);
+            return boolinq::unionAll(((TLinq<R>*)this)->r,r);
         }
     };
 }
