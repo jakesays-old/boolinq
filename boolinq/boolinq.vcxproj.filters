@@ -62,15 +62,15 @@
     <ClCompile Include="ToContainerTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="UnionRangeTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WhereRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ChainRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SelectRange.h">
@@ -104,6 +104,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ToContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnionAllRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

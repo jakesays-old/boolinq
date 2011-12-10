@@ -92,11 +92,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="IterRangeTest.cpp" />
     <ClCompile Include="ToVectorTest.cpp" />
+    <ClCompile Include="UnionRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h" />
-    <ClInclude Include="ChainRange.h" />
+    <ClInclude Include="UnionAllRange.h" />
     <ClInclude Include="Count.h" />
     <ClInclude Include="DistinctRange.h" />
     <ClInclude Include="GroupByRange.h" />
