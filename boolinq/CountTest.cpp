@@ -1,3 +1,4 @@
+#include <list>
 #include <vector>
 
 #include "gmock/gmock.h"
@@ -9,7 +10,7 @@
 
 using namespace boolinq;
 
-TEST(Count, ThreeInts)
+TEST(Count, ThreeIntsVector)
 {
     std::vector<int> src;
     src.push_back(1);
@@ -18,6 +19,18 @@ TEST(Count, ThreeInts)
 
     auto rng = range(src);
     
+    EXPECT_EQ(3, count(rng));
+}
+
+TEST(Count, ThreeIntsList)
+{
+    std::list<int> src;
+    src.push_back(1);
+    src.push_back(2);
+    src.push_back(3);
+
+    auto rng = range(src);
+
     EXPECT_EQ(3, count(rng));
 }
 
