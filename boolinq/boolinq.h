@@ -8,7 +8,10 @@
 #include "GroupByRange.h"
 #include "DistinctRange.h"
 #include "UnionAllRange.h"
+
 #include "Count.h"
+#include "Contains.h"
+
 #include "ToList.h"
 #include "ToDeque.h"
 #include "ToVector.h"
@@ -25,7 +28,10 @@ namespace boolinq
         , public GroupByRange_mixin<Linq,R>
         , public DistinctRange_mixin<Linq,R>
         , public UnionAllRange_mixin<Linq,R>
+        
         , public Count_mixin<Linq,R>
+        , public Contains_mixin<Linq,R>
+
         , public ToList_mixin<Linq,R>
         , public ToDeque_mixin<Linq,R>
         , public ToVector_mixin<Linq,R>
@@ -40,6 +46,11 @@ namespace boolinq
         }
 
         operator R () const
+        {
+            return r;
+        }
+
+        operator R & ()
         {
             return r;
         }
