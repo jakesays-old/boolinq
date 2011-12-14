@@ -1,7 +1,5 @@
 #pragma once
 
-#include "WhereRange.h"
-
 namespace boolinq
 {
     // contains(xxx, value)

@@ -71,6 +71,9 @@
     <ClCompile Include="ToSetTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="ElementAtTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReverseRange.h">
@@ -119,6 +122,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ToSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementAt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

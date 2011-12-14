@@ -11,6 +11,7 @@
 
 #include "Count.h"
 #include "Contains.h"
+#include "ElementAt.h"
 
 #include "ToSet.h"
 #include "ToList.h"
@@ -32,6 +33,7 @@ namespace boolinq
         
         , public Count_mixin<Linq,R>
         , public Contains_mixin<Linq,R>
+        , public ElementAt_mixin<Linq,R>
 
         , public ToSet_mixin<Linq,R>
         , public ToList_mixin<Linq,R>
