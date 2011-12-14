@@ -92,6 +92,7 @@
     <ClCompile Include="LinqTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="IterRangeTest.cpp" />
+    <ClCompile Include="ToSetTest.cpp" />
     <ClCompile Include="ToVectorTest.cpp" />
     <ClCompile Include="UnionRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <ClInclude Include="boolinq.h" />
     <ClInclude Include="Contains.h" />
+    <ClInclude Include="ToSet.h" />
     <ClInclude Include="UnionAllRange.h" />
     <ClInclude Include="Count.h" />
     <ClInclude Include="DistinctRange.h" />
