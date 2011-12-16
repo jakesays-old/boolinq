@@ -12,6 +12,24 @@
     <Filter Include="Test Files">
       <UniqueIdentifier>{6b58e162-6433-41da-b055-7101f6bb2b6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Ranges">
+      <UniqueIdentifier>{02f36613-1ddf-49e7-83aa-8816f01eff05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Singles">
+      <UniqueIdentifier>{5462829c-af51-4f8e-b5b8-a1ce71f2abda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exports">
+      <UniqueIdentifier>{25f18c55-d4b1-4dfa-88ec-a54b129d1589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Exports">
+      <UniqueIdentifier>{eb563358-6445-4f61-bd6f-990c914f5ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Singles">
+      <UniqueIdentifier>{1b19ecdd-bb5e-41a2-9eee-86ef0975a2cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Ranges">
+      <UniqueIdentifier>{7977c11f-757b-4c22-a388-d9c33a8ff0e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\gmock\src\gmock-all.cc">
@@ -23,109 +41,109 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WhereRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="LinqTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="ToListTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ToVectorTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="ToDequeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IterRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OrderByRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReverseRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DistinctRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CountTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GroupByRangeTest.cpp">
-      <Filter>Test Files</Filter>
+      <Filter>Test Files\Exports</Filter>
     </ClCompile>
     <ClCompile Include="ToContainerTest.cpp">
-      <Filter>Test Files</Filter>
+      <Filter>Test Files\Exports</Filter>
     </ClCompile>
-    <ClCompile Include="UnionRangeTest.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ContainsTest.cpp">
-      <Filter>Test Files</Filter>
+    <ClCompile Include="ToListTest.cpp">
+      <Filter>Test Files\Exports</Filter>
     </ClCompile>
     <ClCompile Include="ToSetTest.cpp">
-      <Filter>Test Files</Filter>
+      <Filter>Test Files\Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="ToVectorTest.cpp">
+      <Filter>Test Files\Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="ContainsTest.cpp">
+      <Filter>Test Files\Singles</Filter>
+    </ClCompile>
+    <ClCompile Include="CountTest.cpp">
+      <Filter>Test Files\Singles</Filter>
     </ClCompile>
     <ClCompile Include="ElementAtTest.cpp">
-      <Filter>Test Files</Filter>
+      <Filter>Test Files\Singles</Filter>
+    </ClCompile>
+    <ClCompile Include="DistinctRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="WhereRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupByRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="IterRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="OrderByRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="ReverseRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="UnionRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ReverseRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WhereRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="boolinq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ToVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ToList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ToDeque.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IterRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrderByRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DistinctRange.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
     <ClInclude Include="GroupByRange.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
-    <ClInclude Include="Count.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="OrderByRange.h">
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
-    <ClInclude Include="ToContainer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ReverseRange.h">
+      <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectRange.h">
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
     <ClInclude Include="UnionAllRange.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
-    <ClInclude Include="Contains.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="WhereRange.h">
+      <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="ToDeque.h">
+      <Filter>Header Files\Exports</Filter>
+    </ClInclude>
+    <ClInclude Include="ToContainer.h">
+      <Filter>Header Files\Exports</Filter>
+    </ClInclude>
+    <ClInclude Include="ToList.h">
+      <Filter>Header Files\Exports</Filter>
     </ClInclude>
     <ClInclude Include="ToSet.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Exports</Filter>
+    </ClInclude>
+    <ClInclude Include="ToVector.h">
+      <Filter>Header Files\Exports</Filter>
+    </ClInclude>
+    <ClInclude Include="Contains.h">
+      <Filter>Header Files\Singles</Filter>
+    </ClInclude>
+    <ClInclude Include="Count.h">
+      <Filter>Header Files\Singles</Filter>
     </ClInclude>
     <ClInclude Include="ElementAt.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Singles</Filter>
+    </ClInclude>
+    <ClInclude Include="IterRange.h">
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
