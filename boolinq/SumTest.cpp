@@ -53,3 +53,33 @@ TEST(Sum, BoolSum)
     EXPECT_EQ(2, sum(rng,[](int a){return a%2 == 0;}));
     EXPECT_EQ(3, sum(rng,[](int a){return a%2 == 1;}));
 }
+
+TEST(Sum, FiveStringsLen)
+{
+    std::vector<std::string> src;
+    src.push_back("hello");
+    src.push_back("apple");
+    src.push_back("nokia");
+    src.push_back("oracle");
+    src.push_back("ponny");
+
+    auto rng = range(src);
+
+    EXPECT_EQ(26, sum(rng,[](const std::string & str){return str.size();}));
+}
+
+TEST(Sum, FiveStringsData)
+{
+    std::vector<std::string> src;
+    src.push_back("hello");
+    src.push_back("apple");
+    src.push_back("nokia");
+    src.push_back("oracle");
+    src.push_back("ponny");
+
+    auto rng = range(src);
+
+    std::string ans = "helloapplenokiaoracleponny";
+
+    EXPECT_EQ(ans, sum(rng));
+}
