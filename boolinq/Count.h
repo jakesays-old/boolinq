@@ -26,7 +26,7 @@ namespace boolinq
     // xxx.count()
 
     template<template<typename> class TLinq, typename R>
-    class Count_mixin
+    class Sum_mixin
     {
     public:
         int count() const

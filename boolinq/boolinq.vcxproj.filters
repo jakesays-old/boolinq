@@ -92,6 +92,9 @@
     <ClCompile Include="UnionRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
+    <ClCompile Include="SumTest.cpp">
+      <Filter>Test Files\Singles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -144,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="IterRange.h">
       <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="Sum.h">
+      <Filter>Header Files\Singles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
