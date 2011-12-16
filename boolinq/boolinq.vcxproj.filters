@@ -98,6 +98,9 @@
     <ClCompile Include="AllTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
+    <ClCompile Include="AnyTest.cpp">
+      <Filter>Test Files\Aggregate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -155,6 +158,9 @@
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
     <ClInclude Include="All.h">
+      <Filter>Header Files\Aggregate</Filter>
+    </ClInclude>
+    <ClInclude Include="Any.h">
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
   </ItemGroup>

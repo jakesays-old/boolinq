@@ -2,7 +2,7 @@
 
 namespace boolinq
 {
-    // count(xxx)
+    // count(xxx) and count(xxx,lambda)
 
     template<typename R>
     int count(R r)
@@ -23,7 +23,7 @@ namespace boolinq
         return index;
     }
 
-    // xxx.count()
+    // xxx.count() and xxx.count(lambda)
 
     template<template<typename> class TLinq, typename R>
     class Sum_mixin

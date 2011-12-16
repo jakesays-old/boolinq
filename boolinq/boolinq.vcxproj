@@ -80,6 +80,7 @@
     <ClCompile Include="..\gmock\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\gmock\src\gmock-all.cc" />
     <ClCompile Include="AllTest.cpp" />
+    <ClCompile Include="AnyTest.cpp" />
     <ClCompile Include="ContainsTest.cpp" />
     <ClCompile Include="CountTest.cpp" />
     <ClCompile Include="DistinctRangeTest.cpp" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="All.h" />
+    <ClInclude Include="Any.h" />
     <ClInclude Include="boolinq.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />

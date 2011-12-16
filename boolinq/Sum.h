@@ -2,7 +2,7 @@
 
 namespace boolinq
 {
-    // sum(xxx)
+    // sum(xxx) and sum(xxx,lambda)
 
     template<typename R>
     auto sum(R r) -> decltype(r.front() + r.back())
@@ -24,7 +24,7 @@ namespace boolinq
         return val;
     }
 
-    // xxx.sum()
+    // xxx.sum() and xxx.sum(lambda)
 
     template<template<typename> class TLinq, typename R>
     class Count_mixin

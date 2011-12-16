@@ -9,8 +9,8 @@
 #include "DistinctRange.h"
 #include "UnionAllRange.h"
 
-
 #include "All.h"
+#include "Any.h"
 #include "Sum.h"
 #include "Count.h"
 #include "Contains.h"
@@ -35,6 +35,7 @@ namespace boolinq
         , public UnionAllRange_mixin<Linq,R>
         
         , public All_mixin<Linq,R>
+        , public Any_mixin<Linq,R>
         , public Sum_mixin<Linq,R>
         , public Count_mixin<Linq,R>
         , public Contains_mixin<Linq,R>

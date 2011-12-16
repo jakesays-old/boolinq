@@ -2,7 +2,7 @@
 
 namespace boolinq
 {
-    // all(xxx)
+    // all(xxx) and all(xxx,lambda)
 
     template<typename R>
     bool all(R r)
@@ -22,7 +22,7 @@ namespace boolinq
         return true;
     }
 
-    // xxx.all()
+    // xxx.all() and xxx.all(lambda)
 
     template<template<typename> class TLinq, typename R>
     class All_mixin
