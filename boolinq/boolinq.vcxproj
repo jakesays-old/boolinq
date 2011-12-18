@@ -87,6 +87,7 @@
     <ClCompile Include="DistinctRangeTest.cpp" />
     <ClCompile Include="ElementAtTest.cpp" />
     <ClCompile Include="GroupByRangeTest.cpp" />
+    <ClCompile Include="MinTest.cpp" />
     <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="boolinq.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />
+    <ClInclude Include="Min.h" />
     <ClInclude Include="Sum.h" />
     <ClInclude Include="ToSet.h" />
     <ClInclude Include="UnionAllRange.h" />

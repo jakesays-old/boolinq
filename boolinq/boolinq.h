@@ -13,6 +13,7 @@
 #include "Any.h"
 #include "Sum.h"
 #include "Avg.h"
+#include "Min.h"
 #include "Count.h"
 #include "Contains.h"
 #include "ElementAt.h"
@@ -39,6 +40,7 @@ namespace boolinq
         , public Any_mixin<Linq,R>
         , public Sum_mixin<Linq,R>
         , public Avg_mixin<Linq,R>
+        , public Min_mixin<Linq,R>
         , public Count_mixin<Linq,R>
         , public Contains_mixin<Linq,R>
         , public ElementAt_mixin<Linq,R>

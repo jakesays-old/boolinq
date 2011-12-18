@@ -104,6 +104,9 @@
     <ClCompile Include="AvgTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
+    <ClCompile Include="MinTest.cpp">
+      <Filter>Test Files\Aggregate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -167,6 +170,9 @@
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
     <ClInclude Include="Avg.h">
+      <Filter>Header Files\Aggregate</Filter>
+    </ClInclude>
+    <ClInclude Include="Min.h">
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
   </ItemGroup>
