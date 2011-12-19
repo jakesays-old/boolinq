@@ -110,6 +110,9 @@
     <ClCompile Include="MaxTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
+    <ClCompile Include="TakeRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -183,6 +186,9 @@
     </ClInclude>
     <ClInclude Include="CommonTests.h">
       <Filter>Test Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="TakeRange.h">
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

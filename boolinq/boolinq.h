@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IterRange.h"
+
+#include "TakeRange.h"
 #include "WhereRange.h"
 #include "SelectRange.h"
 #include "ReverseRange.h"
@@ -29,7 +31,8 @@ namespace boolinq
 {
     template<typename R>
     class Linq
-        : public WhereRange_mixin<Linq,R>
+        : public TakeRange_mixin<Linq,R>
+        , public WhereRange_mixin<Linq,R>
         , public SelectRange_mixin<Linq,R>
         , public ReverseRange_mixin<Linq,R>
         , public OrderByRange_mixin<Linq,R>

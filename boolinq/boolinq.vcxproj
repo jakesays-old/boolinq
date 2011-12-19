@@ -93,6 +93,7 @@
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
     <ClCompile Include="SumTest.cpp" />
+    <ClCompile Include="TakeRangeTest.cpp" />
     <ClCompile Include="ToContainerTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Max.h" />
     <ClInclude Include="Min.h" />
     <ClInclude Include="Sum.h" />
+    <ClInclude Include="TakeRange.h" />
     <ClInclude Include="ToSet.h" />
     <ClInclude Include="UnionAllRange.h" />
     <ClInclude Include="Count.h" />
