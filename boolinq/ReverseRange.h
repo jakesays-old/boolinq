@@ -13,7 +13,7 @@ namespace boolinq
         {
         }
 
-        bool empty() const { return r.empty(); }
+        bool empty() const       { return r.empty();    }
         value_type popFront()    { return r.popBack();  }
         value_type popBack()     { return r.popFront(); }
         value_type front() const { return r.back();     }
