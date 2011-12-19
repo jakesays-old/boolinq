@@ -109,6 +109,7 @@
     <ClInclude Include="Any.h" />
     <ClInclude Include="Avg.h" />
     <ClInclude Include="boolinq.h" />
+    <ClInclude Include="CommonTests.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />
     <ClInclude Include="Max.h" />

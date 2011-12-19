@@ -3,60 +3,12 @@
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "CommonTests.h"
 
 #include "IterRange.h"
 #include "OrderByRange.h"
 
-#include "ReverseRange.h"
-#include "ToVector.h"
-
 using namespace boolinq;
-
-//////////////////////////////////////////////////////////////////////////
-
-template<typename R, typename T, int N, typename F>
-void CheckRangeFront(R dst, T (&ans)[N], F f)
-{
-    for (int i = 0; i < N; i++)
-    {
-        EXPECT_FALSE(dst.empty());
-        EXPECT_EQ(f(ans[i]),   f(dst.front()));
-        EXPECT_EQ(f(ans[N-1]), f(dst.back()));
-        EXPECT_EQ(f(ans[i]),   f(dst.popFront()));
-    }
-
-    EXPECT_TRUE(dst.empty());
-}
-
-template<typename R, typename T, int N, typename F>
-void CheckRangeBack(R dst, T (&ans)[N], F f)
-{
-    for (int i = N; i > 0; i--)
-    {
-        EXPECT_FALSE(dst.empty());
-        EXPECT_EQ(f(ans[0]),   f(dst.front()));
-        EXPECT_EQ(f(ans[i-1]), f(dst.back()));
-        EXPECT_EQ(f(ans[i-1]), f(dst.popBack()));
-    }
-
-    EXPECT_TRUE(dst.empty());
-}
-
-//////////////////////////////////////////////////////////////////////////
-
-template<typename R, typename T, int N>
-void CheckRangeFront(R dst, T (&ans)[N])
-{
-    typedef typename R::value_type value_type;
-    CheckRangeFront(dst, ans, [](const value_type & a){return a;});
-}
-
-template<typename R, typename T, int N>
-void CheckRangeBack(R dst, T (&ans)[N])
-{
-    typedef typename R::value_type value_type;
-    CheckRangeBack(dst, ans, [](const value_type & a){return a;});
-}
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -68,8 +20,7 @@ TEST(OrderByRange, RandomIntsWithDuplicates)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeFront(dst, ans);
-    CheckRangeBack(dst, ans);
+    CheckRangeAll(dst, ans);
 }
 
 TEST(OrderByRange, ReverseInts)
@@ -80,9 +31,10 @@ TEST(OrderByRange, ReverseInts)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeFront(dst, ans);
-    CheckRangeBack(dst, ans);
+    CheckRangeAll(dst, ans);
 }
+
+//////////////////////////////////////////////////////////////////////////
 
 TEST(OrderByRange, OneElement)
 {
@@ -92,8 +44,7 @@ TEST(OrderByRange, OneElement)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeFront(dst, ans);
-    CheckRangeBack(dst, ans);
+    CheckRangeAll(dst, ans);
 }
 
 TEST(OrderByRange, NoElements)
@@ -133,8 +84,7 @@ TEST(OrderByRange, RandomStringByContent)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeFront(dst, ans);
-    CheckRangeBack(dst, ans);
+    CheckRangeAll(dst, ans);
 }
 
 TEST(OrderByRange, RandomStringByLength)
@@ -162,6 +112,5 @@ TEST(OrderByRange, RandomStringByLength)
     auto rng = range(src);
     auto dst = orderBy(rng, [](std::string a){return a.size();});
 
-    CheckRangeFront(dst, ans, [](const std::string & s){return s.size();});
-    CheckRangeBack(dst, ans, [](const std::string & s){return s.size();});
+    CheckRangeAll(dst, ans, [](const std::string & s){return s.size();});
 }

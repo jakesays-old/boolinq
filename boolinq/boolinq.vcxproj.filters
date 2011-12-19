@@ -181,5 +181,8 @@
     <ClInclude Include="Max.h">
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
+    <ClInclude Include="CommonTests.h">
+      <Filter>Test Files\Ranges</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
