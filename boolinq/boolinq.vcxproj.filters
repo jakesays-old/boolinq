@@ -89,9 +89,6 @@
     <ClCompile Include="SelectRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
-    <ClCompile Include="UnionRangeTest.cpp">
-      <Filter>Test Files\Ranges</Filter>
-    </ClCompile>
     <ClCompile Include="SumTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
@@ -111,6 +108,9 @@
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
     <ClCompile Include="TakeRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="UnionAllRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
   </ItemGroup>
