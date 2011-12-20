@@ -20,7 +20,7 @@ TEST(TakeRange, ManyToMore)
     auto rng = range(src);
     auto dst = take(rng, 10);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, ManyToMany)
@@ -31,7 +31,7 @@ TEST(TakeRange, ManyToMany)
     auto rng = range(src);
     auto dst = take(rng, 6);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, ManyToLess)
@@ -42,7 +42,7 @@ TEST(TakeRange, ManyToLess)
     auto rng = range(src);
     auto dst = take(rng, 3);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, ManyToOne)
@@ -53,7 +53,7 @@ TEST(TakeRange, ManyToOne)
     auto rng = range(src);
     auto dst = take(rng, 1);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, ManyToZero)
@@ -76,7 +76,7 @@ TEST(TakeRange, OneToMore)
     auto rng = range(src);
     auto dst = take(rng, 5);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, OneToOne)
@@ -87,7 +87,7 @@ TEST(TakeRange, OneToOne)
     auto rng = range(src);
     auto dst = take(rng, 1);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(TakeRange, OneToZero)

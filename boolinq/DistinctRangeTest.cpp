@@ -14,36 +14,24 @@ using namespace boolinq;
 
 TEST(DistinctRange, Ints1to6)
 {
-    int src[]   = {4,5,3,1,4,2,1,4,6};
-    int ansF[]  = {4,5,3,1,  2,    6};
-    int ansB[]  = {4,5,3,    2,1,  6};
-    int ansFB[] = {4,5,3,1,  2,    6};
-    int ansBF[] = {4,5,3,    2,1,  6};
-
+    int src[] = {4,5,3,1,4,2,1,4,6};
+    int ans[] = {1,2,3,4,5,6};
+    
     auto rng = range(src);
     auto dst = distinct(rng);
     
-    CheckRangeFront(dst, ansF);
-    CheckRangeBack(dst, ansB);
-    CheckRangeFrontBack(dst, ansFB);
-    CheckRangeBackFront(dst, ansBF);
+    CheckRangeEqSet(dst, ans);
 }
 
 TEST(DistinctRange, IntMirrorFront)
 {
     int src[]   = {3,2,1,0,1,2,3};
-    int ansF[]  = {2,1,0,3};
-    int ansB[]  = {2,0,1,3};
-    int ansFB[] = {2,1,0,3};
-    int ansBF[] = {2,0,1,3};
-
+    int ans[]  = {0,1,2,3};
+    
     auto rng = range(src);
     auto dst = distinct(rng);
 
-    CheckRangeFront(dst, ansF);
-    CheckRangeBack(dst, ansB);
-    CheckRangeFrontBack(dst, ansFB);
-    CheckRangeBackFront(dst, ansBF);
+    CheckRangeEqSet(dst, ans);
 }
 
 TEST(DistinctRange, ManyEqualsFront)
@@ -54,18 +42,18 @@ TEST(DistinctRange, ManyEqualsFront)
     auto rng = range(src);
     auto dst = distinct(rng);
     
-    CheckRangeAll(dst, ans);
+    CheckRangeEqSet(dst, ans);
 }
 
 TEST(DistinctRange, ManyEqualsWithOneFront)
 {
     int src[] = {1,1,2,1};
-    int ans[] = {2,1};
+    int ans[] = {1,2};
 
     auto rng = range(src);
     auto dst = distinct(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqSet(dst, ans);
 }
 
 TEST(DistinctRange, OneFieldFront)
@@ -74,6 +62,12 @@ TEST(DistinctRange, OneFieldFront)
     {
         std::string name;
         int age;
+
+        bool operator < (const Man & man) const
+        {
+            return (name < man.name)
+                || (name == man.name && age < man.age);
+        }
     };
 
     Man src[] =
@@ -86,17 +80,25 @@ TEST(DistinctRange, OneFieldFront)
         {"Banan",1},
     };
 
-    Man ans[] =
+    std::string ansF[] =
     {
-        {"Taran",2},
-        {"Poker",3},
-        {"Agata",4},
-        {"Banan",1},
+        "Banan",
+        "Taran",
+        "Poker",
+        "Agata",
+    };
+
+    std::string ansB[] =
+    {
+        "Taran",
+        "Poker",
+        "Agata",
+        "Banan",
     };
 
     auto rng = range(src);
     auto dst = distinct(rng, [](const Man & man){return man.age;});
 
-    CheckRangeFront(dst, ans, [](const Man & man){return man.name;});
-    CheckRangeBack(dst, ans, [](const Man & man){return man.name;});
+    CheckRangeEqSetFront(dst, ansF, [](const Man & man){return man.name;});
+    CheckRangeEqSetBack(dst, ansB, [](const Man & man){return man.name;});
 }

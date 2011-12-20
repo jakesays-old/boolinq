@@ -18,7 +18,7 @@ TEST(UnionAllRange, ArrayArray)
     auto rng2 = range(src2);
     auto dst = unionAll(rng1,rng2);
              
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(UnionAllRange, ArrayVector)
@@ -36,7 +36,7 @@ TEST(UnionAllRange, ArrayVector)
     auto rng2 = range(src2);
     auto dst = unionAll(rng1,rng2);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(UnionAllRange, ArrayVectorArray)
@@ -56,5 +56,5 @@ TEST(UnionAllRange, ArrayVectorArray)
     auto rng3 = range(src3);
     auto dst = unionAll(unionAll(rng1,rng2),rng3);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
