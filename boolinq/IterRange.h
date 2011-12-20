@@ -61,7 +61,7 @@ namespace boolinq
     template<typename T>
     IterRange<typename T::const_iterator> range(const T & vec)
     {
-        return IterRange<typename T::const_iterator>(vec.cbegin(), vec.cend());
+        return IterRange<typename T::const_iterator>(vec.begin(), vec.end());
     }
     
     template<typename T, const int N>
