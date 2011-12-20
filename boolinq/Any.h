@@ -4,15 +4,6 @@ namespace boolinq
 {
     // any(xxx) and any(xxx,lambda)
 
-    template<typename R>
-    bool any(R r)
-    {
-        while (!r.empty())
-            if (r.popFront())
-                return true;
-        return false;
-    }
-
     template<typename R, typename F>
     bool any(R r, F f)
     {
@@ -20,6 +11,13 @@ namespace boolinq
             if (f(r.popFront()))
                 return true;
         return false;
+    }
+
+    template<typename R>
+    bool any(R r)
+    {
+        typedef typename R::value_type value_type;
+        return any(r,[](const value_type & a)->value_type{return a;});
     }
 
     // xxx.any() and xxx.any(lambda)
