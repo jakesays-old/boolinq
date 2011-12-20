@@ -20,7 +20,7 @@ TEST(ReverseRange, IntVector)
     auto rng = range(src);
     auto dst = reverse(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(ReverseRange, DoubleReverse)
@@ -31,5 +31,5 @@ TEST(ReverseRange, DoubleReverse)
     auto rng = range(src);
     auto dst = reverse(reverse(rng));
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }

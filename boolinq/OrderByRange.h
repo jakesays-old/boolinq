@@ -122,7 +122,7 @@ namespace boolinq
             while(!cur_value.empty())
             {
                 if (min_index == -1
-                    && f(cur_value.front()) > f(minValue.front()))
+                    && f(cur_value.front()) < f(minValue.front()))
                 {
                     min_value = cur_value;
                     min_index = cur_index;
@@ -162,7 +162,7 @@ namespace boolinq
             while(!cur_value.empty())
             {
                 if (max_index == -1
-                    && f(cur_value.front()) < f(maxValue.front()))
+                    && f(cur_value.front()) > f(maxValue.front()))
                 {
                     max_value = cur_value;
                     max_index = cur_index;

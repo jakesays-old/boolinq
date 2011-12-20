@@ -20,7 +20,7 @@ TEST(OrderByRange, RandomIntsWithDuplicates)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(OrderByRange, ReverseInts)
@@ -31,7 +31,7 @@ TEST(OrderByRange, ReverseInts)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ TEST(OrderByRange, OneElement)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(OrderByRange, NoElements)
@@ -84,7 +84,7 @@ TEST(OrderByRange, RandomStringByContent)
     auto rng = range(src);
     auto dst = orderBy(rng);
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(OrderByRange, RandomStringByLength)
@@ -112,5 +112,5 @@ TEST(OrderByRange, RandomStringByLength)
     auto rng = range(src);
     auto dst = orderBy(rng, [](std::string a){return a.size();});
 
-    CheckRangeAll(dst, ans, [](const std::string & s){return s.size();});
+    CheckRangeEqArray(dst, ans, [](const std::string & s){return s.size();});
 }

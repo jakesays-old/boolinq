@@ -18,7 +18,7 @@ TEST(SelectRange, Mul2)
     auto rng = range(src);
     auto dst = select(rng, [](int a){return a * 2;});
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(SelectRange, MakeChar)
@@ -29,7 +29,7 @@ TEST(SelectRange, MakeChar)
     auto rng = range(src);
     auto dst = select(rng, [](int a){return (char)(a+'0');});
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(SelectRange, MakeString)
@@ -47,5 +47,5 @@ TEST(SelectRange, MakeString)
     auto rng = range(src);
     auto dst = select(rng, [](int a){return ans[a-1];});
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }

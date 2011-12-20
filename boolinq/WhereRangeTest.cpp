@@ -20,7 +20,7 @@ TEST(WhereRange, IntOdd)
     auto rng = range(src);
     auto dst = where(rng, [](int a){return a%2 == 1;});
     
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ TEST(WhereRange, FirstLetterFront)
     auto rng = range(src);
     auto dst = where(rng, [](std::string a){return a[0] == 'a';});
     
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ TEST(WhereRange, NameAgeLess)
     auto rng = range(src);
     auto dst = where(rng, [](const NameAge & a){return a.age < 18;});
     
-    CheckRangeAll(dst, ans, [](const NameAge & a){return a.name;});
+    CheckRangeEqArray(dst, ans, [](const NameAge & a){return a.name;});
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ TEST(WhereRange, MayToOne)
     auto rng = range(src);
     auto dst = where(rng, [](int a){return a == 1;});
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(WhereRange, OneToOne)
@@ -100,7 +100,7 @@ TEST(WhereRange, OneToOne)
     auto rng = range(src);
     auto dst = where(rng, [](int a){return a>0;});
 
-    CheckRangeAll(dst, ans);
+    CheckRangeEqArray(dst, ans);
 }
 
 TEST(WhereRange, ManyToZero)

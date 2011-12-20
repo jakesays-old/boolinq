@@ -1,9 +1,11 @@
 #pragma once
 
 //////////////////////////////////////////////////////////////////////////
+// Compare Range with array
+//////////////////////////////////////////////////////////////////////////
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeFront(R dst, T (&ans)[N], F f)
+void CheckRangeEqArrayFront(R dst, T (&ans)[N], F f)
 {
     for (int i = 0; i < N; i++)
     {
@@ -17,7 +19,7 @@ void CheckRangeFront(R dst, T (&ans)[N], F f)
 }
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeBack(R dst, T (&ans)[N], F f)
+void CheckRangeEqArrayBack(R dst, T (&ans)[N], F f)
 {
     for (int i = N; i > 0; i--)
     {
@@ -31,7 +33,7 @@ void CheckRangeBack(R dst, T (&ans)[N], F f)
 }
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeTwisted(R dst, T (&ans)[N], F f, int bit)
+void CheckRangeEqArrayTwisted(R dst, T (&ans)[N], F f, int bit)
 {
     int b = 0;
     int e = N-1;
@@ -42,73 +44,168 @@ void CheckRangeTwisted(R dst, T (&ans)[N], F f, int bit)
         EXPECT_EQ(f(ans[b]), f(dst.front()));
         EXPECT_EQ(f(ans[e]), f(dst.back()));
 
-        if (i % 2 == bit)
+        if (bit ^= 1)
             EXPECT_EQ(f(ans[b++]), f(dst.popFront()));
         else
             EXPECT_EQ(f(ans[e--]), f(dst.popBack()));
-
-        bit = 1 - bit;  // reverse bit
     }
 
     EXPECT_TRUE(dst.empty());
 }
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeFrontBack(R dst, T (&ans)[N], F f)
+void CheckRangeEqArrayFrontBack(R dst, T (&ans)[N], F f)
 {
-    CheckRangeTwisted(dst, ans, f, 0);
+    CheckRangeEqArrayTwisted(dst,ans,f,0);
 }
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeBackFront(R dst, T (&ans)[N], F f)
+void CheckRangeEqArrayBackFront(R dst, T (&ans)[N], F f)
 {
-    CheckRangeTwisted(dst, ans, f, 1);
+    CheckRangeEqArrayTwisted(dst,ans,f,1);
 }
 
 template<typename R, typename T, int N, typename F>
-void CheckRangeAll(R dst, T (&ans)[N], F f)
+void CheckRangeEqArray(R dst, T (&ans)[N], F f)
 {
-    CheckRangeFront(dst, ans, f);
-    CheckRangeBack(dst, ans, f);
-    CheckRangeFrontBack(dst, ans, f);
-    CheckRangeBackFront(dst, ans, f);
+    CheckRangeEqArrayFront(dst,ans,f);
+    CheckRangeEqArrayBack(dst,ans,f);
+    CheckRangeEqArrayFrontBack(dst,ans,f);
+    CheckRangeEqArrayBackFront(dst,ans,f);
 }
 
 //////////////////////////////////////////////////////////////////////////
 
 template<typename R, typename T, int N>
-void CheckRangeFront(R dst, T (&ans)[N])
+void CheckRangeEqArrayFront(R dst, T (&ans)[N])
 {
-    typedef typename R::value_type value_type;
-    CheckRangeFront(dst, ans, [](const value_type & a){return a;});
+    CheckRangeEqArrayFront(dst, ans, [](const T & a)->T{return a;});
 }
 
 template<typename R, typename T, int N>
-void CheckRangeBack(R dst, T (&ans)[N])
+void CheckRangeEqArrayBack(R dst, T (&ans)[N])
 {
-    typedef typename R::value_type value_type;
-    CheckRangeBack(dst, ans, [](const value_type & a){return a;});
+    CheckRangeEqArrayBack(dst, ans, [](const T & a)->T{return a;});
 }
 
 template<typename R, typename T, int N>
-void CheckRangeFrontBack(R dst, T (&ans)[N])
+void CheckRangeEqArrayFrontBack(R dst, T (&ans)[N])
 {
-    typedef typename R::value_type value_type;
-    CheckRangeFrontBack(dst, ans, [](const value_type & a){return a;});
+    CheckRangeEqArrayFrontBack(dst, ans, [](const T & a)->T{return a;});
 }
 
 template<typename R, typename T, int N>
-void CheckRangeBackFront(R dst, T (&ans)[N])
+void CheckRangeEqArrayBackFront(R dst, T (&ans)[N])
 {
-    typedef typename R::value_type value_type;
-    CheckRangeBackFront(dst, ans, [](const value_type & a){return a;});
+    CheckRangeEqArrayBackFront(dst, ans, [](const T & a)->T{return a;});
 }
 
 template<typename R, typename T, int N>
-void CheckRangeAll(R dst, T (&ans)[N])
+void CheckRangeEqArray(R dst, T (&ans)[N])
 {
-    typedef typename R::value_type value_type;
-    CheckRangeAll(dst, ans, [](const value_type & a){return a;});
+    CheckRangeEqArray(dst, ans, [](const T & a)->T{return a;});
 }
 
 //////////////////////////////////////////////////////////////////////////
+// Compare Range with set
+//////////////////////////////////////////////////////////////////////////
+
+template<typename T, int N>
+std::set<T> ArrayToSet(T (&ans)[N])
+{
+    std::set<T> res;
+    for(int i = 0; i < N; i++)
+        res.insert(ans[i]);
+
+    EXPECT_EQ(N, res.size());
+
+    return res;
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSetFront(R r, T (&ans)[N], F f) 
+{
+    std::set<T> result;
+    while (!r.empty())
+        result.insert(f(r.popFront()));
+
+    EXPECT_EQ(ArrayToSet(ans),result);
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSetBack(R r, T (&ans)[N], F f) 
+{
+    std::set<T> result;
+    while (!r.empty())
+        result.insert(f(r.popBack()));
+
+    EXPECT_EQ(ArrayToSet(ans),result);
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSetTwisted(R r, F f, T (&ans)[N], int bit) 
+{
+    std::set<T> result;
+    while (!r.empty())
+    {
+        if (bit ^= 1)
+            result.insert(f(r.popFront()));
+        else
+            result.insert(f(r.popBack()));
+    }
+
+    EXPECT_EQ(ArrayToSet(ans),result);
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSetFrontBack(R r, T (&ans)[N], F f) 
+{
+    CheckRangeEqSetTwisted(r,f,ans,0);
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSetBackFront(R r, T (&ans)[N], F f) 
+{
+    CheckRangeEqSetTwisted(r,f,ans,1);
+}
+
+template<typename R, typename T, int N, typename F>
+void CheckRangeEqSet(R r, T (&ans)[N], F f) 
+{
+    CheckRangeEqSetFront(r,ans,f);
+    CheckRangeEqSetBack(r,ans,f);
+    CheckRangeEqSetFrontBack(r,ans,f);
+    CheckRangeEqSetBackFront(r,ans,f);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+template<typename R, typename T, int N>
+void CheckRangeEqSetFront(R r, T (&ans)[N]) 
+{
+    CheckRangeEqSetFront(r, ans, [](const T & a)->T{return a;});
+}
+
+template<typename R, typename T, int N>
+void CheckRangeEqSetBack(R r, T (&ans)[N]) 
+{
+    CheckRangeEqSetBack(r, ans, [](const T & a)->T{return a;});
+}
+
+template<typename R, typename T, int N>
+void CheckRangeEqSetFrontBack(R r, T (&ans)[N]) 
+{
+    CheckRangeEqSetFrontBack(r, ans, [](const T & a)->T{return a;});
+}
+
+template<typename R, typename T, int N>
+void CheckRangeEqSetBackFront(R r, T (&ans)[N]) 
+{
+    CheckRangeEqSetBackFront(r, ans, [](const T & a)->T{return a;});
+}
+
+template<typename R, typename T, int N>
+void CheckRangeEqSet(R r, T (&ans)[N])
+{
+    CheckRangeEqSet(r, ans, [](const T & a)->T{return a;});
+}
