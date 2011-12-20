@@ -4,15 +4,6 @@ namespace boolinq
 {
     // count(xxx) and count(xxx,lambda)
 
-    template<typename R>
-    int count(R r)
-    {
-        int index = 0;
-        for (; !r.empty(); r.popFront())
-            index++;
-        return index;
-    }
-
     template<typename R, typename F>
     int count(R r, F f)
     {
@@ -21,6 +12,13 @@ namespace boolinq
             if (f(r.front()))
                 index++;
         return index;
+    }
+
+    template<typename R>
+    int count(R r)
+    {
+        typedef typename R::value_type value_type;
+        return count(r,[](const value_type &){return true;});
     }
 
     // xxx.count() and xxx.count(lambda)
