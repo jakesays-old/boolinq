@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Count.h"
+
 namespace boolinq
 {
     template<typename T>
@@ -19,15 +21,16 @@ namespace boolinq
 
         OrderByRange(R r, F f = JustReturn<typename R::value_type>())
             : r(r), f(f)
-            , minValue(r)
-            , maxValue(r)
-            , minIndex(-1)
-            , maxIndex(-1)
             , atEnd(false)
+            , size(boolinq::count(r))
+            , minimumValue(r)
+            , maximumValue(r)
+            , minimumIndex(0)
+            , maximumIndex(0)
         {
-            seekMinFirstTime();
-            seekMaxFirstTime();
-            atEnd = r.empty();
+            seekFirstMin();
+            seekFirstMax();
+            atEnd = (minimumIndex + maximumIndex == size);
         }
 
         bool empty() const 
@@ -37,164 +40,182 @@ namespace boolinq
 
         value_type popFront() 
         { 
-            R tmp = minValue;
-            seekMin();
+            R tmp = minimumValue;
+            seekNextMin();
             return tmp.front();
         }
 
         value_type popBack() 
         {
-            R tmp = maxValue;
-            seekMax();
-            return tmp.front();
+            R tmp = maximumValue;
+            seekNextMax();
+            return tmp.back();
         }
 
         value_type front() const 
         { 
-            return minValue.front();
+            return minimumValue.front();
         }
 
         value_type back() const 
         { 
-            return maxValue.front();
+            return maximumValue.back();
         }
 
     private:
-        R minValue;
-        R maxValue;
-        int minIndex;
-        int maxIndex;
-        bool atEnd;
-
-        void seekMinFirstTime()
+        void seekFirstMin()
         {
-            R cur_value = r;
-            R min_value = r;
-            int cur_index = 0;
-            int min_index = 0;
-
-            while(!cur_value.empty())
+            R currentValue = r;
+            int currentIndex = 0;
+            
+            while(!currentValue.empty())
             {
-                if (f(cur_value.front()) < f(min_value.front()))
+                if (f(currentValue.front()) < f(minimumValue.front()))
                 {
-                    min_value = cur_value;
-                    min_index = cur_index;
+                    minimumValue = currentValue;
+                    minimumIndex = currentIndex;
                 }
 
-                cur_value.popFront();
-                cur_index++;
+                currentValue.popFront();
+                currentIndex++;
             }
-
-            minValue = min_value;
-            minIndex = min_index;
         }
 
-        void seekMaxFirstTime()
+        void seekFirstMax()
         {
-            R cur_value = r;
-            R max_value = r;
-            int cur_index = 0;
-            int max_index = 0;
+            R currentValue = r;
+            int currentIndex = 0;
 
-            while(!cur_value.empty())
+            while(!currentValue.empty())
             {
-                if (f(cur_value.front()) > f(max_value.front()))
+                if (f(maximumValue.back()) < f(currentValue.back()))
                 {
-                    max_value = cur_value;
-                    max_index = cur_index;
+                    maximumValue = currentValue;
+                    maximumIndex = currentIndex;
                 }
 
-                cur_value.popFront();
-                cur_index++;
+                currentValue.popBack();
+                currentIndex++;
             }
-
-            maxValue = max_value;
-            maxIndex = max_index;
         }
 
-        void seekMin()
+        void seekNextMin()
         {
+            if (minimumIndex + maximumIndex + 1 == size)
+            {
+                atEnd = true;
+                return;
+            }
+
             R cur_value = r;
-            R min_value = r;
+            R min_value = minimumValue;
             int cur_index = 0;
-            int min_index = -1;
+            int min_index = minimumIndex;
 
             while(!cur_value.empty())
             {
-                if (min_index == -1
-                    && f(cur_value.front()) < f(minValue.front()))
+                if ((f(cur_value.front()) < f(minimumValue.front()))
+                    || (f(cur_value.front()) == f(minimumValue.front())
+                        && cur_index <= minimumIndex))
+                {
+                    cur_value.popFront();
+                    cur_index++;
+                    continue;
+                }
+
+                if (min_index == minimumIndex
+                    && cur_index != minimumIndex)
+                {
+                    min_value = cur_value;
+                    min_index = cur_index;
+                }
+                
+                if (f(cur_value.front()) < f(min_value.front()))       
                 {
                     min_value = cur_value;
                     min_index = cur_index;
                 }
 
-                if (f(cur_value.front()) == f(minValue.front())
-                    && cur_index > minIndex)
+                if (f(cur_value.front()) == f(minimumValue.front())
+                    && minimumIndex < cur_index)
                 {
-                    min_value = cur_value;
-                    min_index = cur_index;
-                    break;
-                }
+                    minimumValue = cur_value;
+                    minimumIndex = cur_index;
+                    return;
 
-                if (f(cur_value.front()) > f(minValue.front())
-                    && f(cur_value.front()) < f(min_value.front()))
-                {
-                    min_value = cur_value;
-                    min_index = cur_index;
                 }
 
                 cur_value.popFront();
                 cur_index++;
             }
 
-            atEnd = (min_index == -1);
-            minValue = min_value;
-            minIndex = min_index;
+            minimumValue = min_value;
+            minimumIndex = min_index;
         }
 
-        void seekMax()
+        void seekNextMax()
         {
+            if (minimumIndex + maximumIndex + 1 == size)
+            {
+                atEnd = true;
+                return;
+            }
+
             R cur_value = r;
-            R max_value = r;
+            R max_value = maximumValue;
             int cur_index = 0;
-            int max_index = -1;
+            int max_index = maximumIndex;
 
             while(!cur_value.empty())
             {
-                if (max_index == -1
-                    && f(cur_value.front()) > f(maxValue.front()))
+                if ((f(maximumValue.back()) < f(cur_value.back()))
+                    || (f(cur_value.back()) == f(maximumValue.back())
+                        && cur_index <= maximumIndex))
+                {
+                    cur_value.popBack();
+                    cur_index++;
+                    continue;
+                }
+
+                if (max_index == maximumIndex
+                    && cur_index != maximumIndex)
                 {
                     max_value = cur_value;
                     max_index = cur_index;
                 }
 
-                if (f(cur_value.front()) == f(maxValue.front())
-                    && cur_index > maxIndex)
-                {
-                    max_value = cur_value;
-                    max_index = cur_index;
-                    break;
-                }
-
-                if (f(cur_value.front()) < f(maxValue.front())
-                    && f(cur_value.front()) > f(max_value.front()))
+                if (f(max_value.back()) < f(cur_value.back()))
                 {
                     max_value = cur_value;
                     max_index = cur_index;
                 }
 
-                cur_value.popFront();
+                if (f(cur_value.back()) == f(maximumValue.back())
+                    && maximumIndex < cur_index)
+                {
+                    maximumValue = max_value;
+                    maximumIndex = max_index;
+                    return;
+                }
+
+                cur_value.popBack();
                 cur_index++;
             }
 
-            atEnd = (max_index == -1);
-            maxValue = max_value;
-            maxIndex = max_index;
+            maximumValue = max_value;
+            maximumIndex = max_index;  
         }
 
     private:
         R r;
         F f;
+
+        bool atEnd;
+        int size;
+        R minimumValue;
+        R maximumValue;
+        int minimumIndex;
+        int maximumIndex;
     };
 
     // orderBy(orderBy(xxx, ...), ...)

@@ -34,6 +34,17 @@ TEST(OrderByRange, ReverseInts)
     CheckRangeEqArray(dst, ans);
 }
 
+TEST(OrderByRange, ThreeElements)
+{
+    int src[] = {1,3,2};
+    int ans[] = {1,2,3};
+
+    auto rng = range(src);
+    auto dst = orderBy(rng);
+
+    CheckRangeEqArray(dst, ans);
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 TEST(OrderByRange, OneElement)
