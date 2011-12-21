@@ -92,6 +92,7 @@
     <ClCompile Include="OrderByRangeTest.cpp" />
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
+    <ClCompile Include="SkipRangeTest.cpp" />
     <ClCompile Include="SumTest.cpp" />
     <ClCompile Include="TakeRangeTest.cpp" />
     <ClCompile Include="ToContainerTest.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="ElementAt.h" />
     <ClInclude Include="Max.h" />
     <ClInclude Include="Min.h" />
+    <ClInclude Include="SkipRange.h" />
     <ClInclude Include="Sum.h" />
     <ClInclude Include="TakeRange.h" />
     <ClInclude Include="ToSet.h" />
