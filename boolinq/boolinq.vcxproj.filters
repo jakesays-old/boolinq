@@ -113,6 +113,9 @@
     <ClCompile Include="UnionAllRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
+    <ClCompile Include="SkipRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -188,6 +191,9 @@
       <Filter>Test Files\Ranges</Filter>
     </ClInclude>
     <ClInclude Include="TakeRange.h">
+      <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="SkipRange.h">
       <Filter>Header Files\Ranges</Filter>
     </ClInclude>
   </ItemGroup>
