@@ -41,7 +41,6 @@ namespace boolinq
     class SkipRange_mixin
     {
     public:
-        template<typename F>
         TLinq<SkipRange<R> > skip(int n) const
         {
             return boolinq::skip(((TLinq<R>*)this)->r,n);
