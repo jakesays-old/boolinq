@@ -16,6 +16,7 @@ namespace boolinq
     class BitsRange
     {
         typedef typename R::value_type old_value_type;
+
         enum 
         { 
             startBit  = (bitOrder == LowToHigh) ? 0 : (CHAR_BIT-1),
@@ -41,7 +42,7 @@ namespace boolinq
 
         value_type popFront()    
         {
-            int tmp = front();
+            value_type tmp = front();
             if (checkEmpty())
                 return tmp;
 
@@ -58,7 +59,7 @@ namespace boolinq
 
         value_type popBack()
         {
-            int tmp = back();
+            value_type tmp = back();
             if (checkEmpty())
                 return tmp;
             
@@ -104,15 +105,15 @@ namespace boolinq
     // bits<BitOrder,ByteOrder>(xxx)
 
     template<typename R>
-    BitsRange<R> bits(R r)
+    BitsRange<BytesRange<R>> bits(R r)
     {
-        return BitsRange<R>(r);
+        return BitsRange<BytesRange<R>>(BytesRange<R>(r));
     }
 
     template<BitOrder bitOrder, typename R>
-    BitsRange<R,bitOrder> bits(R r)
+    BitsRange<BytesRange<R>,bitOrder> bits(R r)
     {
-        return BitsRange<R,bitOrder>(r);
+        return BitsRange<BytesRange<R>,bitOrder>(BytesRange<R>(r));
     }
 
     template<BitOrder bitOrder, ByteOrder byteOrder, typename R>
@@ -130,13 +131,13 @@ namespace boolinq
     class BitsRange_mixin
     {
     public:
-        TLinq<BitsRange<R> > bits() const
+        TLinq<BitsRange<BytesRange<R>> > bits() const
         {
             return boolinq::bits(((TLinq<R>*)this)->r);
         }
 
         template<BitOrder bitOrder>
-        TLinq<BitsRange<R,bitOrder> > bits() const
+        TLinq<BitsRange<BytesRange<R>,bitOrder> > bits() const
         {
             return boolinq::bits<bitOrder>(((TLinq<R>*)this)->r);
         }

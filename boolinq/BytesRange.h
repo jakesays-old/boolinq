@@ -20,7 +20,7 @@ namespace boolinq
         };
 
     public:
-        typedef int value_type;
+        typedef unsigned char value_type;
 
         BytesRange(R rng)
             : r(rng)
@@ -37,7 +37,7 @@ namespace boolinq
 
         value_type popFront()    
         {
-            int tmp = front();
+            value_type tmp = front();
             if (checkEmpty())
                 return tmp;
 
@@ -54,7 +54,7 @@ namespace boolinq
 
         value_type popBack()
         {
-            int tmp = back();
+            value_type tmp = back();
             if (checkEmpty())
                 return tmp;
 
