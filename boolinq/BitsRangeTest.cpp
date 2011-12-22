@@ -12,31 +12,31 @@ using namespace boolinq;
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(ToBitsRange, OneByteFLHL)
+TEST(BitsRange, OneByteFLHL)
 {
     unsigned char src[] = {0xAA};
     int ans[] = {1,0,1,0,1,0,1,0};
 
     auto rng = range(src);
-    auto dst = bits<HighToLow,FirstToLast>(rng);
+    auto dst = bits<HighToLow>(rng);
 
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(ToBitsRange, OneByteFLLH)
+TEST(BitsRange, OneByteFLLH)
 {
     unsigned char src[] = {0xAA};
     int ans[] = {0,1,0,1,0,1,0,1};
 
     auto rng = range(src);
-    auto dst = bits<LowToHigh,FirstToLast>(rng);
+    auto dst = bits<LowToHigh>(rng);
 
     CheckRangeEqArray(dst, ans);
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(ToBitsRange, OneIntFLHL)
+TEST(BitsRange, OneIntFLHL)
 {
     unsigned int src[] = {0x12345678};
     int ans[] = 
@@ -53,7 +53,7 @@ TEST(ToBitsRange, OneIntFLHL)
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(ToBitsRange, OneIntFLLH)
+TEST(BitsRange, OneIntFLLH)
 {
     unsigned int src[] = {0x12345678};
     int ans[] = 

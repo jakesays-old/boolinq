@@ -29,6 +29,7 @@
 #include "ToContainer.h"
 
 #include "BytesRange.h"
+#include "BitsRange.h"
 
 namespace boolinq
 {
@@ -61,6 +62,7 @@ namespace boolinq
         , public ToContainer_mixin<Linq,R>
 
         , public BytesRange_mixin<Linq,R>
+        , public BitsRange_mixin<Linq,R>
     {
     public:
         typedef typename R::value_type value_type;

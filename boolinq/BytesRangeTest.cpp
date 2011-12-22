@@ -12,7 +12,7 @@ using namespace boolinq;
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(ToBytesRange, OneByteFL)
+TEST(BytesRange, OneByteFL)
 {
     unsigned char src[] = {0xAA};
     int ans[] = {0xAA};
@@ -23,7 +23,7 @@ TEST(ToBytesRange, OneByteFL)
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(ToBytesRange, OneByteLF)
+TEST(BytesRange, OneByteLF)
 {
     unsigned char src[] = {0xAA};
     int ans[] = {0xAA};
@@ -36,7 +36,7 @@ TEST(ToBytesRange, OneByteLF)
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(ToBytesRange, OneIntFL)
+TEST(BytesRange, OneIntFL)
 {
     int src[] = {0x12345678};
     int ans[] = {0x78,0x56,0x34,0x12};
@@ -47,7 +47,7 @@ TEST(ToBytesRange, OneIntFL)
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(ToBytesRange, OneIntLF)
+TEST(BytesRange, OneIntLF)
 {
     int src[] = {0x12345678};
     int ans[] = {0x12,0x34,0x56,0x78};
@@ -60,7 +60,7 @@ TEST(ToBytesRange, OneIntLF)
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(ToBytesRange, IntsFL)
+TEST(BytesRange, IntsFL)
 {
     int src[] = {0x12345678, 0xAABBCCDD};
     int ans[] = 
