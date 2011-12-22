@@ -104,7 +104,7 @@ namespace boolinq
     template<typename R>
     DistinctRange<R> distinct(R r)
     {
-        return DistinctRange<R>(r);
+        return r;
     }
 
     template<typename R, typename F>

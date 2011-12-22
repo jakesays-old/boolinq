@@ -107,20 +107,19 @@ namespace boolinq
     template<typename R>
     BitsRange<BytesRange<R>> bits(R r)
     {
-        return BitsRange<BytesRange<R>>(BytesRange<R>(r));
+        return boolinq::bytes(r);
     }
 
     template<BitOrder bitOrder, typename R>
     BitsRange<BytesRange<R>,bitOrder> bits(R r)
     {
-        return BitsRange<BytesRange<R>,bitOrder>(BytesRange<R>(r));
+        return boolinq::bytes(r);
     }
 
     template<BitOrder bitOrder, ByteOrder byteOrder, typename R>
     BitsRange<BytesRange<R,byteOrder>,bitOrder> bits(R r)
     {
-        auto rng = boolinq::bytes<byteOrder>(r);
-        return BitsRange<BytesRange<R,byteOrder>,bitOrder>(rng);
+        return boolinq::bytes<byteOrder>(r);
     }
 
     // xxx.bits()

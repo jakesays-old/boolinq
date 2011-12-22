@@ -97,20 +97,22 @@ namespace boolinq
         bool atEnd;
     };
 
+    // bytes(xxx)
     // bytes<ByteOrder>(xxx)
 
     template<typename R>
     BytesRange<R> bytes(R r)
     {
-        return BytesRange<R>(r);
+        return r;
     }
 
     template<ByteOrder byteOrder, typename R>
     BytesRange<R,byteOrder> bytes(R r)
     {
-        return BytesRange<R,byteOrder>(r);
+        return r;
     }
 
+    // xxx.bytes(...)
     // xxx.bytes<ByteOrder>(...)
 
     template<template<typename> class TLinq, typename R>
