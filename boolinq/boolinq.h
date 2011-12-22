@@ -28,6 +28,8 @@
 #include "ToVector.h"
 #include "ToContainer.h"
 
+#include "BytesRange.h"
+
 namespace boolinq
 {
     template<typename R>
@@ -57,6 +59,8 @@ namespace boolinq
         , public ToDeque_mixin<Linq,R>
         , public ToVector_mixin<Linq,R>
         , public ToContainer_mixin<Linq,R>
+
+        , public BytesRange_mixin<Linq,R>
     {
     public:
         typedef typename R::value_type value_type;

@@ -95,6 +95,7 @@
     <ClCompile Include="SkipRangeTest.cpp" />
     <ClCompile Include="SumTest.cpp" />
     <ClCompile Include="TakeRangeTest.cpp" />
+    <ClCompile Include="BytesRangeTest.cpp" />
     <ClCompile Include="ToContainerTest.cpp" />
     <ClCompile Include="ToDequeTest.cpp" />
     <ClCompile Include="ToListTest.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="SkipRange.h" />
     <ClInclude Include="Sum.h" />
     <ClInclude Include="TakeRange.h" />
+    <ClInclude Include="BytesRange.h" />
     <ClInclude Include="ToSet.h" />
     <ClInclude Include="UnionAllRange.h" />
     <ClInclude Include="Count.h" />
