@@ -30,6 +30,12 @@
     <Filter Include="Test Files\Aggregate">
       <UniqueIdentifier>{1b19ecdd-bb5e-41a2-9eee-86ef0975a2cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test Files\Custom">
+      <UniqueIdentifier>{2d45ce7d-0cf5-4bd4-a512-fd034a68f701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Custom">
+      <UniqueIdentifier>{d9678ae3-e775-4e2d-b21e-77e1a7cbee16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\gmock\src\gmock-all.cc">
@@ -116,6 +122,9 @@
     <ClCompile Include="SkipRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
+    <ClCompile Include="BytesRangeTest.cpp">
+      <Filter>Test Files\Custom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -195,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="SkipRange.h">
       <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="BytesRange.h">
+      <Filter>Header Files\Custom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
