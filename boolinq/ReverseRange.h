@@ -31,7 +31,7 @@ namespace boolinq
     template<typename R>
     ReverseRange<R> reverse(R r)
     {
-        return ReverseRange<R>(r);
+        return r;
     }
 
     // Unwrap for double-reverse case

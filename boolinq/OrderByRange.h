@@ -223,7 +223,7 @@ namespace boolinq
     template<typename R>
     OrderByRange<R> orderBy(R r)
     {
-        return OrderByRange<R>(r);
+        return r;
     }
 
     template<typename R, typename F>
