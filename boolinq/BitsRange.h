@@ -12,7 +12,7 @@ namespace boolinq
         LowToHigh,
     };
 
-    template<typename R, BitOrder bitOrder> 
+    template<typename R, BitOrder bitOrder = HighToLow> 
     class BitsRange
     {
         typedef typename R::value_type old_value_type;
@@ -30,7 +30,7 @@ namespace boolinq
             : r(rng)
             , frontBit(startBit)
             , backBit(finishBit)
-            , atEnd(false)
+            , atEnd(r.empty())
         {
         }
 
@@ -42,7 +42,7 @@ namespace boolinq
         value_type popFront()    
         {
             int tmp = front();
-            if(checkForEmpty())
+            if (checkEmpty())
                 return tmp;
 
             if (frontBit != finishBit)
@@ -50,7 +50,7 @@ namespace boolinq
             else
             {
                 frontBit = startBit;
-                r.popFront();   
+                r.popFront(); 
             }   
 
             return tmp; 
@@ -59,7 +59,7 @@ namespace boolinq
         value_type popBack()
         {
             int tmp = back();
-            if(checkForEmpty())
+            if (checkEmpty())
                 return tmp;
             
             if (backBit != startBit)
@@ -67,7 +67,7 @@ namespace boolinq
             else
             {
                 backBit = finishBit;
-                r.popBack();  
+                r.popBack(); 
             }   
 
             return tmp;
@@ -84,19 +84,13 @@ namespace boolinq
         }
 
     private:
-        bool checkForEmpty()
+        bool checkEmpty()
         {
             R tmp = r;
             tmp.popFront();
-            if (tmp.empty()
-                && frontBit == backBit)
-            {
-                atEnd = true;                
-            }
-
+            atEnd = tmp.empty() && (frontBit == backBit);
             return atEnd;
         }
-
 
     private:
         R r;
@@ -105,7 +99,21 @@ namespace boolinq
         bool atEnd;
     };
 
-    // bits(xxx, ...)
+    // bits(xxx)
+    // bits<BitOrder>(xxx)
+    // bits<BitOrder,ByteOrder>(xxx)
+
+    template<typename R>
+    BitsRange<R> bits(R r)
+    {
+        return BitsRange<R>(r);
+    }
+
+    template<BitOrder bitOrder, typename R>
+    BitsRange<R,bitOrder> bits(R r)
+    {
+        return BitsRange<R,bitOrder>(r);
+    }
 
     template<BitOrder bitOrder, ByteOrder byteOrder, typename R>
     BitsRange<BytesRange<R,byteOrder>,bitOrder> bits(R r)
@@ -114,36 +122,30 @@ namespace boolinq
         return BitsRange<BytesRange<R,byteOrder>,bitOrder>(rng);
     }
 
-    //template<BitOrder bitOrder, ByteOrder byteOrder, typename R>
-    //BitsRange<BytesRange<R,byteOrder>,bitOrder> bits(BytesRange<R,byteOrder> r)
-    //{
-    //    auto rng = boolinq::bytes<byteOrder>(r);
-    //    return BitsRange<BytesRange<R,byteOrder>,bitOrder>(rng);
-    //}
-
-    // xxx.bits(...)
+    // xxx.bits()
+    // xxx.bits<BitOrder>()
+    // xxx.bits<BitOrder,ByteOrder>()
 
     template<template<typename> class TLinq, typename R>
     class BitsRange_mixin
     {
     public:
+        TLinq<BitsRange<R> > bits() const
+        {
+            return boolinq::bits(((TLinq<R>*)this)->r);
+        }
+
+        template<BitOrder bitOrder>
+        TLinq<BitsRange<R,bitOrder> > bits() const
+        {
+            return boolinq::bits<bitOrder>(((TLinq<R>*)this)->r);
+        }
+
         template<BitOrder bitOrder, ByteOrder byteOrder>
         TLinq<BitsRange<BytesRange<R,byteOrder>,bitOrder> > bits() const
         {
-            auto rng = boolinq::bytes<byteOrder>(((TLinq<R>*)this)->r);
-            return boolinq::bits<bitOrder>(rng);
+            return boolinq::bits<bitOrder,byteOrder>(((TLinq<R>*)this)->r);
         }
     };
-
-    //template<template<typename> class TLinq, typename R, ByteOrder byteOrder>
-    //class BitsRange_mixin<TLinq,BytesRange<R,byteOrder> >
-    //{
-    //public:
-    //    template<BitOrder bitOrder, ByteOrder byteOrder>
-    //    TLinq<BitsRange<BytesRange<R,byteOrder>,bitOrder> > bits() const
-    //    {
-    //        return boolinq::bits<bitOrder>(((TLinq<BytesRange<R,byteOrder> >*)this)->r);
-    //    }
-    //};
 }
 // namespace boolinq

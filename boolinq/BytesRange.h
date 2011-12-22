@@ -8,7 +8,7 @@ namespace boolinq
         LastToFirst,
     };
 
-    template<typename R, ByteOrder byteOrder> 
+    template<typename R, ByteOrder byteOrder = FirstToLast> 
     class BytesRange
     {
         typedef typename R::value_type old_value_type;
@@ -26,7 +26,7 @@ namespace boolinq
             : r(rng)
             , frontByte(startByte)
             , backByte(finishByte)
-            , atEnd(false)
+            , atEnd(r.empty())
         {
         }
 
@@ -38,7 +38,7 @@ namespace boolinq
         value_type popFront()    
         {
             int tmp = front();
-            if(checkForEmpty())
+            if (checkEmpty())
                 return tmp;
 
             if (frontByte != finishByte)
@@ -55,7 +55,7 @@ namespace boolinq
         value_type popBack()
         {
             int tmp = back();
-            if(checkForEmpty())
+            if (checkEmpty())
                 return tmp;
 
             if (backByte != startByte)
@@ -82,29 +82,28 @@ namespace boolinq
         }
 
     private:
-        bool checkForEmpty()
+        bool checkEmpty()
         {
             R tmp = r;
             tmp.popFront();
-            if (tmp.empty()
-                && frontByte == backByte)
-            {
-                atEnd = true;                
-            }
-
+            atEnd = tmp.empty() && (frontByte == backByte);
             return atEnd;
         }
 
     private:
         R r;
         int frontByte;
-        int frontBit;
         int backByte;
-        int backBit;
         bool atEnd;
     };
 
-    // bytes(xxx, ...)
+    // bytes<ByteOrder>(xxx)
+
+    template<typename R>
+    BytesRange<R> bytes(R r)
+    {
+        return BytesRange<R>(r);
+    }
 
     template<ByteOrder byteOrder, typename R>
     BytesRange<R,byteOrder> bytes(R r)
@@ -112,12 +111,17 @@ namespace boolinq
         return BytesRange<R,byteOrder>(r);
     }
 
-    // xxx.bytes(...)
+    // xxx.bytes<ByteOrder>(...)
 
     template<template<typename> class TLinq, typename R>
     class BytesRange_mixin
     {
     public:
+        TLinq<BytesRange<R> > bytes() const
+        {
+            return boolinq::bytes(((TLinq<R>*)this)->r);
+        }
+
         template<ByteOrder byteOrder>
         TLinq<BytesRange<R,byteOrder> > bytes() const
         {
