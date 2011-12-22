@@ -45,7 +45,6 @@ namespace boolinq
     class TakeRange_mixin
     {
     public:
-        template<typename F>
         TLinq<TakeRange<R> > take(int n) const
         {
             return boolinq::take(((TLinq<R>*)this)->r,n);
