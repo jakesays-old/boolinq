@@ -21,13 +21,13 @@ namespace boolinq
             : r(rng)
             , frontValue()
             , backValue()
+            , preEnd(r.empty())
             , atEnd(r.empty())
         {
             if (!atEnd)
             {
                 popFront();
                 popBack();
-                atEnd = false;
             }
         }
 
@@ -40,9 +40,15 @@ namespace boolinq
         {
             value_type tmp = front();
             
-            if (r.empty())
+            if (preEnd)
             {
                 atEnd = true;
+                return tmp;
+            }
+
+            if (r.empty())
+            {
+                preEnd = true;
                 frontValue = backValue;
             }
             else
@@ -58,9 +64,15 @@ namespace boolinq
         {
             value_type tmp = back();
             
-            if (r.empty())
+            if (preEnd)
             {
                 atEnd = true;
+                return tmp;
+            }
+
+            if (r.empty())
+            {
+                preEnd = true;
                 backValue = frontValue;
             }
             else
@@ -86,6 +98,7 @@ namespace boolinq
         R r;
         value_type frontValue;
         value_type backValue;
+        bool preEnd;
         bool atEnd;
     };
 
@@ -114,13 +127,13 @@ namespace boolinq
         template<typename T>
         TLinq<UnbytesRange<R,T> > unbytes() const
         {
-            return boolinq::unbytes(((TLinq<R>*)this)->r);
+            return boolinq::unbytes<T>(((TLinq<R>*)this)->r);
         }
 
         template<typename T, ByteOrder byteOrder>
         TLinq<UnbytesRange<R,T,byteOrder> > unbytes() const
         {
-            return boolinq::unbytes(((TLinq<R>*)this)->r,byteOrder);
+            return boolinq::unbytes<T,byteOrder>(((TLinq<R>*)this)->r);
         }
     };
 }

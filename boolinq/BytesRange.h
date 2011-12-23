@@ -127,7 +127,7 @@ namespace boolinq
         template<ByteOrder byteOrder>
         TLinq<BytesRange<R,byteOrder> > bytes() const
         {
-            return boolinq::bytes(((TLinq<R>*)this)->r,byteOrder);
+            return boolinq::bytes<byteOrder>(((TLinq<R>*)this)->r);
         }
     };
 }
