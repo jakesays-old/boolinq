@@ -31,6 +31,7 @@
 #include "BytesRange.h"
 #include "BitsRange.h"
 #include "UnbytesRange.h"
+#include "UnbitsRange.h"
 
 namespace boolinq
 {
@@ -65,6 +66,7 @@ namespace boolinq
         , public BytesRange_mixin<Linq,R>
         , public BitsRange_mixin<Linq,R>
         , public UnbytesRange_mixin<Linq,R>
+        , public UnbitsRange_mixin<Linq,R>
     {
     public:
         typedef typename R::value_type value_type;
