@@ -117,18 +117,18 @@ namespace boolinq
         return r;
     }
 
-    template<typename T, ByteOrder byteOrder, typename R>
-    UnbytesRange<UnbitsRange<R>,T,byteOrder> unbits(R r)
-    {
-        return r;
-    }
-
     template<typename T, BitOrder bitOrder, typename R>
     UnbytesRange<UnbitsRange<R,bitOrder>,T> unbits(R r)
     {
         return r;
     }
 
+    //template<typename T, ByteOrder byteOrder, typename R>
+    //UnbytesRange<UnbitsRange<R>,T,byteOrder> unbits(R r)
+    //{
+    //    return r;
+    //}
+    
     template<typename T, BitOrder bitOrder, ByteOrder byteOrder, typename R>
     UnbytesRange<UnbitsRange<R,bitOrder>,T,byteOrder> unbits(R r)
     {
@@ -169,11 +169,11 @@ namespace boolinq
             return boolinq::unbits<T,bitOrder>(((TLinq<R>*)this)->r);
         }
 
-        template<typename T, ByteOrder byteOrder>
-        TLinq<UnbytesRange<UnbitsRange<R>,T,byteOrder> > unbits() const
-        {
-            return boolinq::unbits<T,byteOrder>(((TLinq<R>*)this)->r);
-        }
+        //template<typename T, ByteOrder byteOrder>
+        //TLinq<UnbytesRange<UnbitsRange<R>,T,byteOrder> > unbits() const
+        //{
+        //    return boolinq::unbits<T,byteOrder>(((TLinq<R>*)this)->r);
+        //}
 
         template<typename T, BitOrder bitOrder, ByteOrder byteOrder>
         TLinq<UnbytesRange<UnbitsRange<R,bitOrder>,T,byteOrder> > unbits() const
