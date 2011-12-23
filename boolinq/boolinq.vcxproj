@@ -105,6 +105,7 @@
     <ClCompile Include="IterRangeTest.cpp" />
     <ClCompile Include="ToSetTest.cpp" />
     <ClCompile Include="ToVectorTest.cpp" />
+    <ClCompile Include="UnbytesRangeTest.cpp" />
     <ClCompile Include="UnionAllRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
@@ -124,6 +125,7 @@
     <ClInclude Include="BytesRange.h" />
     <ClInclude Include="BitsRange.h" />
     <ClInclude Include="ToSet.h" />
+    <ClInclude Include="UnbytesRange.h" />
     <ClInclude Include="UnionAllRange.h" />
     <ClInclude Include="Count.h" />
     <ClInclude Include="DistinctRange.h" />
