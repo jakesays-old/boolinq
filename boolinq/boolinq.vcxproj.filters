@@ -128,6 +128,9 @@
     <ClCompile Include="BitsRangeTest.cpp">
       <Filter>Test Files\Custom</Filter>
     </ClCompile>
+    <ClCompile Include="UnbytesRangeTest.cpp">
+      <Filter>Test Files\Custom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -212,6 +215,9 @@
       <Filter>Header Files\Custom</Filter>
     </ClInclude>
     <ClInclude Include="BitsRange.h">
+      <Filter>Header Files\Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="UnbytesRange.h">
       <Filter>Header Files\Custom</Filter>
     </ClInclude>
   </ItemGroup>
