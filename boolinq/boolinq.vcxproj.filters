@@ -134,6 +134,9 @@
     <ClCompile Include="UnbitsRangeTest.cpp">
       <Filter>Test Files\Custom</Filter>
     </ClCompile>
+    <ClCompile Include="DotCallTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">

@@ -85,6 +85,7 @@
     <ClCompile Include="ContainsTest.cpp" />
     <ClCompile Include="CountTest.cpp" />
     <ClCompile Include="DistinctRangeTest.cpp" />
+    <ClCompile Include="DotCallTest.cpp" />
     <ClCompile Include="ElementAtTest.cpp" />
     <ClCompile Include="GroupByRangeTest.cpp" />
     <ClCompile Include="MaxTest.cpp" />
