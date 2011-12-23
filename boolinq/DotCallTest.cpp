@@ -15,9 +15,17 @@ using namespace boolinq;
 
 TEST(DotCall, BytesRange)
 {
-    int src[] = {0xAABBCCDD};
-    int ansFL[] = {0xDD,0xCC,0xBB,0xAA};
-    int ansLF[] = {0xAA,0xBB,0xCC,0xDD};
+    int src[] = {0x12345678,0xAABBCCDD};
+    int ansFL[] = 
+    {
+        0x78,0x56,0x34,0x12,
+        0xDD,0xCC,0xBB,0xAA,
+    };
+    int ansLF[] = 
+    {
+        0x12,0x34,0x56,0x78,
+        0xAA,0xBB,0xCC,0xDD,
+    };
 
     auto dstFL1 = from(src).bytes();
     auto dstFL2 = from(src).bytes<FirstToLast>();
@@ -27,6 +35,27 @@ TEST(DotCall, BytesRange)
     CheckRangeEqArray(dstFL2, ansFL);
     CheckRangeEqArray(dstLF1, ansLF);
 }            
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(DotCall, UnbytesRange)
+{
+    unsigned char src[] = 
+    {
+        0x78,0x56,0x34,0x12,
+        0xDD,0xCC,0xBB,0xAA,
+    };
+    int ansFL[] = {0x12345678,0xAABBCCDD};
+    int ansLF[] = {0x78563412,0xDDCCBBAA};
+
+    auto dstFL1 = from(src).unbytes<int>();
+    auto dstFL2 = from(src).unbytes<int,FirstToLast>();
+    auto dstLF1 = from(src).unbytes<int,LastToFirst>();
+
+    CheckRangeEqArray(dstFL1, ansFL);
+    CheckRangeEqArray(dstFL2, ansFL);
+    CheckRangeEqArray(dstLF1, ansLF);
+} 
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -88,21 +117,56 @@ TEST(DotCall, BitsRangeLH)
 
 //////////////////////////////////////////////////////////////////////////
 
-TEST(DotCall, UnbytesRange)
+TEST(DotCall, UnbitsRangeHLFL)
 {
-    unsigned char src[] = 
+    int src[] =
     {
-        0x78,0x56,0x34,0x12,
-        0xDD,0xCC,0xBB,0xAA
+        1,1,0,1,1,1,0,1,
+        1,1,0,0,1,1,0,0,
+        1,0,1,1,1,0,1,1,
+        1,0,1,0,1,0,1,0
     };
-    int ansFL[] = {0x12345678,0xAABBCCDD};
-    int ansLF[] = {0x78563412,0xDDCCBBAA};
+    int ans_4b[] = {0xDD,0xCC,0xBB,0xAA};
+    int ans_1i[] = {0xAABBCCDD};
+    int ansLF_1i[] = {0xDDCCBBAA};
 
-    auto dstFL1 = from(src).unbytes<int>();
-    auto dstFL2 = from(src).unbytes<int,FirstToLast>();
-    auto dstLF1 = from(src).unbytes<int,LastToFirst>();
+    auto dst1_4b = from(src).unbits();
+    auto dst2_4b = from(src).unbits<HighToLow>();
+    auto dst1_1i = from(src).unbits<int,HighToLow>();
+    auto dst2_1i = from(src).unbits<int,HighToLow,FirstToLast>();
+    auto dst3_1i = from(src).unbits<int,HighToLow,LastToFirst>();
 
-    CheckRangeEqArray(dstFL1, ansFL);
-    CheckRangeEqArray(dstFL2, ansFL);
-    CheckRangeEqArray(dstLF1, ansLF);
-} 
+    CheckRangeEqArray(dst1_4b, ans_4b);
+    CheckRangeEqArray(dst2_4b, ans_4b);
+    CheckRangeEqArray(dst1_1i, ans_1i);
+    CheckRangeEqArray(dst2_1i, ans_1i);
+    CheckRangeEqArray(dst3_1i, ansLF_1i);
+}
+
+//TEST(DotCall, UnbitsRangeLH)
+//{
+//    int src[] = {0xAABBCCDD};
+//    int ansFL[] = 
+//    {
+//        1,0,1,1,1,0,1,1,
+//        0,0,1,1,0,0,1,1,
+//        1,1,0,1,1,1,0,1,
+//        0,1,0,1,0,1,0,1,
+//    };
+//    int ansLF[] = 
+//    {
+//        0,1,0,1,0,1,0,1,
+//        1,1,0,1,1,1,0,1,
+//        0,0,1,1,0,0,1,1,
+//        1,0,1,1,1,0,1,1,
+//    };
+//
+//    auto dstFL1 = from(src).bits<LowToHigh>();
+//    auto dstFL2 = from(src).bits<LowToHigh,FirstToLast>();
+//    auto dstLF1 = from(src).bits<LowToHigh,LastToFirst>();
+//
+//    CheckRangeEqArray(dstFL1, ansFL);
+//    CheckRangeEqArray(dstFL2, ansFL);
+//    CheckRangeEqArray(dstLF1, ansLF);
+//}
+
