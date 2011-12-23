@@ -22,13 +22,13 @@ namespace boolinq
             : r(rng)
             , frontValue()
             , backValue()
+            , preEnd(r.empty())
             , atEnd(r.empty())
         {
             if (!atEnd)
             {
                 popFront();
                 popBack();
-                atEnd = false;
             }
         }
 
@@ -41,9 +41,15 @@ namespace boolinq
         {
             value_type tmp = front();
 
-            if (r.empty())
+            if (preEnd)
             {
                 atEnd = true;
+                return tmp;
+            }
+
+            if (r.empty())
+            {
+                preEnd = true;
                 frontValue = backValue;
             }
             else
@@ -60,16 +66,22 @@ namespace boolinq
         {
             value_type tmp = back();
 
-            if (r.empty())
+            if (preEnd)
             {
                 atEnd = true;
+                return tmp;
+            }
+
+            if (r.empty())
+            {
+                preEnd = true;
                 backValue = frontValue;
             }
             else
             {
                 backValue = 0;
                 for (int i = finishBit; !r.empty() && i != startBit-stepBit; i -= stepBit)
-                    backValue |= ((r.popFront()&1) << i);
+                    backValue |= ((r.popBack()&1) << i);
             }
 
             return tmp;
@@ -89,6 +101,7 @@ namespace boolinq
         R r;
         value_type frontValue;
         value_type backValue;
+        bool preEnd;
         bool atEnd;
     };
 
