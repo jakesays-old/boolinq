@@ -42,3 +42,4 @@ namespace boolinq
         }
     };
 }
+// namespace boolinq

@@ -27,3 +27,4 @@ namespace boolinq
         }
     };
 }
+// namespace boolinq
