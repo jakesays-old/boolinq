@@ -55,13 +55,13 @@ TEST(Count, OddCount)
 {
     std::vector<int> src;
     src.push_back(1);
-    src.push_back(2);
-    src.push_back(3);
-    src.push_back(4);
-    src.push_back(5);
+    src.push_back(0);
+    src.push_back(1);
+    src.push_back(0);
+    src.push_back(1);
 
     auto rng = range(src);
     
-    EXPECT_EQ(2, count(rng,[](int a){return a%2 == 0;}));
-    EXPECT_EQ(3, count(rng,[](int a){return a%2 == 1;}));
+    EXPECT_EQ(2, count(rng,0));
+    EXPECT_EQ(3, count(rng,1));
 }
