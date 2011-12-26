@@ -35,7 +35,7 @@ namespace boolinq
         {
         }
 
-        bool empty() const       
+        bool empty()       
         {
             return atEnd;
         }
@@ -74,12 +74,12 @@ namespace boolinq
             return tmp;
         }
         
-        value_type front() const 
+        value_type front() 
         {
             return (r.front() >> frontBit) & 1;
         }
 
-        value_type back() const  
+        value_type back()  
         {
             return (r.back() >> backBit) & 1;     
         }

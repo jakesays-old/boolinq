@@ -32,7 +32,7 @@ namespace boolinq
             }
         }
 
-        bool empty() const       
+        bool empty()       
         {
             return atEnd;
         }
@@ -87,12 +87,12 @@ namespace boolinq
             return tmp;
         }
 
-        value_type front() const 
+        value_type front() 
         {
             return frontValue;
         }
 
-        value_type back() const  
+        value_type back()  
         {
             return backValue;
         }

@@ -76,7 +76,7 @@ namespace boolinq
         {
         }
 
-        bool empty() const 
+        bool empty() 
         { 
             return dr.empty();
         }

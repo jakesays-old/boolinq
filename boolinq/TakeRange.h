@@ -21,11 +21,11 @@ namespace boolinq
             }
         }
 
-        bool empty() const       { return r.empty();    }
+        bool empty()       { return r.empty();    }
         value_type popFront()    { return r.popFront(); }
         value_type popBack()     { return r.popBack();  }
-        value_type front() const { return r.front();    }
-        value_type back() const  { return r.back();     }
+        value_type front() { return r.front();    }
+        value_type back()  { return r.back();     }
 
     private:
         R r;

@@ -30,7 +30,7 @@ namespace boolinq
         {
         }
 
-        bool empty() const       
+        bool empty()       
         {
             return atEnd;
         }
@@ -69,13 +69,13 @@ namespace boolinq
             return tmp;
         }
 
-        value_type front() const 
+        value_type front() 
         {
             old_value_type val = r.front();
             return ((unsigned char *)&val)[frontByte];
         }
 
-        value_type back() const  
+        value_type back()  
         {
             old_value_type val = r.back();
             return ((unsigned char *)&val)[backByte];     

@@ -19,7 +19,7 @@ namespace boolinq
         {
         }
     
-        bool empty() const 
+        bool empty() 
         { 
             return r1.empty() && r2.empty();
         }
@@ -38,14 +38,14 @@ namespace boolinq
             return r2.popBack();
         }
 
-        value_type front() const 
+        value_type front() 
         {
             if (r1.empty())
                 return r2.front();
             return r1.front();
         }
 
-        value_type back() const
+        value_type back()
         { 
             if (r2.empty())
                 return r1.back();
