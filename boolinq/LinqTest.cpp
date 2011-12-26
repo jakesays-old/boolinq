@@ -353,3 +353,17 @@ TEST(Linq, MessagesCountUniqueContacts)
 
     EXPECT_EQ(2, DenisUniqueContactCount);
 }
+
+//////////////////////////////////////////////////////////////////////////
+
+TEST(Linq, ForwardIterating)
+{
+    std::stringstream stream("0123456789");
+    auto dst = from(std::istream_iterator<char>(stream),
+                    std::istream_iterator<char>())
+               .where( [](char a){return a % 2 == 0;})
+               .select([](char a){return std::string(1,a);})
+               .sum();
+
+    EXPECT_EQ("02468", dst);
+}

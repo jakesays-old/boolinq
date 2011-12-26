@@ -13,11 +13,11 @@ namespace boolinq
         {
         }
 
-        bool empty() const       { return r.empty();    }
+        bool empty()       { return r.empty();    }
         value_type popFront()    { return r.popBack();  }
         value_type popBack()     { return r.popFront(); }
-        value_type front() const { return r.back();     }
-        value_type back() const  { return r.front();    }
+        value_type front() { return r.back();     }
+        value_type back()  { return r.front();    }
 
         template<typename R2>
         friend R2 reverse(ReverseRange<R2> r); // smart needed

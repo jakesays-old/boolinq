@@ -27,7 +27,7 @@ namespace boolinq
                 popFront();
         }
 
-        bool empty() const 
+        bool empty() 
         { 
             return r.empty();
         }
@@ -54,12 +54,12 @@ namespace boolinq
             return tmp.back();
         }
 
-        value_type front() const 
+        value_type front() 
         { 
             return r.front();
         }
 
-        value_type back() const 
+        value_type back() 
         { 
             return r.back();
         }

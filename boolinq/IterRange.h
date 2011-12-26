@@ -16,7 +16,7 @@ namespace boolinq
         {
         }
 
-        bool empty() const
+        bool empty()
         {
             return (b == e);
         }
@@ -35,13 +35,13 @@ namespace boolinq
             return *(--e);
         }
 
-        value_type front() const
+        value_type front()
         {
             assert(!empty());
             return *b;
         }
 
-        value_type back() const
+        value_type back()
         {
             assert(!empty());
             TIter tmp = e;

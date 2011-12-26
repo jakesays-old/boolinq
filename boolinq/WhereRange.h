@@ -10,39 +10,51 @@ namespace boolinq
         
         WhereRange(R r, F f)
             : r(r), f(f)
+            , frontReady(false)
+            , backReady(false)
         {
-            seekFront();
-            seekBack();
         }
 
-        bool empty() const 
+        bool empty() 
         { 
+            if (!frontReady)
+                seekFront();
             return r.empty();
         }
 
         value_type popFront() 
         { 
-            R tmp = r;
+            if (!frontReady)
+                seekFront();
+
+            auto tmp = *this;
             r.popFront();
-            seekFront();
+            frontReady = false;
             return tmp.front();
         }
 
         value_type popBack() 
         {
-            R tmp = r;
+            if (!frontReady)
+                seekFront();
+
+            auto tmp = *this;
             r.popBack();
-            seekBack();
+            backReady = false;
             return tmp.back();
         }
 
-        value_type front() const 
+        value_type front()
         { 
+            if (!frontReady)
+                seekFront();
             return r.front();
         }
 
-        value_type back() const 
+        value_type back() 
         { 
+            if (!backReady)
+                seekBack();
             return r.back();
         }
 
@@ -51,17 +63,21 @@ namespace boolinq
         {
             while(!r.empty() && !f(r.front()))
                 r.popFront();
+            frontReady = true;
         }
 
         void seekBack()
         {
             while(!r.empty() && !f(r.back()))
                 r.popBack();
+            backReady = true;
         }
 
     private:
         R r;
         F f;
+        bool frontReady;
+        bool backReady;
     };
 
     // where(where(xxx, ...), ...)

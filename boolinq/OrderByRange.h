@@ -33,7 +33,7 @@ namespace boolinq
             atEnd = (minimumIndex + maximumIndex == size);
         }
 
-        bool empty() const 
+        bool empty() 
         { 
             return atEnd;
         }
@@ -52,12 +52,12 @@ namespace boolinq
             return tmp.back();
         }
 
-        value_type front() const 
+        value_type front() 
         { 
             return minimumValue.front();
         }
 
-        value_type back() const 
+        value_type back() 
         { 
             return maximumValue.back();
         }
