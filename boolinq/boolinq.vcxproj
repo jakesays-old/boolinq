@@ -87,6 +87,7 @@
     <ClCompile Include="DistinctRangeTest.cpp" />
     <ClCompile Include="DotCallTest.cpp" />
     <ClCompile Include="ElementAtTest.cpp" />
+    <ClCompile Include="ForeachTest.cpp" />
     <ClCompile Include="GroupByRangeTest.cpp" />
     <ClCompile Include="MaxTest.cpp" />
     <ClCompile Include="MinTest.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="CommonTests.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />
+    <ClInclude Include="Foreach.h" />
     <ClInclude Include="Max.h" />
     <ClInclude Include="Min.h" />
     <ClInclude Include="SkipRange.h" />

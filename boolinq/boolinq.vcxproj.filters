@@ -137,6 +137,9 @@
     <ClCompile Include="DotCallTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="ForeachTest.cpp">
+      <Filter>Test Files\Aggregate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="UnbitsRange.h">
       <Filter>Header Files\Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="Foreach.h">
+      <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
