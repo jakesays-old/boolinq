@@ -19,6 +19,7 @@
 #include "Min.h"
 #include "Max.h"
 #include "Count.h"
+#include "Foreach.h"
 #include "Contains.h"
 #include "ElementAt.h"
 
@@ -54,6 +55,7 @@ namespace boolinq
         , public Min_mixin<Linq,R>
         , public Max_mixin<Linq,R>
         , public Count_mixin<Linq,R>
+        , public Foreach_mixin<Linq,R>
         , public Contains_mixin<Linq,R>
         , public ElementAt_mixin<Linq,R>
 
