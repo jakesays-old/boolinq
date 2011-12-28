@@ -3,8 +3,8 @@
 #include <vector>
 #include <string>
 
-#include "gmock/gmock.h"
-#include "gtest/gtest.h"
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 #include "CommonTests.h"
 
 #include "boolinq.h"
