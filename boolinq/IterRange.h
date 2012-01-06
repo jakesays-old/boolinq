@@ -24,9 +24,7 @@ namespace boolinq
         value_type popFront()
         {
             assert(!empty());
-            TIter tmp = b;
-            ++b;
-            return *tmp;
+            return *(b++);
         }
 
         value_type popBack()
@@ -45,8 +43,7 @@ namespace boolinq
         {
             assert(!empty());
             TIter tmp = e;
-            --tmp;
-            return *tmp;
+            return *(--tmp);
         }
 
     private:
