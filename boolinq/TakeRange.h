@@ -11,24 +11,58 @@ namespace boolinq
         typedef typename R::value_type value_type;
 
         TakeRange(R r, int n)
-            : r(r)
+            : r(r), n(n), backReady(false)
         {
-            int size = boolinq::count(r);
-            if (size > n)
-            {
-                for (int i = 0; i < size-n; i++)
-                    this->r.popBack();
-            }
         }
 
-        bool empty()          { return r.empty();    }
-        value_type popFront() { return r.popFront(); }
-        value_type popBack()  { return r.popBack();  }
-        value_type front()    { return r.front();    }
-        value_type back()     { return r.back();     }
+        bool empty()          
+        {
+            if ((n == 0) && !backReady)
+                return true;
+            return r.empty();   
+        }
+
+        value_type popFront() 
+        {
+            n--;
+            return r.popFront(); 
+        }
+
+        value_type popBack()  
+        { 
+            if (!backReady)
+                prepareBack();
+            return r.popBack(); 
+        }
+
+        value_type front()    
+        { 
+            return r.front();   
+        }
+
+        value_type back()    
+        { 
+            if (!backReady)
+                prepareBack();
+            return r.back();   
+        }
+
+    private:
+        void prepareBack() 
+        {
+            int size = boolinq::count(r);
+            while (size > n)
+            {
+                r.popBack();
+                size--;
+            }
+            backReady = true;
+        }
 
     private:
         R r;
+        int n;
+        bool backReady;
     };
 
     // take(take(xxx, ...), ...)
