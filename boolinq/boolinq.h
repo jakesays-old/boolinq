@@ -88,11 +88,11 @@ namespace boolinq
             return r;
         }
 
-        bool empty()       { return r.empty();    }
-        value_type popFront()    { return r.popFront(); }
-        value_type popBack()     { return r.popBack();  }
-        value_type front() { return r.front();    }
-        value_type back()  { return r.back();     }
+        bool empty()          { return r.empty();    }
+        value_type popFront() { return r.popFront(); }
+        value_type popBack()  { return r.popBack();  }
+        value_type front()    { return r.front();    }
+        value_type back()     { return r.back();     }
 
     public:
         R r;
