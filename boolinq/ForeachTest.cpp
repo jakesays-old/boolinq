@@ -6,11 +6,11 @@
 #include <gtest/gtest.h>
 
 #include "IterRange.h"
-#include "Foreach.h"
+#include "ForEach.h"
 
 using namespace boolinq;
 
-TEST(Foreach, ThreeCharsSum)
+TEST(ForEach, ThreeCharsSum)
 {
     std::vector<char> src;
     src.push_back('a');
@@ -18,12 +18,12 @@ TEST(Foreach, ThreeCharsSum)
     src.push_back('c');
 
     std::string str = "";
-    foreach(range(src), [&](char a){str += a;});
+    for_each(range(src), [&](char a){str += a;});
 
     EXPECT_EQ("abc", str);
 }
 
-TEST(Foreach, ThreeCharsUpperSum)
+TEST(ForEach, ThreeCharsUpperSum)
 {
     std::vector<char> src;
     src.push_back('a');
@@ -31,12 +31,12 @@ TEST(Foreach, ThreeCharsUpperSum)
     src.push_back('c');
 
     std::string str = "";
-    foreach(range(src), [&](char a){str += a + ('A' - 'a');});
+    for_each(range(src), [&](char a){str += a + ('A' - 'a');});
 
     EXPECT_EQ("ABC", str);
 }
 
-TEST(Foreach, ThreeIntsSum)
+TEST(ForEach, ThreeIntsSum)
 {
     std::vector<int> src;
     src.push_back(10);
@@ -44,7 +44,7 @@ TEST(Foreach, ThreeIntsSum)
     src.push_back(30);
 
     int sum = 0;
-    foreach(range(src), [&](int a){sum += a;});
+    for_each(range(src), [&](int a){sum += a;});
 
     EXPECT_EQ(60, sum);
 }
