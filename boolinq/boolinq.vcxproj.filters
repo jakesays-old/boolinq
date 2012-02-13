@@ -116,9 +116,6 @@
     <ClCompile Include="TakeRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
-    <ClCompile Include="UnionAllRangeTest.cpp">
-      <Filter>Test Files\Ranges</Filter>
-    </ClCompile>
     <ClCompile Include="SkipRangeTest.cpp">
       <Filter>Test Files\Ranges</Filter>
     </ClCompile>
@@ -137,7 +134,10 @@
     <ClCompile Include="DotCallTest.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="ForeachTest.cpp">
+    <ClCompile Include="ConcatRangeTest.cpp">
+      <Filter>Test Files\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="ForEachTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,9 +158,6 @@
       <Filter>Header Files\Ranges</Filter>
     </ClInclude>
     <ClInclude Include="SelectRange.h">
-      <Filter>Header Files\Ranges</Filter>
-    </ClInclude>
-    <ClInclude Include="UnionAllRange.h">
       <Filter>Header Files\Ranges</Filter>
     </ClInclude>
     <ClInclude Include="WhereRange.h">
@@ -232,7 +229,10 @@
     <ClInclude Include="UnbitsRange.h">
       <Filter>Header Files\Custom</Filter>
     </ClInclude>
-    <ClInclude Include="Foreach.h">
+    <ClInclude Include="ConcatRange.h">
+      <Filter>Header Files\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="ForEach.h">
       <Filter>Header Files\Aggregate</Filter>
     </ClInclude>
   </ItemGroup>

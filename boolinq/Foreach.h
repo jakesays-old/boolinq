@@ -2,25 +2,25 @@
 
 namespace boolinq
 {
-    // foreach(foreach(xxx, ...), ...)
+    // for_each(for_each(xxx, ...), ...)
 
     template<typename R, typename F>
-    void foreach(R r, F f)
+    void for_each(R r, F f)
     {
         while (!r.empty())
             f(r.popFront());
     }
 
-    // xxx.foreach(...).foreach(...)
+    // xxx.for_each(...).for_each(...)
 
     template<template<typename> class TLinq, typename R>
-    class Foreach_mixin
+    class ForEach_mixin
     {
     public:
         template<typename F>
-        void foreach(F f) const
+        void for_each(F f) const
         {
-            return boolinq::foreach(((TLinq<R>*)this)->r,f);
+            return boolinq::for_each(((TLinq<R>*)this)->r,f);
         }
     };
 }

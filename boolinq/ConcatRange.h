@@ -5,7 +5,7 @@
 namespace boolinq
 {
     template<typename R1, typename R2> 
-    class UnionAllRange
+    class ConcatRange
     {
         static_assert(std::tr1::is_same<typename R1::value_type,
                                         typename R2::value_type>::value,
@@ -14,7 +14,7 @@ namespace boolinq
     public:
         typedef typename R1::value_type value_type;
 
-        UnionAllRange(R1 r1, R2 r2)
+        ConcatRange(R1 r1, R2 r2)
             : r1(r1), r2(r2)
         {
         }
@@ -60,19 +60,19 @@ namespace boolinq
     /// unionAll(unionAll(xxx,yyy),zzz)
 
     template<typename R1, typename R2>
-    UnionAllRange<R1,R2> unionAll(R1 r1, R2 r2)
+    ConcatRange<R1,R2> unionAll(R1 r1, R2 r2)
     {
-        return UnionAllRange<R1,R2>(r1,r2);
+        return ConcatRange<R1,R2>(r1,r2);
     }
 
     /// xxx.unionAll(yyy).unionAll(zzz)
 
     template<template<typename> class TLinq, typename R1>
-    class UnionAllRange_mixin
+    class ConcatRange_mixin
     {
     public:
         template<typename R2>
-        TLinq<UnionAllRange<R1,R2> > unionAll(R2 r) const
+        TLinq<ConcatRange<R1,R2> > unionAll(R2 r) const
         {
             return boolinq::unionAll(((TLinq<R1>*)this)->r,r);
         }

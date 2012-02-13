@@ -87,7 +87,7 @@
     <ClCompile Include="DistinctRangeTest.cpp" />
     <ClCompile Include="DotCallTest.cpp" />
     <ClCompile Include="ElementAtTest.cpp" />
-    <ClCompile Include="ForeachTest.cpp" />
+    <ClCompile Include="ForEachTest.cpp" />
     <ClCompile Include="GroupByRangeTest.cpp" />
     <ClCompile Include="MaxTest.cpp" />
     <ClCompile Include="MinTest.cpp" />
@@ -109,7 +109,7 @@
     <ClCompile Include="ToVectorTest.cpp" />
     <ClCompile Include="UnbitsRangeTest.cpp" />
     <ClCompile Include="UnbytesRangeTest.cpp" />
-    <ClCompile Include="UnionAllRangeTest.cpp" />
+    <ClCompile Include="ConcatRangeTest.cpp" />
     <ClCompile Include="WhereRangeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +120,7 @@
     <ClInclude Include="CommonTests.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />
-    <ClInclude Include="Foreach.h" />
+    <ClInclude Include="ForEach.h" />
     <ClInclude Include="Max.h" />
     <ClInclude Include="Min.h" />
     <ClInclude Include="SkipRange.h" />
@@ -131,7 +131,7 @@
     <ClInclude Include="ToSet.h" />
     <ClInclude Include="UnbitsRange.h" />
     <ClInclude Include="UnbytesRange.h" />
-    <ClInclude Include="UnionAllRange.h" />
+    <ClInclude Include="ConcatRange.h" />
     <ClInclude Include="Count.h" />
     <ClInclude Include="DistinctRange.h" />
     <ClInclude Include="GroupByRange.h" />

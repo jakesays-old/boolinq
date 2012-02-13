@@ -3,11 +3,11 @@
 #include "CommonTests.h"
 
 #include "IterRange.h"
-#include "UnionAllRange.h"
+#include "ConcatRange.h"
 
 using namespace boolinq;
 
-TEST(UnionAllRange, ArrayArray)
+TEST(ConcatRange, ArrayArray)
 {
     int src1[] = {1,2,3,4,5};
     int src2[] = {6,7,8,9};
@@ -21,7 +21,7 @@ TEST(UnionAllRange, ArrayArray)
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(UnionAllRange, ArrayVector)
+TEST(ConcatRange, ArrayVector)
 {
     int src1[] = {1,2,3,4,5};
     std::vector<int> src2;
@@ -39,7 +39,7 @@ TEST(UnionAllRange, ArrayVector)
     CheckRangeEqArray(dst, ans);
 }
 
-TEST(UnionAllRange, ArrayVectorArray)
+TEST(ConcatRange, ArrayVectorArray)
 {
     int src1[] = {1,2,3,4,5};
     std::vector<int> src2;
