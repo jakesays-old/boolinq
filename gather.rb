@@ -47,7 +47,7 @@ while index < file_list.count
         if (max_index > index)
             max_index -= 1;
         end
-        file_list.insert(max_index+1,tmp);
+        file_list.insert(max_index,tmp);
     end
     
     index += 1
