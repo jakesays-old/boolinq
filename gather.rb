@@ -30,24 +30,18 @@ end
 index = 0
 while index < file_list.count
     max_index = index
-    for link in file_list[index].links
-        tmp_index = 0
-        for f in file_list
-            if f.name == link
-                break;
-            end;
-            tmp_index += 1
-        end        
-        max_index = [max_index, tmp_index].max
+	for link in file_list[index].links
+        tmp_index = file_list.index{|f| f.name == link}
+		tmp_index = -1 if tmp_index == nil
+        max_index = [max_index,tmp_index].max
     end
     
-    if index != max_index
+    if max_index > index
+		puts "#{file_list.count} #{index} #{max_index}"
+		puts "#{file_list[index].name} #{file_list[max_index].name}"
         tmp = file_list[index]
         file_list.delete_at(index)
-        if (max_index > index)
-            max_index -= 1;
-        end
-        file_list.insert(max_index,tmp);
+        file_list.insert(max_index,tmp)
     end
     
     index += 1
