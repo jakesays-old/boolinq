@@ -140,6 +140,9 @@
     <ClCompile Include="ForEachTest.cpp">
       <Filter>Test Files\Aggregate</Filter>
     </ClCompile>
+    <ClCompile Include="SpeedTest.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boolinq.h">
@@ -234,6 +237,9 @@
     </ClInclude>
     <ClInclude Include="ForEach.h">
       <Filter>Header Files\Aggregate</Filter>
+    </ClInclude>
+    <ClInclude Include="CastRange.h">
+      <Filter>Header Files\Ranges</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

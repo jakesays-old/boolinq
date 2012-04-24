@@ -95,6 +95,7 @@
     <ClCompile Include="ReverseRangeTest.cpp" />
     <ClCompile Include="SelectRangeTest.cpp" />
     <ClCompile Include="SkipRangeTest.cpp" />
+    <ClCompile Include="SpeedTest.cpp" />
     <ClCompile Include="SumTest.cpp" />
     <ClCompile Include="TakeRangeTest.cpp" />
     <ClCompile Include="BytesRangeTest.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Any.h" />
     <ClInclude Include="Avg.h" />
     <ClInclude Include="boolinq.h" />
+    <ClInclude Include="CastRange.h" />
     <ClInclude Include="CommonTests.h" />
     <ClInclude Include="Contains.h" />
     <ClInclude Include="ElementAt.h" />
