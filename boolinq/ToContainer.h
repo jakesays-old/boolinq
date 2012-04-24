@@ -19,7 +19,7 @@ namespace boolinq
     template<template<typename,typename> class X, typename R>
     X<typename R::value_type, std::allocator<typename R::value_type> > toContainer(R r)
     {
-        X<typename R::value_type, std::allocator<typename R::value_type>> result;
+        X<typename R::value_type, std::allocator<typename R::value_type> > result;
         for (; !r.empty(); r.popFront())
             result.push_back(r.front());
         return result;

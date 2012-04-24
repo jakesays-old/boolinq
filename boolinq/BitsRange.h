@@ -105,7 +105,7 @@ namespace boolinq
     // bits<BitOrder,ByteOrder>(xxx)
 
     template<typename R>
-    BitsRange<BytesRange<R>> bits(R r)
+    BitsRange<BytesRange<R> > bits(R r)
     {
         return boolinq::bytes(r);
     }
@@ -130,7 +130,7 @@ namespace boolinq
     class BitsRange_mixin
     {
     public:
-        TLinq<BitsRange<BytesRange<R>> > bits() const
+        TLinq<BitsRange<BytesRange<R> > > bits() const
         {
             return boolinq::bits(((TLinq<R>*)this)->r);
         }
